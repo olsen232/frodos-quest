@@ -43,7 +43,7 @@ public class ZoomSurface {
     }
   }
 
-  public void drawText(ZImage[] font, String text, int x, int y) {
+  public void drawText(ZImage[] font, CharSequence text, int x, int y) {
     for (int i = 0; i < text.length(); i++) {
       char c = text.charAt(i);
       int index = (int) (c - ' ');
@@ -54,15 +54,16 @@ public class ZoomSurface {
     }
   }
 
-  public void drawTextWithNewLines(ZImage[] font, String text, int x, int y) {
-    String[] lines = text.split("\n");
-    for (String line : lines) {
+  public void drawTextWithNewLines(ZImage[] font, CharSequence text, int x, int y) {
+    // TODO: handle newlines
+    CharSequence[] lines = new CharSequence[] {text}; //text.split("\n");
+    for (CharSequence line : lines) {
       drawText(font, line, x, y);
       y += FONT_SIZE;
     }
   }
 
-  public void drawCenteredText(ZImage[] font, String text, int x, int y) {
+  public void drawCenteredText(ZImage[] font, CharSequence text, int x, int y) {
     drawText(font, text, x - (text.length() * FONT_SIZE / 2), y - (FONT_SIZE / 2));
   }
 
