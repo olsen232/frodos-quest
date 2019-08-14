@@ -1,0 +1,11 @@
+<module rename-to='frodos-quest'>
+  <inherits name='playn.Scene'/>
+  <inherits name='FrodosQuestAssets'/>
+
+  <source path='core'/>
+  <source path='html'/>
+
+  <public path="resources" />
+
+  <entry-point class='frodo.html.FrodosQuestHtml'/>
+</module>
