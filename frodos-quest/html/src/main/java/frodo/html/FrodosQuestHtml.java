@@ -21,7 +21,7 @@ public class FrodosQuestHtml implements EntryPoint {
     config.experimentalFullscreen = true;
     // use config to customize the HTML platform, if needed
     HtmlPlatform plat = new HtmlPlatform(config);
-    plat.assets().setPathPrefix("frodos-quest/");
+    plat.assets().setPathPrefix("frodosquest/");
     HtmlCanvasCreator cc = new HtmlCanvasCreator(plat.graphics());
     new FrodosQuest(plat, cc);
     plat.start();

@@ -1,4 +1,4 @@
-<module rename-to='frodos-quest'>
+<module rename-to='frodosquest'>
   <inherits name='playn.Scene'/>
   <inherits name='FrodosQuestAssets'/>
 

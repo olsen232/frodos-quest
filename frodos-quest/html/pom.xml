@@ -15,7 +15,7 @@
 
   <properties>
     <gwt.module>frodo.FrodosQuest</gwt.module>
-    <gwt.name>frodos-quest</gwt.name>
+    <gwt.name>frodosquest</gwt.name>
     <gae.version>1.9.9</gae.version> <!-- Google App Engine SDK version -->
   </properties>
 

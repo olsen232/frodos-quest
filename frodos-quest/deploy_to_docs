@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -rf ../docs/frodosquest/
+cp -r html/target/frodos-quest-html-1.0-SNAPSHOT/frodosquest/ ../docs/frodosquest/
+cp ../frodos-quest.html ../docs/index.html
