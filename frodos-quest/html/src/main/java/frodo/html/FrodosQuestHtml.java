@@ -12,7 +12,7 @@ import playn.core.Canvas;
 import playn.core.Scale;
 
 import frodo.core.FrodosQuest;
-import frodo.core.Toolkit;
+import frodo.core.Platform;
 
 public class FrodosQuestHtml implements EntryPoint {
 
@@ -20,21 +20,22 @@ public class FrodosQuestHtml implements EntryPoint {
     HtmlPlatform.Config config = new HtmlPlatform.Config();
     config.experimentalFullscreen = true;
     // use config to customize the HTML platform, if needed
-    HtmlPlatform plat = new HtmlPlatform(config);
-    plat.assets().setPathPrefix("frodosquest/");
-    HtmlCanvasCreator cc = new HtmlCanvasCreator(plat.graphics());
-    new FrodosQuest(plat, cc);
-    plat.start();
+    HtmlPlatform raw = new HtmlPlatform(config);
+    raw.assets().setPathPrefix("frodosquest/");
+    Platform platform = new Platform(raw);
+    platform.canvasCreator = new HtmlCanvasCreator(raw.graphics());
+    new FrodosQuest(platform);
+    raw.start();
   }
 
-  static class HtmlCanvasCreator implements Toolkit.CanvasCreator {
+  static class HtmlCanvasCreator implements Platform.CanvasCreator {
     private final Graphics graphics;
-    
+
     HtmlCanvasCreator(Graphics graphics) {
       this.graphics = graphics;
     }
 
-    public Canvas createCanvas(int pixelWidth, int pixelHeight) {
+    public Canvas create(int pixelWidth, int pixelHeight) {
       CanvasElement elem = Document.get().createCanvasElement();
       elem.setWidth(pixelWidth);
       elem.setHeight(pixelHeight);

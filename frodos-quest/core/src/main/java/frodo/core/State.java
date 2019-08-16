@@ -55,23 +55,23 @@ public class State implements Cloneable, Serializable {
   //public void setLocation(Location location) {
   //  this.location = location;
   //}
-  
+
   private static final String NO_SWIMMING = "It is a little early in the season for swimming - the water will still be freezing.";
 
   private boolean promptInput() {
-    if (typed("quit")) System.exit(0);
+    //if (typed("quit")) System.exit(0);
     if (typed(INVENTORY)) return displayInventory();
     if (typed(EXAMINE, FRODO)) return display(FRODO.desc);
     if (typed("teaser")) return display("Coming 2019\n\nHobbit's Quest");
 
     if (maybeLookAtInventory()) return true;
-    
+
     if (has(MUG_OF_ALE) && typed(DRINK, MUG_OF_ALE)) {
       Sprites.FRODO.drinkAlcohol();
       changeState(inventory.remove(MUG_OF_ALE));
       return display("You drink the mug of ale. Refreshing, but quite strong.");
     }
-      
+
 
     if (at(FRODOS_ROOM)) {
       if (typed(LOOK)) return display("This is your room at Bag End. Nice and cosy. A bed and a wardrobe meets all your needs. A window looks out into the garden.");
@@ -181,7 +181,7 @@ public class State implements Cloneable, Serializable {
         }
       }
     }
-    
+
     if (at(BAGEND_HILL)) {
       if (typed(LOOK)) {
         return display("This is Bag End - a beautiful home on a hill, the envy of many hobbits in the Shire.");
@@ -194,8 +194,8 @@ public class State implements Cloneable, Serializable {
       if (typed(EXAMINE, WALL)) return display(WALL.desc);
       if (typed(TAKE, FLOWERS)) return display("They belong in the garden.");
       if (typed(TAKE, ROCK)) return display("It's bigger than you are!");
-    }      
-    
+    }
+
     if (at(LAKE_TREE)) {
       if (typed(LOOK)) {
         return display("You are on the shore of Hobbiton's lake.");
@@ -211,7 +211,7 @@ public class State implements Cloneable, Serializable {
       if (typed(SWIM)) return display(NO_SWIMMING);
       if (typed(TAKE, GOOSE)) return Sprites.FRODO.isCloseTo(Sprites.GOOSE, 16) ? display("Ouch! You try to pick up the goose, but you quickly change your mind.") : display("You're not close enough.");
     }
-    
+
     if (at(NEIGHBOR)) {
       if (typed(LOOK)) {
         return display("This is the house of your neighbour, Andwise. Andwise himself is at his gate, smoking a pipe and watching the world go by, as he often does.");
@@ -225,7 +225,7 @@ public class State implements Cloneable, Serializable {
       if (typed(EXAMINE, RIVER)) return display(RIVER.desc);
       if (typed(TALK_TO, ANDWISE)) return display("\"Good morning, young Frodo! What a lovely day to be out and about.\"");
     }
-    
+
     if (at(HOBBITON)) {
       if (typed(LOOK)) {
         return display("A bridge crosses the river and leads into the Green Dragon inn, which is the centre of Hobbiton.");
@@ -237,7 +237,7 @@ public class State implements Cloneable, Serializable {
       if (typed(EXAMINE, HOUSE)) return display(INN.desc);
       if (typed(EXAMINE, MILL)) return display(MILL.desc);
     }
-    
+
     if (at(GREEN_DRAGON)) {
       if (typed(LOOK)) {
         return display("Most of those already seated in the Green Dragon at this hour are regulars. The only irregular is the wizard Gandalf, on his own in the corner. Behind the bar is Rosie.");
@@ -256,7 +256,7 @@ public class State implements Cloneable, Serializable {
       if (typed(TALK_TO, GANDALF)) {
         changeState(gandalfTalk += 1);
         switch (gandalfTalk) {
-          case 2: 
+          case 2:
             return display("\"Frodo my lad! I see you got my note. Come, get yourself something to drink, then come and listen to what I have to say.\"");
           case 3:
             changeState(talkedToGandalf = true);
@@ -276,7 +276,7 @@ public class State implements Cloneable, Serializable {
         }
       }
     }
-    
+
     if (at(LAKE_HOUSE)) {
       if (typed(LOOK)) {
         return display("Here you see Halfred, fishing from the side of the lake. His boat is moored here too.");
@@ -331,7 +331,7 @@ public class State implements Cloneable, Serializable {
   private void restoreCommitted() {
     this.copyFrom(committed);
   }*/
-  
+
   public boolean changeLocation(Location location) {
     if (location == Location.GREEN_DRAGON && gandalfTalk == 0) {
       changeState(gandalfTalk += 1);
@@ -365,12 +365,12 @@ public class State implements Cloneable, Serializable {
     }
     return true;
   }
-  
+
   private boolean addLocationEvent(Location location, String text) {
     eventManager.add(new LocationEvent(location, new DisplayTextEvent(text)));
     return true;
   }
-  
+
   private boolean pause(boolean interactive, int seconds) {
     eventManager.add(new PauseEvent(interactive, seconds));
     return true;
