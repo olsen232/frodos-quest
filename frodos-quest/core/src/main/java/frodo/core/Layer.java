@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Layer {
-  public ZImage image;
+  public Image image;
   public Animation animation;
   public int zIndex;
   public boolean show;
@@ -29,14 +29,14 @@ public class Layer {
     this.show = show;
   }
   
-  public void load(ZImage image) {
+  public void init(Image image) {
     this.image = image;
     if (zIndex == Z.AUTO.value) {
-      this.zIndex = Toolkit.maxYContent(image);
+      this.zIndex = maxYContent(image);
     }
   }
   
-  public void draw(ZoomSurface surface, int frame) {
+  public void draw(Surface surface, int frame) {
     if (show) {
       animation.draw(image, surface, frame);
     }
@@ -85,5 +85,10 @@ public class Layer {
     Layer layer = new Layer(zIndex.value, animation, show);
     ADDED_LAYERS.add(layer);
     return layer;
+  }
+  
+  static int maxYContent(Image image) {
+    // TODO: real value
+    return Z.FOREGROUND.value;
   }
 }

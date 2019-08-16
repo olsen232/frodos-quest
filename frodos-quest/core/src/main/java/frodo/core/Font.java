@@ -2,28 +2,24 @@ package frodo.core;
 
 import static frodo.core.PixelConstants.*;
 
-import playn.core.Image;
-import playn.core.Texture;
-import playn.core.Platform;
-
 public final class Font {
   private Font() {}
 
-  public static final int BLACK = 0xff000000;
-  public static final int GREY = 0xffaaaaaa;
+  public static final int GREY_ARGB = 0xffaaaaaa;
+  public static final int BLACK_ARGB = 0xff000000;
 
-  public static ZImage[] WHITE_FONT;
-  public static ZImage[] GREY_FONT;
-  public static ZImage[] BLACK_FONT;
+  public static Image RAW;
+  public static Image[] WHITE;
+  public static Image[] GREY;
+  public static Image[] BLACK;
 
-  public static void start() {
-    Toolkit.start("widefont.png");
+  public static void startLoading() {
+    RAW = Image.load("widefont.png");
   }
 
-  public static void loadFont() {
-    ZImage rawFont = Toolkit.zImage("widefont.png");
-    WHITE_FONT = Toolkit.tile(rawFont, FONT_SIZE);
-    GREY_FONT = Toolkit.tile(Toolkit.recolor(rawFont, GREY), FONT_SIZE);
-    BLACK_FONT = Toolkit.tile(Toolkit.recolor(rawFont, BLACK), FONT_SIZE);
+  public static void finishLoading() {
+    WHITE = RAW.tile(FONT_SIZE);
+    GREY = RAW.recolor(GREY_ARGB).tile(FONT_SIZE);
+    BLACK = RAW.recolor(BLACK_ARGB).tile(FONT_SIZE);;
   }
 }

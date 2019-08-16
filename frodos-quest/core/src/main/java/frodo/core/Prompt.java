@@ -67,21 +67,21 @@ public class Prompt {
     return false;
   }    
   
-  public void draw(ZoomSurface surface, boolean interactive) {
+  public void draw(Surface surface, boolean interactive) {
     int x = 0;
-    ZImage[] font = interactive ? Font.WHITE_FONT : Font.GREY_FONT;
+    Image[] font = interactive ? Font.WHITE : Font.GREY;
     surface.drawText(font, ">", x, PROMPT_Y);
     x += FONT_SIZE;
     
     if (!interactive) return;
 
-    font = (suggestion != null) ? Font.WHITE_FONT : Font.GREY_FONT;
+    font = (suggestion != null) ? Font.WHITE : Font.GREY;
     surface.drawText(font, input, x, PROMPT_Y);
     x += input.length() * FONT_SIZE;
     surface.drawText(font, "_", x, PROMPT_Y);
     
     if (suggestion != null) {
-      surface.drawText(Font.GREY_FONT, suggestion, x, PROMPT_Y);
+      surface.drawText(Font.GREY, suggestion, x, PROMPT_Y);
     }
   }
   

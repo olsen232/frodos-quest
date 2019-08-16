@@ -10,7 +10,7 @@ import playn.core.Scale;
 import static frodo.core.PixelConstants.*;
 
 import frodo.core.FrodosQuest;
-import frodo.core.Toolkit;
+import frodo.core.Platform;
 
 import java.lang.reflect.Field;
 
@@ -20,20 +20,21 @@ public class FrodosQuestJava {
     LWJGLPlatform.Config config = new LWJGLPlatform.Config();
     config.width = SCREEN_WIDTH * ZOOM;
     config.height = SCREEN_HEIGHT * ZOOM;
-    LWJGLPlatform plat = new LWJGLPlatform(config);
-    JavaCanvasCreator cc = new JavaCanvasCreator(plat.graphics());
-    new FrodosQuest(plat, cc);
-    plat.start();
+    LWJGLPlatform raw = new LWJGLPlatform(config);
+    Platform platform = new Platform(raw);
+    platform.canvasCreator = new JavaCanvasCreator(raw.graphics());
+    new FrodosQuest(platform);
+    raw.start();
   }
   
-  static class JavaCanvasCreator implements Toolkit.CanvasCreator {
+  static class JavaCanvasCreator implements Platform.CanvasCreator {
     private final Graphics graphics; 
     
     JavaCanvasCreator(Graphics graphics) {
       this.graphics = graphics;
     }
 
-    public Canvas createCanvas(int pixelWidth, int pixelHeight) {
+    public Canvas create(int pixelWidth, int pixelHeight) {
       try {
         Field f = Graphics.class.getDeclaredField("scale");
         f.setAccessible(true);

@@ -29,7 +29,7 @@ public class FrodoSprite extends Sprite {
       } else {
         moveDrunkenly(scene.mask, direction);
       }
-      touchingSpecial = Toolkit.isPixelOffWhite(scene.mask.image, x, y);
+      touchingSpecial = Pixels.isNonWhite(scene.mask.pixel(x, y));
     }
   }
   
@@ -83,14 +83,14 @@ public class FrodoSprite extends Sprite {
   
   @Override
   public void update(State state) {
-    ZImage[] locationImages = chooseImages(state.location);
+    Image[] locationImages = chooseImages(state.location);
     if (this.images != locationImages) {
       this.images = locationImages;
       animate(prevDirection);
     }
   }
   
-  private static ZImage[] chooseImages(Location location) {
+  private static Image[] chooseImages(Location location) {
     return Scene.isOutside(Scene.forLocation(location)) 
         ? Sprites.FRODO_SMALL
         : Sprites.FRODO_LARGE;

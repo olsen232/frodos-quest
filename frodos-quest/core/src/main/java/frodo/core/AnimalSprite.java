@@ -52,14 +52,14 @@ public class AnimalSprite extends Sprite {
   }
   
   @Override
-  protected ZImage image(Direction d, int frame) {
+  protected Image image(Direction d, int frame) {
     int numFrames = images.length / Direction.NUM_DIRECTIONS;
     return images[d.ordinal() * numFrames + (frame % numFrames)];
   }
   
   @Override
-  protected boolean isPixelOn(Mask mask, int px, int py) {
-    return Toolkit.isPixelOffWhite(mask.image, px, py);
+  protected boolean canGo(Mask mask, int px, int py) {
+    return Pixels.isNonWhite(mask.pixel(px, py));
   }
   
   protected int fastRand(int step) {

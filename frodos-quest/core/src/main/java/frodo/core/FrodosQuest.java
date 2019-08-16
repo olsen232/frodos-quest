@@ -4,11 +4,8 @@ import static frodo.core.PixelConstants.*;
 
 import playn.core.Canvas;
 import playn.core.Clock;
-import playn.core.Image;
 import playn.core.Keyboard;
 import playn.core.Mouse;
-import playn.core.Platform;
-import playn.scene.ImageLayer;
 import playn.scene.SceneGame;
 import react.Slot;
 
@@ -19,18 +16,21 @@ public class FrodosQuest extends SceneGame {
   private boolean loadingFinished = false;
   private boolean fontLoaded = false;
   private boolean isMusicCancelled = false;
+  
+  static ControlState controlState = Sprites.FRODO.controlState;
+  static TextDisplay textDisplay = new TextDisplay();
+  static EventManager eventManager = new EventManager(controlState, textDisplay);
+  static State state = new State(eventManager);
+  
+  static SceneRenderer sceneRenderer = new SceneRenderer();
 
-  public FrodosQuest(Platform plat, Toolkit.CanvasCreator canvasCreator) {
-    this(plat);
-    Toolkit.canvasCreator = canvasCreator;
-  }
+  public FrodosQuest(Platform platform) {
+    super(platform.raw, FRAME_MS);
 
-  public FrodosQuest(Platform plat) {
-    super(plat, FRAME_MS);
-
-    Toolkit.platform = plat;
-
-    Font.start();
+    Font.startLoading();
+    Scene.startLoading();
+    Sprites.startLoading();
+    sceneRenderer.update(state);
 
     plat.input().keyboardEnabled = true;
     plat.input().keyboardEvents.connect(new Slot<Keyboard.Event>() {
@@ -52,46 +52,60 @@ public class FrodosQuest extends SceneGame {
       }
     });
   }
+  
+  private int frameCounter = 0;
 
   @Override
   public void update(Clock clock) {
-    if (loadingFinished) {
-      // TODO: main game loop
-
-    } else if (!fontLoaded && Toolkit.get("widefont.png") != null && Toolkit.get("widefont.png").isLoaded()) {
-      Font.loadFont();
-      fontLoaded = true;
-    } 
+    frameCounter++;
+    if (!loadingFinished) {
+      continueLoading();
+      return;
+    }
+    // TODO: main game loop
   }
-
-  private int frame = 0;
+  
+  private void continueLoading() {
+    if (!fontLoaded && Font.RAW != null && Font.RAW.isLoaded()) {
+      Font.finishLoading();
+      fontLoaded = true;
+    } else if (fontLoaded && !loadingFinished && Loader.isFinished()) {
+      Scene.finishLoading();
+      Sprites.finishLoading();
+      loadingFinished = true;
+    }
+  }
 
   @Override
   public void paintScene() {
     viewSurf.saveTx();
     viewSurf.begin();
-    viewSurf.clear(0.0f, 0.0f, 0.0f, 1.0f);
     
-    ZoomSurface zs = new ZoomSurface(viewSurf);
-    zs.scaleFactor = Toolkit.platform.graphics().scale().factor;
+    Surface surface = new Surface(viewSurf);
+    surface.clear(0.0f, 0.0f, 0.0f, 1.0f);
+    
+    // TODO: reuse surface, scale factor
+    //surface.scaleFactor = Toolkit.platform.graphics().scale().factor;
     try {
-      if (loadingFinished) {
-        // Main game render
-      } else if (fontLoaded) {
-        zs.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0xff000000);
-        renderLoadingProgress(zs);
-      } else {
-        viewSurf.clear(1.0f, 1.0f, 1.0f, 1.0f);
+      if (!loadingFinished) {
+        paintWhileLoading(surface);
+        return;
       }
+      // TODO(frame rate)
+      sceneRenderer.draw(surface, frameCounter / 4);
       
     } finally {
       viewSurf.end();
       viewSurf.restoreTx();
     }
   }
-
-  private void renderLoadingProgress(ZoomSurface xs) {
-    xs.drawCenteredText(Font.WHITE_FONT, "Frodo's Quest", SCREEN_WIDTH / 2, 8 * 5);
-    xs.drawCenteredText(Font.WHITE_FONT, "Coming soon", SCREEN_WIDTH / 2, 8 * 7);
+  
+  private void paintWhileLoading(Surface surface) {
+    if (fontLoaded) {
+      surface.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0xff000000);
+      surface.drawCenteredText(Font.WHITE, Loader.statusText(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+    } else {
+      surface.clear(1.0f, 1.0f, 1.0f, 1.0f);
+    }
   }
 }

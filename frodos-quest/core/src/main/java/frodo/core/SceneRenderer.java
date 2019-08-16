@@ -27,7 +27,7 @@ public class SceneRenderer {
     Arrays.sort(sprites, Sprites.SORT_BY_Y);
   }
     
-  public void draw(ZoomSurface surface, int frame) {
+  public void draw(Surface surface, int frame) {
     surface.translate(0, HEADER_Y);
     
     int spriteIndex = 0;

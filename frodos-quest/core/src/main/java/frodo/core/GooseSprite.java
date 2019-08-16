@@ -3,7 +3,7 @@ package frodo.core;
 public class GooseSprite extends SidewaysAnimalSprite {
 
   @Override
-  protected ZImage image(Direction d, int frame) {
+  protected Image image(Direction d, int frame) {
     if (!d.isHorizontal()) throw new IllegalArgumentException();
     int numFrames = images.length / Direction.NUM_HORIZONTAL_DIRECTIONS;
     int numUsableFrames = numFrames - 1;

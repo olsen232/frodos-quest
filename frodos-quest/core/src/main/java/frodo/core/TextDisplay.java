@@ -6,10 +6,10 @@ import playn.core.Canvas;
 
 public class TextDisplay {
 
-  Canvas canvas = Toolkit.createCanvas(TEXT_WIDTH_PX, TEXT_HEIGHT_PX);
+  Canvas canvas = Platform.INSTANCE.createRawCanvas(TEXT_WIDTH_PX, TEXT_HEIGHT_PX);
   
-  public void draw(ZoomSurface surface) {
-    //canvas.drawImage(canvas.image(), TEXT_X, TEXT_Y);
+  public void draw(Surface surface) {
+    //canvas.draw(canvas.image(), TEXT_X, TEXT_Y);
   }
   
   public void clear() {
@@ -59,6 +59,6 @@ public class TextDisplay {
     //canvas.fillRect(x, y, maxWidthPx, maxHeightPx, WHITE_BORDER);
     //canvas.g2d.setColor(java.awt.Color.RED);
     //canvas.drawRect(x, y, maxWidthPx, maxHeightPx, RED_BORDER);
-    //canvas.drawTextJustifiedWithNewLines(MenuGfx.BLACK_FONT, sb.toString(), x, y, TP, maxWidth);
+    //canvas.drawTextJustifiedWithNewLines(Font.BLACK, sb.toString(), x, y, TP, maxWidth);
   }
 }

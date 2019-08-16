@@ -3,24 +3,24 @@ package frodo.core;
 import static frodo.core.PixelConstants.*;
 
 public class Mask extends Bounds {
-  public final ZImage image;
+  public final Image image;
   public Bounds leftEdge = new Bounds();
   public Bounds rightEdge = new Bounds();
   public Bounds topEdge = new Bounds();
   public Bounds bottomEdge = new Bounds();
   
-  public Mask(ZImage image) {
+  public Mask(Image image) {
     this.image = image;
-    int w = Toolkit.width(image);
-    int h = Toolkit.height(image);
-    // TODO: improve efficiency
-    for (int x = 0; x < w; x += X_STEP) {
-      for (int y = 0; y < h; y += Y_STEP) {
-        if (Toolkit.isPixelOn(image, x, y)) {
-          this.update(x, y, Toolkit.isPixelWhite(image, x, y));
-        }
-      }
-    }
+    int w = image.width();
+    int h = image.height();
+    // TODO: fix
+    //for (int x = 0; x < w; x += X_STEP) {
+      //for (int y = 0; y < h; y += Y_STEP) {
+        //if (Toolkit.isPixelOn(image, x, y)) {
+          //this.update(x, y, Toolkit.isPixelWhite(image, x, y));
+        //}
+      //}
+    //}
   }
 
   public void update(int x, int y, boolean updateEdges) {
@@ -51,6 +51,10 @@ public class Mask extends Bounds {
       case DOWN: return bottomEdge;
     }
     throw new IllegalArgumentException("Invalid direction: " + direction);
+  }
+  
+  public int pixel(int x, int y) {
+    return image.pixel(x, y);
   }
 
   public String toString() {

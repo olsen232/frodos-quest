@@ -4,8 +4,8 @@ import static frodo.core.Direction.NUM_DIRECTIONS;
 import static frodo.core.PixelConstants.*;
 
 public abstract class Sprite {
-  public ZImage[] images;
-  public ZImage image;
+  public Image[] images;
+  public Image image;
 
   public int x = 160;
   public int y = 140;
@@ -16,12 +16,17 @@ public abstract class Sprite {
   public void update(State state) {}
 
   public abstract void move(Scene scene);
+  
+  public void init(Image[] images) {
+    this.images = images;
+    this.image = images[0];
+  }
     
-  public void draw(ZoomSurface surface, int frame) {
-    surface.drawImage(image, x - (image.width() / 2), y - image.height() + 2);
+  public void draw(Surface surface, int frame) {
+    surface.draw(image, x - (image.width() / 2), y - image.height() + 2);
   }
   
-  protected ZImage image(Direction d, int frame) {
+  protected Image image(Direction d, int frame) {
     int numFrames = images.length / NUM_DIRECTIONS;
     return images[d.ordinal() * numFrames + (frame % numFrames)];
   }
@@ -39,7 +44,7 @@ public abstract class Sprite {
     int newX = x + dx;
     int newY = y + dy;
     if (mask.contains(newX, newY) &&
-        (isPixelOn(mask, newX, newY) || !isPixelOn(mask, x, y))) {
+        (canGo(mask, newX, newY) || !canGo(mask, x, y))) {
       x = newX;
       y = newY;
       return true;
@@ -52,8 +57,8 @@ public abstract class Sprite {
     image = image(d, imageFrame / framesPerImage);
   }
   
-  protected boolean isPixelOn(Mask mask, int px, int py) {
-    return Toolkit.isPixelOn(mask.image, px, py);
+  protected boolean canGo(Mask mask, int px, int py) {
+    return Pixels.isOn(mask.pixel(px, py));
   }
     
   public boolean isCloseTo(Sprite that, int px) {
