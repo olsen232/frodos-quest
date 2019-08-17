@@ -58,7 +58,7 @@ public class TextDisplay {
     canvas.clear();    
     canvas.fillRectPlusBorder(x, y, maxWidthPx, maxHeightPx, BOX_OUTER_COLOR, BOX_OUTER_BORDER);
     canvas.strokeRectPlusBorder(x, y, maxWidthPx, maxHeightPx, BOX_INNER_COLOR, BOX_INNER_BORDER);
-    canvas.drawTextJustifiedWithNewLines(Font.BLACK, sb, x, y, maxWidth);
+    Font.BLACK.justified(canvas, sb, x, y, maxWidth);
     snapshot = canvas.snapshot();
   }
 }

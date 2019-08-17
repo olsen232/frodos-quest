@@ -70,19 +70,19 @@ public class Prompt {
   
   public void draw(Surface surface, boolean interactive) {
     int x = 0;
-    Image[] font = interactive ? Font.WHITE : Font.GREY;
-    surface.drawText(font, ">", x, PROMPT_Y);
+    Font font = interactive ? Font.WHITE : Font.GREY;
+    font.drawChar(surface, '>', x, PROMPT_Y);
     x += FONT_SIZE;
     
     if (!interactive) return;
 
     font = (suggestion != null) ? Font.WHITE : Font.GREY;
-    surface.drawText(font, input, x, PROMPT_Y);
+    font.singleLine(surface, input, x, PROMPT_Y);
     x += input.length() * FONT_SIZE;
-    surface.drawText(font, "_", x, PROMPT_Y);
+    font.drawChar(surface, '_', x, PROMPT_Y);
     
     if (suggestion != null) {
-      surface.drawText(Font.GREY, suggestion, x, PROMPT_Y);
+      Font.GREY.singleLine(surface, suggestion, x, PROMPT_Y);
     }
   }
   

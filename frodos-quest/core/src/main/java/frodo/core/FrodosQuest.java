@@ -109,7 +109,7 @@ public class FrodosQuest extends SceneGame {
   private void paintWhileLoading(Surface surface) {
     if (fontLoaded) {
       surface.clear(0f, 0f, 0f, 1f);
-      surface.drawCenteredText(Font.WHITE, Loader.statusText(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+      Font.WHITE.centeredSingleLine(surface, Loader.statusText(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
     } else {
       surface.clear(1f, 1f, 1f, 1f);
     }
