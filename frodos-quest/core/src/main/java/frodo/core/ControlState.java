@@ -1,6 +1,6 @@
 package frodo.core;
 
-import java.awt.event.KeyEvent;
+import playn.core.Key;
 import java.util.Arrays;
 
 public class ControlState {
@@ -26,15 +26,15 @@ public class ControlState {
     }
   }
   
-  public void update(int keyCode, boolean isDown, int frameCounter) {
-    if (keyCode == KeyEvent.VK_ENTER) {
+  public void update(Key key, boolean isDown, int frameCounter) {
+    if (key == Key.ENTER) {
       if (jammed != null) {
         outcome = jammed = null;
       }
       return;
     }
   
-    Direction d = Direction.forKeyCode(keyCode);
+    Direction d = Direction.forKey(key);
     if (d == null) return;
 
     int index = d.ordinal();

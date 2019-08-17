@@ -29,7 +29,7 @@ public class FrodoSprite extends Sprite {
       } else {
         moveDrunkenly(scene.mask, direction);
       }
-      touchingSpecial = Pixels.isNonWhite(scene.mask.pixel(x, y));
+      touchingSpecial = Pixels.isNonWhite(scene.mask.pixelOnce(x, y));
     }
   }
   
@@ -69,8 +69,7 @@ public class FrodoSprite extends Sprite {
   private boolean checkPortal(int x, int y, Scene scene, Direction direction) {
     if (scene.mask.getEdge(direction).contains(x, y)) {
       SceneLinks.Portal p = SceneLinks.getPortal(scene, direction);
-      // TODO: check if allowed to change location
-      if (p != null) {  //  && Main.changeLocation(p.scene.toLocation())) {
+      if (p != null && FrodosQuest.changeLocation(p.scene.toLocation())) {
         Bounds entrance = p.scene.mask.getEdge(p.direction);
         this.x = entrance.midX();
         this.y = entrance.midY();

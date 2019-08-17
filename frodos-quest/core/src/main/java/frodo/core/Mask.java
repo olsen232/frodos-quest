@@ -2,45 +2,51 @@ package frodo.core;
 
 import static frodo.core.PixelConstants.*;
 
-public class Mask extends Bounds {
+public class Mask {
   public final Image image;
+  public Bounds mainBounds = new Bounds();
   public Bounds leftEdge = new Bounds();
   public Bounds rightEdge = new Bounds();
   public Bounds topEdge = new Bounds();
   public Bounds bottomEdge = new Bounds();
   
+  public static Mask shrink(Image image, int shrinkX, int shrinkY) {
+    doShrink(image, shrinkX, shrinkY);
+    return new Mask(image);
+  }
+  
   public Mask(Image image) {
     this.image = image;
     int w = image.width();
     int h = image.height();
-    // TODO: fix
-    //for (int x = 0; x < w; x += X_STEP) {
-      //for (int y = 0; y < h; y += Y_STEP) {
-        //if (Toolkit.isPixelOn(image, x, y)) {
-          //this.update(x, y, Toolkit.isPixelWhite(image, x, y));
-        //}
-      //}
-    //}
+    image.startPixelCalls();
+    for (int x = 0; x < w; x += X_STEP) {
+      for (int y = 0; y < h; y += Y_STEP) {
+        int pixel = image.pixel(x, y);
+        if (Pixels.isWhite(pixel)) {
+          updateEdges(x, y);
+        } else if (Pixels.isOn(pixel)) {
+          mainBounds.update(x, y);
+        }
+      }
+    }
+    image.endPixelCalls();
   }
 
-  public void update(int x, int y, boolean updateEdges) {
-    if (updateEdges) {
-      this.update(x, y);
-    } else {
-      super.update(x, y);
-    }
-  }  
-
-  public void update(int x, int y) {
-    if (x == left) leftEdge.update(x, y);
-    else if (x < left) leftEdge.reset(x, y);
-    if (x == right) rightEdge.update(x, y);
-    else if (x > right) rightEdge.reset(x, y);
-    if (y == top) topEdge.update(x, y);
-    else if (y < top) topEdge.reset(x, y);
-    if (y == bottom) bottomEdge.update(x, y);
-    else if (y > bottom) bottomEdge.reset(x, y);
-    super.update(x, y);
+  private void updateEdges(int x, int y) {
+    if (x == mainBounds.left) leftEdge.update(x, y);
+    else if (x < mainBounds.left) leftEdge.reset(x, y);
+    if (x == mainBounds.right) rightEdge.update(x, y);
+    else if (x > mainBounds.right) rightEdge.reset(x, y);
+    if (y == mainBounds.top) topEdge.update(x, y);
+    else if (y < mainBounds.top) topEdge.reset(x, y);
+    if (y == mainBounds.bottom) bottomEdge.update(x, y);
+    else if (y > mainBounds.bottom) bottomEdge.reset(x, y);
+    mainBounds.update(x, y);
+  }
+  
+  public boolean contains(int x, int y) {
+    return mainBounds.contains(x, y);
   }
   
   public Bounds getEdge(Direction direction) {
@@ -53,8 +59,8 @@ public class Mask extends Bounds {
     throw new IllegalArgumentException("Invalid direction: " + direction);
   }
   
-  public int pixel(int x, int y) {
-    return image.pixel(x, y);
+  public int pixelOnce(int x, int y) {
+    return image.pixelOnce(x, y);
   }
 
   public String toString() {
@@ -63,6 +69,36 @@ public class Mask extends Bounds {
      + "\n  rightEdge=" + rightEdge.toString()
      + "\n  topEdge=" + topEdge.toString()
      + "\n  bottomEdge=" + bottomEdge.toString() + ")";
+  }
+  
+  private static int MASK_WAS_ON_CODE = 0x00abcdef;
+  
+  private static void doShrink(Image image, int xs, int ys) {
+    image.startPixelCalls();
+    int w = image.width();
+    int h = image.height();
+    for (int x = 0; x < w; x++) {
+      for (int y = 0; y < h; y++) {
+        if (Pixels.isOn(image.pixel(x, y))) {
+          boolean keep = 
+              wasOn(image, x - xs, y - ys) &&
+              wasOn(image, x - xs, y + ys) &&
+              wasOn(image, x + xs, y - ys) &&
+              wasOn(image, x + xs, y + ys);
+          if (!keep) {
+            image.setPixel(x, y, MASK_WAS_ON_CODE);
+          }
+        }
+      }
+    }
+    image.commitPixels();
+    // No endPixelCalls() - this is freed up in Mask constructor.
+  }
+  
+  private static boolean wasOn(Image image, int x, int y) {
+    if (x < 0 || x >= image.width() || y < 0 || y >= image.height()) return false;
+    int pixel = image.pixel(x, y);
+    return Pixels.isOn(pixel) || (pixel == MASK_WAS_ON_CODE);
   }
 }
       

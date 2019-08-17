@@ -173,8 +173,7 @@ public enum Scene {
     boolean isOutside = isOutside(this);
     int shrinkX = isOutside ? 4 : 10;
     int shrinkY = isOutside ? 0 : 2;
-    Image maskShape = shrinkMask(images[images.length - 1], shrinkX, shrinkY);
-    this.mask = new Mask(maskShape);
+    this.mask = Mask.shrink(images[images.length - 1], shrinkX, shrinkY);
   }
    
   protected void onLayersLoaded() {}
@@ -219,10 +218,5 @@ public enum Scene {
 
   private String sceneFile() {
     return this.name().toLowerCase() + ".png";
-  }
-  
-  static Image shrinkMask(Image input, int shrinkX, int shrinkY) {
-    // TODO: shrink
-    return input;
   }
 }

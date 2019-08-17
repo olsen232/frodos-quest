@@ -23,4 +23,16 @@ public class Platform {
   public playn.core.Canvas createRawCanvas(int pixelWidth, int pixelHeight) {
     return canvasCreator.create(pixelWidth, pixelHeight);
   }
+  
+  public Canvas createCanvas(int pixelWidth, int pixelHeight) {
+    return new Canvas(canvasCreator.create(pixelWidth, pixelHeight));
+  }
+  
+  public static interface Pixelator {
+    public void pixelate();
+  }
+  
+  public Pixelator pixelator = new Pixelator() {
+    public void pixelate() {}
+  };
 }

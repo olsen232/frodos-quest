@@ -59,7 +59,7 @@ public class AnimalSprite extends Sprite {
   
   @Override
   protected boolean canGo(Mask mask, int px, int py) {
-    return Pixels.isNonWhite(mask.pixel(px, py));
+    return Pixels.isNonWhite(mask.pixelOnce(px, py));
   }
   
   protected int fastRand(int step) {

@@ -6,7 +6,7 @@ public final class PixelConstants {
   public static int FRAME_RATE = 30;
   public static int FRAME_MS = 1000 / FRAME_RATE;
 
-  public static final int ZOOM = 2;
+  public static final int ZOOM = 3;
   
   public static final int SCENE_X_ZOOM = 2;
   public static final int SCENE_Y_ZOOM = 1;
@@ -33,10 +33,10 @@ public final class PixelConstants {
   
   public static final int TEXT_X = (SCREEN_WIDTH - TEXT_WIDTH_PX) / 2;
   public static final int TEXT_Y = (SCREEN_HEIGHT - TEXT_HEIGHT_PX) / 2;
-  public static final int TP = 2;
+  public static final int TEXT_LINE_HEIGHT = 10;
   
-  public static final int WHITE_BORDER = 8;
-  public static final int RED_BORDER = 6;
+  public static final int BOX_OUTER_BORDER = 8;
+  public static final int BOX_INNER_BORDER = 6;
   
   public static final int MAX_PROMPT_CHARS = SCREEN_WIDTH / FONT_SIZE - 2;
 }

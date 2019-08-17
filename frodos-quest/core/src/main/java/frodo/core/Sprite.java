@@ -58,7 +58,7 @@ public abstract class Sprite {
   }
   
   protected boolean canGo(Mask mask, int px, int py) {
-    return Pixels.isOn(mask.pixel(px, py));
+    return Pixels.isOn(mask.pixelOnce(px, py));
   }
     
   public boolean isCloseTo(Sprite that, int px) {

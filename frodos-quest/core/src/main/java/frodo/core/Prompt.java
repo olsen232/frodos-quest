@@ -1,14 +1,15 @@
 package frodo.core;
 
 import static frodo.core.PixelConstants.*;
+import static frodo.core.CharSequences.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Prompt {
 
-  private static final char BACKSPACE = '\010';
-  private static final char TAB = '\t';
+  public static final char BACKSPACE = '\010';
+  public static final char TAB = '\t';
 
   private static final String NO_MATCH = " \010 NO_MATCH";
   private static final String EXACT_MATCH = " \010 EXACT_MATCH";
@@ -216,24 +217,8 @@ public class Prompt {
     return a.substring(0, i);
   }
   
-  private static boolean aStartsWithB(CharSequence a, CharSequence b) {
-    if (b.length() > a.length()) return false;
-    for (int i = 0; i < b.length(); i++) {
-      if (a.charAt(i) != b.charAt(i)) return false;
-    }
-    return true;
-  }
-  
   private static boolean isLetter(char c) {
     return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
-  }
-  
-  private static boolean isEmpty(CharSequence c) {
-    return c.length() == 0;
-  }
-  
-  private static char lastCharOf(CharSequence c) {
-    return c.charAt(c.length() - 1);
   }
 }
 

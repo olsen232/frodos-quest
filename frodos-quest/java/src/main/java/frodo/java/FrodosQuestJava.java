@@ -1,6 +1,11 @@
 package frodo.java;
 
 import java.awt.image.BufferedImage;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GL15;
+import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL30;
 
 import playn.java.LWJGLPlatform;
 import playn.core.Graphics;
@@ -23,6 +28,10 @@ public class FrodosQuestJava {
     LWJGLPlatform raw = new LWJGLPlatform(config);
     Platform platform = new Platform(raw);
     platform.canvasCreator = new JavaCanvasCreator(raw.graphics());
+    platform.pixelator = new JavaPixelator();
+    
+    platform.pixelator.pixelate();
+    
     new FrodosQuest(platform);
     raw.start();
   }
@@ -46,6 +55,15 @@ public class FrodosQuestJava {
       } catch (Exception e) {
         throw new RuntimeException(e);
       }
+    }
+  }
+  
+  static class JavaPixelator implements Platform.Pixelator {
+    public void pixelate() {
+      GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+      GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+      GL11.glTexParameteri(GL30.GL_TEXTURE_2D_ARRAY, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+      GL11.glTexParameteri(GL30.GL_TEXTURE_2D_ARRAY, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
     }
   }
 }

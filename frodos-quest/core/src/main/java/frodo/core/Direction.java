@@ -2,13 +2,13 @@ package frodo.core;
 
 import static frodo.core.PixelConstants.*;
 
-import java.awt.event.KeyEvent;
+import playn.core.Key;
 
 public enum Direction {
-  LEFT( -X_STEP,       0, KeyEvent.VK_LEFT),
-  RIGHT( X_STEP,       0, KeyEvent.VK_RIGHT),
-  UP(         0, -Y_STEP, KeyEvent.VK_UP),
-  DOWN(       0, +Y_STEP, KeyEvent.VK_DOWN);
+  LEFT( -X_STEP,       0, Key.LEFT),
+  RIGHT( X_STEP,       0, Key.RIGHT),
+  UP(         0, -Y_STEP, Key.UP),
+  DOWN(       0, +Y_STEP, Key.DOWN);
   
   public static final Direction[] ALL_DIRECTIONS = Direction.values();
   public static final int NUM_DIRECTIONS = ALL_DIRECTIONS.length;
@@ -16,12 +16,12 @@ public enum Direction {
   
   public final int dx;
   public final int dy;
-  public final int keyCode;
+  public final Key key;
   
-  Direction(int dx, int dy, int keyCode) {
+  Direction(int dx, int dy, Key key) {
     this.dx = dx;
     this.dy = dy;
-    this.keyCode = keyCode;
+    this.key = key;
   }
   
   public boolean isHorizontal() {
@@ -32,9 +32,9 @@ public enum Direction {
     return !isHorizontal();
   }
   
-  public static Direction forKeyCode(int keyCode) {
+  public static Direction forKey(Key key) {
     for (Direction d : ALL_DIRECTIONS) {
-      if (d.keyCode == keyCode) return d;
+      if (d.key == key) return d;
     }
     return null;
   }

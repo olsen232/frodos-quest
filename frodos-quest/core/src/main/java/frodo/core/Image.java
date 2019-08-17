@@ -5,6 +5,8 @@ public class Image {
 
   public final playn.core.Image raw;
   
+  private int[] lazyPixels;
+  
   public static Image load(String name) {
     return Loader.loadImage(name);
   }
@@ -25,7 +27,33 @@ public class Image {
     return raw.pixelHeight();
   }
   
-  public int[] getPixels() {
+  // ================= Pixels =======================
+  
+  public void startPixelCalls() {
+    if (lazyPixels == null) {
+      lazyPixels = getPixelsOnce();
+    }
+  }
+  
+  public int pixel(int x, int y) {
+    return lazyPixels[y * width() + x];
+  }
+
+  public void setPixel(int x, int y, int pixel) {
+    lazyPixels[y * width() + x] = pixel;
+  }
+  
+  public void endPixelCalls() {
+    lazyPixels = null;
+  }
+  
+  public void commitPixels() {
+    int w = width();
+    int h = height();
+    raw.setRgb(0, 0, w, h, lazyPixels, 0, w);
+  }
+  
+  public int[] getPixelsOnce() {
     int w = width();
     int h = height();
     int[] pixels = new int[w * h];
@@ -33,9 +61,18 @@ public class Image {
     return pixels;
   }
   
-  public int pixel(int x, int y) {
+  public int pixelOnce(int x, int y) {
     raw.getRgb(x, y, 1, 1, ONE_PIXEL, 0, width());
     return ONE_PIXEL[0];
+  }
+  
+  public int[] pixelRow(int[] row, int y) {
+    int w = width();
+    if (row == null) {
+      row = new int[w];
+    }
+    raw.getRgb(0, y, w, 1, row, 0, w);
+    return row;
   }
   
   // ================= Tiling =======================
@@ -78,7 +115,7 @@ public class Image {
   public Image scale(int xScale, int yScale) {
     int w = width();
     int h = height();
-    int[] pixels = getPixels();
+    int[] pixels = getPixelsOnce();
     int w2 = xScale * w;
     int h2 = yScale * h;
     int[] pixels2 = new int[w2 * h2];
@@ -97,7 +134,7 @@ public class Image {
   public Image recolor(int recolor) {
     int w = width();
     int h = height();
-    int[] pixels = getPixels();
+    int[] pixels = getPixelsOnce();
     for (int i = 0; i < pixels.length; i++) {
       pixels[i] &= recolor;
     }

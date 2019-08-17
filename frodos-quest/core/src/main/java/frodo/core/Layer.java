@@ -88,7 +88,16 @@ public class Layer {
   }
   
   static int maxYContent(Image image) {
-    // TODO: real value
-    return Z.FOREGROUND.value;
+    int w = image.width(); int h = image.height();
+    int[] row = null;
+    for (int y = h - 1; y >= 0; y--) {
+      row = image.pixelRow(row, y);
+      for (int x = 0; x < w; x++) {
+        if (Pixels.isOn(row[x])) {
+          return y;
+        }
+      }
+    }
+    return 0;
   }
 }

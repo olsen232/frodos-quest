@@ -11,7 +11,7 @@ import static frodo.core.Events.*;
 import java.io.Serializable;
 import java.util.EnumSet;
 
-public class State implements Cloneable, Serializable {
+public class State {
 
   public Location location = FRODOS_ROOM;
   public EnumSet<Item> inventory = EnumSet.noneOf(Item.class);
@@ -62,7 +62,7 @@ public class State implements Cloneable, Serializable {
     //if (typed("quit")) System.exit(0);
     if (typed(INVENTORY)) return displayInventory();
     if (typed(EXAMINE, FRODO)) return display(FRODO.desc);
-    if (typed("teaser")) return display("Coming 2019\n\nHobbit's Quest");
+    if (typed("teaser")) return display("Frodo's Quest\n\nComing 2019");
 
     if (maybeLookAtInventory()) return true;
 
@@ -183,7 +183,7 @@ public class State implements Cloneable, Serializable {
     }
 
     if (at(BAGEND_HILL)) {
-      if (typed(LOOK)) {
+      if (typed(LOOK) || typed(EXAMINE, HOUSE)) {
         return display("This is Bag End - a beautiful home on a hill, the envy of many hobbits in the Shire.");
       }
       if (typed(EXAMINE, TREE)) return display(TREE.desc);
