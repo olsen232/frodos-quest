@@ -306,7 +306,7 @@ public class State {
         if (!talkedToGandalf) return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
         if (!has(FISHING_ROD)) return display("\"Halfred\", you ask, \"could I borrow a fishing rod?\"",
                                             "\"I have a spare but I don't like to lend it out, it's always getting broken. But for you, Mister Frodo, you can have if you bring me a mug of ale.\"");
-        return display("TODO(olsen)");
+        return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
       }
     }
     return false;
