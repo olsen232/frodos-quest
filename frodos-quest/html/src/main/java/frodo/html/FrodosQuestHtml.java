@@ -13,6 +13,7 @@ import playn.core.Scale;
 
 import frodo.core.FrodosQuest;
 import frodo.core.Platform;
+import static frodo.core.PixelConstants.*;
 
 public class FrodosQuestHtml implements EntryPoint {
 
@@ -22,6 +23,7 @@ public class FrodosQuestHtml implements EntryPoint {
     // use config to customize the HTML platform, if needed
     HtmlPlatform raw = new HtmlPlatform(config);
     raw.assets().setPathPrefix("frodosquest/");
+    raw.graphics().setSize(SCREEN_WIDTH * ZOOM, SCREEN_HEIGHT * ZOOM);
     Platform platform = new Platform(raw);
     platform.canvasCreator = new HtmlCanvasCreator(raw.graphics());
     new FrodosQuest(platform);
