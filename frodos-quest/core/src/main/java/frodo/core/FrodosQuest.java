@@ -75,8 +75,6 @@ public class FrodosQuest extends SceneGame {
     surface.saveTx();
     surface.begin();
     
-    Platform.INSTANCE.pixelator.pixelate();
-    
     surface.clear(0.0f, 0.0f, 0.0f, 1.0f);
     surface.scale(ZOOM, ZOOM);
     

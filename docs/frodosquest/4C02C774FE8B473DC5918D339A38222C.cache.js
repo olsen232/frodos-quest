@@ -3,7 +3,7 @@ var __gwtModuleFunction = $wnd.frodosquest;
 var $sendStats = __gwtModuleFunction.__sendStats;
 $sendStats('moduleStartup', 'moduleEvalStart');
 var $gwt_version = "2.8.1";
-var $strongName = 'B97CEA8801600E72DA8B5061A780D01A';
+var $strongName = '4C02C774FE8B473DC5918D339A38222C';
 var $gwt = {};
 var $doc = $wnd.document;
 var $moduleName, $moduleBase;
@@ -2673,7 +2673,7 @@ function values_6(){
 
 defineClass(26, 6, $intern_15, Animations);
 _.draw = function draw(image, surface, frame_0){
-  $draw_7(surface.raw, $texture(image.raw), 0, 0);
+  $draw_3(surface, image, 0, 0);
 }
 ;
 var BILBO, BLINK, DRINK, NONE, PIPE_SMOKE, QUILL;
@@ -2696,7 +2696,7 @@ function Animations$2(){
 defineClass(309, 26, $intern_15, Animations$2);
 _.draw = function draw_1(image, surface, frame_0){
   frame_0 = frame_0 / 8 | 0;
-  $draw_7(surface.raw, $texture(image.raw), -2 * (frame_0 % 2), 0);
+  $draw_3(surface, image, -2 * (frame_0 % 2), 0);
 }
 ;
 var Lfrodo_core_Animations$2_2_classLit = createForEnum(309, null);
@@ -2709,7 +2709,7 @@ _.draw = function draw_2(image, surface, frame_0){
   frame_0 = frame_0 / 4 | 0;
   if ((frame_0 / 6 | 0) % 3 != 0)
     return;
-  $draw_7(surface.raw, $texture(image.raw), 0, -(frame_0 % 6));
+  $draw_3(surface, image, 0, -(frame_0 % 6));
 }
 ;
 var Lfrodo_core_Animations$3_2_classLit = createForEnum(310, null);
@@ -2724,7 +2724,7 @@ _.draw = function draw_3(image, surface, frame_0){
     case 40:
     case 70:
     case 85:
-      $draw_7(surface.raw, $texture(image.raw), 0, 0);
+      $draw_3(surface, image, 0, 0);
   }
 }
 ;
@@ -2740,7 +2740,7 @@ _.draw = function draw_4(image, surface, frame_0){
     case 40:
     case 70:
     case 85:
-      $draw_7(surface.raw, $texture(image.raw), 0, 0);
+      $draw_3(surface, image, 0, 0);
   }
 }
 ;
@@ -2753,7 +2753,7 @@ function Animations$6(val$frame){
 
 defineClass(73, 1, {79:1}, Animations$6);
 _.draw = function draw_5(image, surface, frame_0){
-  frame_0 % this.val$ofTotal2 == this.showOnFrame && $draw_7(surface.raw, $texture(image.raw), 0, 0);
+  frame_0 % this.val$ofTotal2 == this.showOnFrame && $draw_3(surface, image, 0, 0);
 }
 ;
 _.showOnFrame = 0;
@@ -3924,6 +3924,13 @@ function $createRawCanvas(this$static, pixelWidth, pixelHeight){
   return this$static.canvasCreator.create_0(pixelWidth, pixelHeight);
 }
 
+function $pixelate(this$static){
+  var gl20;
+  gl20 = this$static.raw.graphics.gl;
+  gl20.gl.texParameteri(3553, 10241, 9728);
+  gl20.gl.texParameteri(3553, 10240, 9728);
+}
+
 function Platform(raw){
   this.canvasCreator = new Platform$1(this);
   this.raw = raw;
@@ -4949,7 +4956,9 @@ _.meal = 0;
 _.talkedToGandalf = false;
 var Lfrodo_core_State_2_classLit = createForClass(248);
 function $draw_3(this$static, image, x_0, y_0){
+  $pixelate(INSTANCE_0);
   $draw_7(this$static.raw, $texture(image.raw), x_0, y_0);
+  $pixelate(INSTANCE_0);
 }
 
 function Surface(raw){

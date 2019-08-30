@@ -27,11 +27,7 @@ public class FrodosQuestJava {
     config.height = SCREEN_HEIGHT * ZOOM;
     LWJGLPlatform raw = new LWJGLPlatform(config);
     Platform platform = new Platform(raw);
-    platform.canvasCreator = new JavaCanvasCreator(raw.graphics());
-    platform.pixelator = new JavaPixelator();
-    
-    platform.pixelator.pixelate();
-    
+    platform.canvasCreator = new JavaCanvasCreator(raw.graphics());    
     new FrodosQuest(platform);
     raw.start();
   }
@@ -55,15 +51,6 @@ public class FrodosQuestJava {
       } catch (Exception e) {
         throw new RuntimeException(e);
       }
-    }
-  }
-  
-  static class JavaPixelator implements Platform.Pixelator {
-    public void pixelate() {
-      GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-      GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-      GL11.glTexParameteri(GL30.GL_TEXTURE_2D_ARRAY, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-      GL11.glTexParameteri(GL30.GL_TEXTURE_2D_ARRAY, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
     }
   }
 }

@@ -35,9 +35,9 @@ public class Surface implements DrawImage {
   }
 
   public void draw(Image image, int x, int y) {
-    Platform.INSTANCE.pixelator.pixelate();
+    Platform.INSTANCE.pixelate();
     raw.draw(image.raw.texture(), x, y);
-    Platform.INSTANCE.pixelator.pixelate();
+    Platform.INSTANCE.pixelate();
   }
 }
 

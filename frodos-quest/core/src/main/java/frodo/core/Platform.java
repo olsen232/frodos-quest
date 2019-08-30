@@ -1,5 +1,7 @@
 package frodo.core;
 
+import playn.core.GL20;
+
 public class Platform {
   public static Platform INSTANCE;
 
@@ -8,6 +10,12 @@ public class Platform {
   public Platform(playn.core.Platform raw) {
     this.raw = raw;
     INSTANCE = this;
+  }
+  
+  public void pixelate() {
+    GL20 gl20 = raw.graphics().gl;
+    gl20.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MIN_FILTER, GL20.GL_NEAREST);
+    gl20.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MAG_FILTER, GL20.GL_NEAREST);
   }
 
   public static interface CanvasCreator {
@@ -27,12 +35,4 @@ public class Platform {
   public Canvas createCanvas(int pixelWidth, int pixelHeight) {
     return new Canvas(canvasCreator.create(pixelWidth, pixelHeight));
   }
-  
-  public static interface Pixelator {
-    public void pixelate();
-  }
-  
-  public Pixelator pixelator = new Pixelator() {
-    public void pixelate() {}
-  };
 }
