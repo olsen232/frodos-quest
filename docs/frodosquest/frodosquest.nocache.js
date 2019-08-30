@@ -335,7 +335,7 @@ function frodosquest(){
     }
     var strongName;
     try {
-      strongName = '4C02C774FE8B473DC5918D339A38222C';
+      strongName = '7A4FB5DAEC629EFAE754C7C91FCC0613';
       var idx = strongName.indexOf(':');
       if (idx != -1) {
         softPermutationId = parseInt(strongName.substring(idx + 1), 10);
