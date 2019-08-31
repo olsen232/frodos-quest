@@ -13,8 +13,17 @@
         height: 100% !important;
       }
     </style>
+    <script>
+      preventTab = function(e) {
+        var code = e.keyCode || e.which;
+        if (code == 0 || code == 9) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    </script>
   </head>
-  <body style="background-color: black; color: grey; overflow:hidden">
+  <body style="background-color: black; color: grey; overflow:hidden" onkeydown="preventTab">
     <script src="frodosquest/frodosquest.nocache.js"></script>
     <center>
       <div id="playn-root"></div>
