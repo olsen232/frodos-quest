@@ -43,7 +43,7 @@ public enum Scene {
     Layer background = addLayer(Z.BACKGROUND);
     Layer bed = addLayer(Z.AUTO);
     Layer desk = addLayer(Z.AUTO);
-    Layer bilbo = addLayer(Z.MANUAL, Animations.BILBO);
+    Layer bilbo = addLayer(Z.MANUAL, Animations.BILBO_WRITING);
     Layer quill = addLayer(Z.MANUAL, Animations.QUILL);
     Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this); 
@@ -61,9 +61,9 @@ public enum Scene {
   
   BAGEND_KITCHEN {
     Layer background = addLayer(Z.BACKGROUND);
-    Layer fire1 = addLayer(Z.BACKGROUND, Animations.cycle(1, 3));
-    Layer fire2 = addLayer(Z.BACKGROUND, Animations.cycle(2, 3));
-    Layer fire3 = addLayer(Z.BACKGROUND, Animations.cycle(3, 3));
+    Layer fire1 = addLayer(Z.BACKGROUND, Animations.cycle(1, 3).withDuration(4));
+    Layer fire2 = addLayer(Z.BACKGROUND, Animations.cycle(2, 3).withDuration(4));
+    Layer fire3 = addLayer(Z.BACKGROUND, Animations.cycle(3, 3).withDuration(4));
     Layer bottle = addLayer(Z.BACKGROUND);
     Layer stool = addLayer(Z.AUTO);
     Layer table = addLayer(Z.AUTO);
@@ -112,8 +112,8 @@ public enum Scene {
   
   HOBBITON {
     Layer background = addLayer(Z.BACKGROUND);
-    Layer wheel1 = addLayer(Z.BACKGROUND, Animations.cycle(1, 3));
-    Layer wheel2 = addLayer(Z.BACKGROUND, Animations.cycle(2, 3));
+    Layer wheel1 = addLayer(Z.BACKGROUND, Animations.cycle(1, 3).withDuration(4));
+    Layer wheel2 = addLayer(Z.BACKGROUND, Animations.cycle(2, 3).withDuration(4));
     Layer bridge = addLayer(Z.AUTO);
     Layer wall = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);

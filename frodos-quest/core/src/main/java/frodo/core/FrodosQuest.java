@@ -19,6 +19,9 @@ public class FrodosQuest extends SceneGame {
   private boolean fontLoaded = false;
   private boolean isMusicCancelled = false;
   private int frameCounter = 0;
+  private int frameBuffer = 0;
+  
+  private boolean debugMode = false;
   
   static Prompt prompt = new Prompt();
   static ControlState controlState = Sprites.FRODO.controlState;
@@ -40,16 +43,14 @@ public class FrodosQuest extends SceneGame {
     plat.input().keyboardEvents.connect(keySlot);
 
     plat.input().mouseEnabled = true;
-    plat.input().mouseEvents.connect(new Slot<Mouse.Event>() {
-      public void onEmit(Mouse.Event e) {
-        // TODO: Mouse support for debugging.
-      }
-    });
+    plat.input().mouseEvents.connect(mouseSlot);
   }
   
   @Override
   public void update(Clock clock) {
+    frameBuffer = 0;
     frameCounter++;
+    
     if (!loadingFinished) {
       continueLoading();
       return;
@@ -69,9 +70,12 @@ public class FrodosQuest extends SceneGame {
       loadingFinished = true;
     }
   }
-
+  
   @Override
   public void paintScene() {
+    if (frameBuffer >= 2) return;
+    frameBuffer++;
+  
     surface.saveTx();
     surface.begin();
     
@@ -84,7 +88,7 @@ public class FrodosQuest extends SceneGame {
         return;
       }
 
-      sceneRenderer.draw(surface, frameCounter / 8);
+      sceneRenderer.draw(surface, frameCounter);
       textDisplay.draw(surface);
       prompt.draw(surface, eventManager.interactive());
       
@@ -146,7 +150,27 @@ public class FrodosQuest extends SceneGame {
 	    if (ke.key == Key.BACKSPACE || ke.key == Key.DELETE || ke.key == Key.BACK) {
 	      if (ke.down && prompt.keyTyped(Prompt.BACKSPACE)) state.updateSuggestion(prompt);
 	    }
+	    if (ke.key == Key.F7 && ke.down) {
+	      debugMode = true;
+	    }
 	  }
+    }
+  };
+  
+  private Slot<Mouse.Event> mouseSlot = new Slot<Mouse.Event>() {
+    public void onEmit(Mouse.Event e) {
+      if (!debugMode) return;
+      if (!(e instanceof Mouse.ButtonEvent)) return;
+      if (!((Mouse.ButtonEvent) e).down) return;
+      int x = ((int) e.x) / ZOOM;
+      int y = ((int) e.y) / ZOOM - HEADER_Y;
+      x /= X_STEP; x *= X_STEP;
+      y /= Y_STEP; y *= Y_STEP;
+      if (sceneRenderer.scene.mask.contains(x, y)) {
+        Sprites.FRODO.x = x;
+        Sprites.FRODO.y = y;
+        controlState.pause();
+      }
     }
   };
 }
