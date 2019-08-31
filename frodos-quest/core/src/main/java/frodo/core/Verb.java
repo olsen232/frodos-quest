@@ -1,6 +1,7 @@
 package frodo.core;
 
 public enum Verb implements Synonym {
+  GO("walk", "move"),
   INVENTORY("inventory", "inv", "i"),
   LOOK,
   EXAMINE("look at", "look"),

@@ -63,6 +63,7 @@ public class State {
     if (typed(INVENTORY)) return displayInventory();
     if (typed(EXAMINE, FRODO)) return display(FRODO.desc);
     if (typed("teaser")) return display("Frodo's Quest\n\nComing 2019");
+    if (typed("help")) return display("Use arrow keys to move. Try typing \"look\" \"look at X\" \"talk to X\" \"take X\" or \"inventory\".");
 
     if (maybeLookAtInventory()) return true;
 
@@ -74,6 +75,7 @@ public class State {
 
 
     if (at(FRODOS_ROOM)) {
+      if (typed(GO) || typed(GO, NORTH)) return display("Use the arrow keys to move.");
       if (typed(LOOK)) return display("This is your room at Bag End. Nice and cosy. A bed and a wardrobe meets all your needs. A window looks out into the garden.");
       if (typed(EXAMINE, BED)) return display("It's your bed.");
       if (typed(SLEEP_IN, BED) || typed(SLEEP)) return display("It's already morning!");
