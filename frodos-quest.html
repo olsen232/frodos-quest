@@ -21,9 +21,10 @@
           e.stopPropagation();
         }
       }
+      document.body.onkeydown = preventTab;
     </script>
   </head>
-  <body style="background-color: black; color: grey; overflow:hidden" onkeydown="preventTab">
+  <body style="background-color: black; color: grey; overflow:hidden">
     <script src="frodosquest/frodosquest.nocache.js"></script>
     <center>
       <div id="playn-root"></div>
