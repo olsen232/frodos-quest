@@ -1,11 +1,6 @@
 package frodo.java;
 
 import java.awt.image.BufferedImage;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
 
 import playn.java.LWJGLPlatform;
 import playn.core.Graphics;

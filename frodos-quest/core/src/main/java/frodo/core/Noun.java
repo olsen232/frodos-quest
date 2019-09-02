@@ -3,7 +3,7 @@ package frodo.core;
 public enum Noun implements Synonym {
   NORTH("south", "east", "west", "up", "down", "left", "right", "No description"),
   FRODO("me", "You are Frodo, a young hobbit of average height - three foot six. You have blue eyes, dark curly hair, a red vest and a green coat."),
-  BILBO,
+  BILBO("hobbit", "man", "writer", "No description"),
   BED,
   DESK("On the desk are Bilbo's memoirs, titled \"There and Back Again\"."),
   WARDROBE("cupboard", "cabinet", "It's your wardrobe. It is closed."),

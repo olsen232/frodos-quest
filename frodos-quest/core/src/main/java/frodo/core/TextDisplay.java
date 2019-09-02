@@ -20,7 +20,7 @@ public class TextDisplay {
     snapshot = null;
   }
 
-  public void render(String text) {    
+  public void render(String text) {        
     StringBuilder sb = new StringBuilder(text.trim());
     int width = 0;
     int maxWidth = 0;
@@ -60,7 +60,6 @@ public class TextDisplay {
     canvas.strokeRectPlusBorder(x, y, maxWidthPx, maxHeightPx, BOX_INNER_COLOR, BOX_INNER_BORDER);
     Font.BLACK.justified(canvas, sb, x, y, maxWidth);
     snapshot = canvas.snapshot();
-    // TODO: try and reuse canvas.
-    canvas = Platform.INSTANCE.createCanvas(TEXT_WIDTH_PX, TEXT_HEIGHT_PX);
+    snapshot.raw.updateTexture();
   }
 }
