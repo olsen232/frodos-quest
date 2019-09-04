@@ -63,15 +63,11 @@ function frodosquest(){
       return;
     }
     var scriptFrame = $doc_0.createElement('iframe');
-    scriptFrame.src = 'javascript:""';
     scriptFrame.id = 'frodosquest';
     scriptFrame.style.cssText = 'position:absolute; width:0; height:0; border:none; left: -1000px;' + ' top: -1000px;';
     scriptFrame.tabIndex = -1;
     $doc_0.body.appendChild(scriptFrame);
-    frameDoc = scriptFrame.contentDocument;
-    if (!frameDoc) {
-      frameDoc = scriptFrame.contentWindow.document;
-    }
+    frameDoc = scriptFrame.contentWindow.document;
     frameDoc.open();
     var doctype = document.compatMode == 'CSS1Compat'?'<!doctype html>':'';
     frameDoc.write(doctype + '<html><head><\/head><body><\/body><\/html>');
@@ -335,7 +331,7 @@ function frodosquest(){
     }
     var strongName;
     try {
-      strongName = 'A406A5E916A0C0284B98C2A28756EA23';
+      strongName = 'AE97A1058D4A9F63D8D1E5C1E987FA6A';
       var idx = strongName.indexOf(':');
       if (idx != -1) {
         softPermutationId = parseInt(strongName.substring(idx + 1), 10);
