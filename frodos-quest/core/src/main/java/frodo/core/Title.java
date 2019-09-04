@@ -90,6 +90,6 @@ public class Title {
   }
   
   public void skip() {
-    // TODO:
+    if (loadingFinished) done = true;
   }
 }
