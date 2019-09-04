@@ -72,7 +72,7 @@ public class Layer {
   static Layer addLayer(Z zIndex, Animation animation) {
     return addLayer(zIndex, animation, true);
   }
-  
+    
   static Layer addMaskLayer(Scene scene) {
     Layer mask = addLayer(Z.FOREGROUND, Animations.NONE, false);
     Layer[] layers = ADDED_LAYERS.toArray(new Layer[ADDED_LAYERS.size()]);

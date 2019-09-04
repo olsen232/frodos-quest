@@ -23,6 +23,7 @@ public class FrodosQuest extends SceneGame {
   
   private boolean debugMode = false;
   
+  static Title title = new Title();
   static Prompt prompt = new Prompt();
   static ControlState controlState = Sprites.FRODO.controlState;
   static TextDisplay textDisplay = new TextDisplay();
@@ -37,6 +38,7 @@ public class FrodosQuest extends SceneGame {
     Font.startLoading();
     Scene.startLoading();
     Sprites.startLoading();
+    Title.startLoading();
     sceneRenderer.update(state);
 
     plat.input().keyboardEnabled = true;
@@ -51,24 +53,13 @@ public class FrodosQuest extends SceneGame {
     frameBuffer = 0;
     frameCounter++;
     
-    if (!loadingFinished) {
-      continueLoading();
+    if (!title.done()) {
+      title.update();
       return;
     }
     
     sceneRenderer.move();
     eventManager.tick(state);
-  }
-  
-  private void continueLoading() {
-    if (!fontLoaded && Font.RAW != null && Font.RAW.isLoaded()) {
-      Font.finishLoading();
-      fontLoaded = true;
-    } else if (fontLoaded && !loadingFinished && Loader.isFinished()) {
-      Scene.finishLoading();
-      Sprites.finishLoading();
-      loadingFinished = true;
-    }
   }
   
   @Override
@@ -83,8 +74,8 @@ public class FrodosQuest extends SceneGame {
     surface.scale(ZOOM, ZOOM);
     
     try {
-      if (!loadingFinished) {
-        paintWhileLoading(surface);
+      if (!title.done()) {
+        title.draw(surface);
         return;
       }
 
@@ -108,15 +99,6 @@ public class FrodosQuest extends SceneGame {
     return false;
   }
   
-  private void paintWhileLoading(Surface surface) {
-    if (fontLoaded) {
-      surface.clear(0f, 0f, 0f, 1f);
-      Font.WHITE.centeredSingleLine(surface, Loader.statusText(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-    } else {
-      surface.clear(1f, 1f, 1f, 1f);
-    }
-  }
-  
   private void enter() {
     eventManager.userDismiss();
     if (prompt.hasInput() && state.submitUserCommand(prompt)) {
@@ -129,6 +111,7 @@ public class FrodosQuest extends SceneGame {
   private Slot<Keyboard.Event> keySlot = new Slot<Keyboard.Event>() {
     public void onEmit(Keyboard.Event e) {
       if (e instanceof Keyboard.TypedEvent) {
+        if (!title.done()) return;
         if (!eventManager.interactive()) return;
         eventManager.softDismiss();
 
@@ -152,6 +135,9 @@ public class FrodosQuest extends SceneGame {
 	    }
 	    if (ke.key == Key.F7 && ke.down) {
 	      debugMode = true;
+	    }
+	    if (ke.key == Key.ESCAPE) {
+	      if (!title.done()) title.skip();
 	    }
 	  }
     }

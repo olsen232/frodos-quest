@@ -39,6 +39,13 @@ public class Surface implements DrawImage {
     raw.draw(image.raw.texture(), x, y);
     Platform.INSTANCE.pixelate();
   }
+  
+  public void fillRect(int x, int y, int w, int h, int color) {
+    raw.setFillColor(color);
+    Platform.INSTANCE.pixelate();
+    raw.fillRect(x, y, w, h);
+    Platform.INSTANCE.pixelate();
+  }
 }
 
 

@@ -1,5 +1,7 @@
 package frodo.core;
 
+import playn.core.Sound;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,7 @@ public final class Loader {
   private Loader() {}
   
   private static Map<String, Image> IMAGES = new HashMap<>();
+  private static Map<String, Sound> SOUNDS = new HashMap<>();
   
   public static Image loadImage(String name) {
     Image image = IMAGES.get(name);
@@ -15,6 +18,24 @@ public final class Loader {
       IMAGES.put(name, image);
     }
     return image;
+  }
+  
+  public static Sound loadSound(String name) {
+    Sound sound = SOUNDS.get(name);
+    if (sound == null) {
+      sound = Platform.INSTANCE.raw.assets().getSound(name);
+      SOUNDS.put(name, sound);
+    }
+    return sound;
+  }
+  
+  public static Sound loadMusic(String name) {
+    Sound sound = SOUNDS.get(name);
+    if (sound == null) {
+      sound = Platform.INSTANCE.raw.assets().getMusic(name);
+      SOUNDS.put(name, sound);
+    }
+    return sound;
   }
   
   public static String statusText() {
@@ -32,6 +53,11 @@ public final class Loader {
     }
     for (Image image : IMAGES.values()) {
       if (!image.isLoaded()) {
+        return false;
+      }
+    }
+    for (Sound sound : SOUNDS.values()) {
+      if (!sound.isLoaded()) {
         return false;
       }
     }
