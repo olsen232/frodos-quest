@@ -114,6 +114,10 @@ public class Title {
   }
   
   public void skip() {
-    if (loadingFinished) done = true;
+    if (loadingFinished && !done) {
+      ONE_RING_INTRO.stop();
+      finish();
+      done = true;
+    }
   }
 }
