@@ -11,6 +11,8 @@ public class Events {
     protected Event(boolean interactive) {
       this.interactive = interactive;
     }
+    
+    public void enact() {}
   }
 
   /*public static class StateChangedEvent implements Event {
@@ -26,6 +28,12 @@ public class Events {
       super(INTERACTIVE);
       this.text = text;
     }
+    
+    @Override
+    public void enact() {
+      FrodosQuest.textDisplay.render(text);
+      FrodosQuest.controlState.pause();
+    }
   }
   
   public static class PauseEvent extends Event {
@@ -33,6 +41,34 @@ public class Events {
     public PauseEvent(boolean interactive, int seconds) {
       super(interactive);
       this.seconds = seconds;
+    }
+  }
+  
+  public static class CutSceneEvent extends Event {
+    public final Location location;
+    public CutSceneEvent(Location location) {
+      super(UNINTERACTIVE);
+      this.location = location;
+    }
+    
+    @Override
+    public void enact() {
+      FrodosQuest.changeLocation(location);
+    }
+  }
+  
+  public static class ShowSpriteEvent extends Event {
+    public final Sprite sprite;
+    public final boolean visible;
+    public ShowSpriteEvent(Sprite sprite, boolean visible) {
+      super(UNINTERACTIVE);
+      this.sprite = sprite;
+      this.visible = visible;
+    }
+    
+    @Override
+    public void enact() {
+      sprite.visible = visible;
     }
   }
   

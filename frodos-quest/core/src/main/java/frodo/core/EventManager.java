@@ -96,14 +96,15 @@ public class EventManager {
   }
   
   protected void processEvent(Event event) {
-    if (event instanceof DisplayTextEvent) {
-      DisplayTextEvent displayTextEvent = (DisplayTextEvent) event;
-      textDisplay.render(displayTextEvent.text);
-      controlState.pause();
+    event.enact();
+    if (event instanceof DisplayTextEvent) {      
       textTimer = PixelConstants.FRAME_RATE / 2;
     } else if (event instanceof PauseEvent) {
       PauseEvent pauseEvent = (PauseEvent) event;
       pauseTimer = (PixelConstants.FRAME_RATE * pauseEvent.seconds);
+    } else {
+      events.remove();
+      processNext();
     }
   }
   

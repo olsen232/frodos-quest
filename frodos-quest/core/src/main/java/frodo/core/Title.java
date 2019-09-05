@@ -1,11 +1,13 @@
 package frodo.core;
 
 import static frodo.core.PixelConstants.*;
+import frodo.core.Events.*;
 import playn.core.Sound;
 
 public class Title {
 
   public static final int TOTAL_MS = 25000;
+  public static final String COPYRIGHT_TEXT = "(C) 1987 by Olsen On-Line, Inc";
 
   static Image TITLE_RAW;
   static Image[] LAYERS;
@@ -51,7 +53,15 @@ public class Title {
   } 
   
   public void finish() {
+    Sprites.FRODO.visible = false;
     CONCERNING_HOBBITS_INTRO.play();
+    EventManager eventManager = FrodosQuest.eventManager;
+    eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 5));
+    eventManager.add(new DisplayTextEvent("The sun rises over Hobbiton, the largest Hobbit settlement in The Shire, and shines through the windows at Bag End, the nicest Hobbit hole in Hobbiton - where you, Frodo, live with your wealthy uncle Bilbo."));
+    eventManager.add(new CutSceneEvent(Location.FRODOS_ROOM));
+    eventManager.add(new ShowSpriteEvent(Sprites.FRODO, true));
+    eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 2));
+    eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
   } 
   
   public boolean done() {
@@ -76,11 +86,25 @@ public class Title {
       surface.draw(layer, 0, HEADER_Y);
       surface.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, fade(layerId++, ms));
     }
+    if (ms > 13000) {
+      Font.WHITE.centeredSingleLine(surface, COPYRIGHT_TEXT, SCREEN_WIDTH / 2, PROMPT_Y);
+    }
+    surface.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, fadeOut(ms));
   }
   
   private int fade(int layerId, int ms) {
     ms -= 5000 * (2 - layerId);
     int alpha = 0xff - (ms / 200 * 200) * 0xff / 3000;
+    return black(alpha); 
+  }
+  
+  private int fadeOut(int ms) {
+    ms -= 18000;
+    int alpha = (ms / 200 * 200) * 0xff / 3000;
+    return black(alpha);
+  }
+  
+  private int black(int alpha) {
     alpha = Ints.clamp(alpha, 0x00, 0xff);
     return alpha << 24;
   }

@@ -13,7 +13,7 @@ import java.util.EnumSet;
 
 public class State {
 
-  public Location location = FRODOS_ROOM;
+  public Location location = BAGEND_HILL;
   public EnumSet<Item> inventory = EnumSet.noneOf(Item.class);
   public boolean isWardrobeOpen = false;
   public boolean isBilboFishing = false;
@@ -63,7 +63,7 @@ public class State {
     if (typed(INVENTORY)) return displayInventory();
     if (typed(EXAMINE, FRODO)) return display(FRODO.desc);
     if (typed("teaser")) return display("Frodo's Quest\n\nComing 2019");
-    if (typed("help")) return display("Use arrow keys to move. Try typing \"look\" \"look at X\" \"talk to X\" \"take X\" or \"inventory\".");
+    if (typed("help")) return display("Use arrow keys to move.\nTry typing: \n look \n look at [something] \n talk to [someone] \n take [something] \n inventory");
 
     if (maybeLookAtInventory()) return true;
 

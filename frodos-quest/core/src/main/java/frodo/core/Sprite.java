@@ -9,6 +9,7 @@ public abstract class Sprite {
 
   public int x = 160;
   public int y = 140;
+  public boolean visible = true;
   
   protected int imageFrame = 0;
   protected int framesPerImage = 4;
@@ -23,6 +24,7 @@ public abstract class Sprite {
   }
     
   public void draw(Surface surface, int frame) {
+    if (!visible) return;
     surface.draw(image, x - (image.width() / 2), y - image.height() + 2);
   }
   
