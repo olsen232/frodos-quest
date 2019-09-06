@@ -81,6 +81,12 @@ public class FrodoSprite extends Sprite {
   }
   
   @Override
+  public void init(Image[] images) {
+    this.images = images;
+    animate(prevDirection);
+  }
+  
+  @Override
   public void update(State state) {
     Image[] locationImages = chooseImages(state.location);
     if (this.images != locationImages) {

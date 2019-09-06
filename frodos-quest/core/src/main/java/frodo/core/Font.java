@@ -58,6 +58,19 @@ public class Font {
     singleLine(target, text, x - (text.length() * FONT_SIZE / 2), y - (FONT_SIZE / 2));
   }
   
+  public void centered(DrawImage target, CharSequence text, int sx, int sy) {
+    int y = sy;
+    int start = 0;
+    for (int i = 0; i < text.length(); i++) {
+      if (text.charAt(i) == '\n') {
+        centeredSingleLine(target, text.subSequence(start, i), sx, y);
+        y += TEXT_LINE_HEIGHT;
+        start = i + 1;
+      }
+    }
+    centeredSingleLine(target, text.subSequence(start, text.length()), sx, y);
+  }
+  
   public void justifiedSingleLine(DrawImage target, CharSequence text, int sx, int sy, int length) {
     int x = sx;
     int spaces = Math.max(CharSequences.countChars(text, ' '), 1);

@@ -59,12 +59,9 @@ public class EventManager {
   }
   
   protected void checkUpcoming(UpcomingEvent upcoming, State state) {
-    if (upcoming instanceof LocationEvent) {
-      LocationEvent locationEvent = (LocationEvent) upcoming;
-      if (state.at(locationEvent.location) && Sprites.FRODO.touchingSpecial) {
-        upcomingEvents.remove();
-        add(locationEvent.delegate);
-      }
+    if (upcoming.check(state)) {
+      upcomingEvents.remove();
+      add(upcoming.delegate);
     }
   }
   

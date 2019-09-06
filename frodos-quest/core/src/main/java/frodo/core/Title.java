@@ -14,6 +14,7 @@ public class Title {
   
   static Sound ONE_RING_INTRO;
   static Sound CONCERNING_HOBBITS_INTRO;
+  static Sound CONCERNING_HOBBITS;
   
   private boolean fontLoaded = false;
   private boolean loadingFinished = false;
@@ -25,6 +26,7 @@ public class Title {
     TITLE_RAW = Image.load("title.png");
     ONE_RING_INTRO = Loader.loadMusic("one_ring_intro");
     CONCERNING_HOBBITS_INTRO = Loader.loadMusic("concerning_hobbits_intro");
+    CONCERNING_HOBBITS = Loader.loadMusic("concerning_hobbits");
   }
   
   public static void finishLoading() {
@@ -54,6 +56,7 @@ public class Title {
   
   public void finish() {
     Sprites.FRODO.visible = false;
+    Loader.stopAllMusic();
     CONCERNING_HOBBITS_INTRO.play();
     EventManager eventManager = FrodosQuest.eventManager;
     eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 5));
@@ -62,6 +65,7 @@ public class Title {
     eventManager.add(new ShowSpriteEvent(Sprites.FRODO, true));
     eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 2));
     eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
+    eventManager.add(new QueuedUpcomingEvent(new LocationEvent(Location.BAGEND_HILL, false, new MusicEvent(CONCERNING_HOBBITS))));
   } 
   
   public boolean done() {
@@ -76,7 +80,7 @@ public class Title {
     surface.clear(0f, 0f, 0f, 1f);
     
     if (!loadingFinished) {
-      Font.WHITE.centeredSingleLine(surface, Loader.statusText(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+      Font.WHITE.centered(surface, Loader.statusText(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
       return;
     }
     
@@ -94,13 +98,13 @@ public class Title {
   
   private int fade(int layerId, int ms) {
     ms -= 5000 * (2 - layerId);
-    int alpha = 0xff - (ms / 200 * 200) * 0xff / 3000;
+    int alpha = 0xff - (ms / 200 * 200) * 0xff / 2000;
     return black(alpha); 
   }
   
   private int fadeOut(int ms) {
     ms -= 18000;
-    int alpha = (ms / 200 * 200) * 0xff / 3000;
+    int alpha = (ms / 200 * 200) * 0xff / 2000;
     return black(alpha);
   }
   

@@ -262,7 +262,7 @@ public class State {
             return display("\"Frodo my lad! I see you got my note. Come, get yourself something to drink, then come and listen to what I have to say.\"");
           case 3:
             changeState(talkedToGandalf = true);
-            addLocationEvent(Location.HOBBITON, "As you cross the river, an idea comes to you. Bilbo loves fishing. If you can organise a day of fishing for him, perhaps he'll leave his ring at home.");
+            addLocationEvent(Location.HOBBITON, true, "As you cross the river, an idea comes to you. Bilbo loves fishing. If you can organise a day of fishing for him, perhaps he'll leave his ring at home.");
             return display("\"Gandalf, I thought you left the Shire yesterday?\" you ask.",
                            "\"I did give that impression, but I stayed the night here. I had a good reason for it. Tell me, have you ever seen Bilbo without his ring?\"",
                            "\"That little golden ring? He never has it on his finger, but I think he always carries it in his pocket,\" you say.",
@@ -368,8 +368,8 @@ public class State {
     return true;
   }
 
-  private boolean addLocationEvent(Location location, String text) {
-    eventManager.add(new LocationEvent(location, new DisplayTextEvent(text)));
+  private boolean addLocationEvent(Location location, boolean touchingSpecial, String text) {
+    eventManager.add(new LocationEvent(location, touchingSpecial, new DisplayTextEvent(text)));
     return true;
   }
 

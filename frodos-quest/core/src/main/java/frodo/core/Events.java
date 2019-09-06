@@ -1,5 +1,7 @@
 package frodo.core;
 
+import playn.core.Sound;
+
 public class Events {
 
   public static final boolean INTERACTIVE = true;
@@ -72,19 +74,59 @@ public class Events {
     }
   }
   
-  public abstract static class UpcomingEvent extends Event {
-    protected UpcomingEvent() {
+  public static class MusicEvent extends Event {
+    public final Sound music;
+    public MusicEvent(Sound music) {
       super(INTERACTIVE);
+      this.music = music;
+    }
+    
+    @Override
+    public void enact() {
+      music.play();
+    }
+  }
+  
+  public static class QueuedUpcomingEvent extends Event {
+    public final UpcomingEvent delegate;
+    public QueuedUpcomingEvent(UpcomingEvent delegate) {
+      super(INTERACTIVE);
+      this.delegate = delegate;
+    }
+    
+    @Override
+    public void enact() {
+      FrodosQuest.eventManager.add(delegate);
+    }
+  }
+  
+  public abstract static class UpcomingEvent extends Event {
+    public final Event delegate;
+    protected UpcomingEvent(Event delegate) {
+      super(INTERACTIVE);
+      this.delegate = delegate;
+      this.delegate.interactive = false;
+    }
+    
+    public boolean check(State state) {
+      return false;
     }
   }
   
   public static class LocationEvent extends UpcomingEvent {
     public final Location location;
-    public final Event delegate;
-    public LocationEvent(Location location, Event delegate) {
+    public final boolean touchingSpecial;
+    public LocationEvent(Location location, boolean touchingSpecial, Event delegate) {
+      super(delegate);
       this.location = location;
-      this.delegate = delegate;
-      this.delegate.interactive = false;
+      this.touchingSpecial = touchingSpecial;
+    }
+    
+    public boolean check(State state) {
+      if (state.at(location)) {
+        return touchingSpecial ? Sprites.FRODO.touchingSpecial : true;
+      }
+      return false;
     }
   }
 }
