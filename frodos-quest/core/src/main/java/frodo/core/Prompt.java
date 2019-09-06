@@ -36,7 +36,7 @@ public class Prompt {
     if (isLetter(c)) {
       if (input.length() == MAX_PROMPT_CHARS) return false;
       input.append(c);
-      userCommand.append(c);
+      userCommand.append(lowercase(c));
       return true;
       
     } else if (c == ' ' && input.length() < MAX_PROMPT_CHARS) {
@@ -219,6 +219,10 @@ public class Prompt {
   
   private static boolean isLetter(char c) {
     return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+  }
+  
+  private static char lowercase(char c) {
+    return (c >= 'A' && c <= 'Z') ? (char) (c - 'A' + 'a') : c;
   }
 }
 
