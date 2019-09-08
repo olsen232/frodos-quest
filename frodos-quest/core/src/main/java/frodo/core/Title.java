@@ -55,7 +55,6 @@ public class Title {
   } 
   
   public void finish() {
-    Sprites.FRODO.visible = false;
     Loader.stopAllMusic();
     CONCERNING_HOBBITS_INTRO.play();
     EventManager eventManager = FrodosQuest.eventManager;

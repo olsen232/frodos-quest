@@ -11,6 +11,12 @@ public final class Sprites {
   public static AnimalSprite GOAT = new AnimalSprite();
   public static GooseSprite GOOSE = new GooseSprite();
   
+  public static Sprite[] ALL = new Sprite[] {
+    FRODO, GOAT, GOOSE,
+  };
+  
+  public static Sprite[] NONE = new Sprite[] {};
+  
   public static Image[] FRODO_LARGE;
   public static Image[] FRODO_SMALL;
   

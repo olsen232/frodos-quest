@@ -9,7 +9,7 @@ public abstract class Sprite {
 
   public int x = 160;
   public int y = 140;
-  public boolean visible = true;
+  public boolean visible = false;
   
   protected int imageFrame = 0;
   protected int framesPerImage = 4;

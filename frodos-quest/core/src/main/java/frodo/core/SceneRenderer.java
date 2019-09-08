@@ -7,24 +7,39 @@ import java.util.Arrays;
 public class SceneRenderer {
 
   public Scene scene;
-  public Layer[] layers;
-  public Sprite[] sprites;
   
   public void update(State state) {
-    scene = Scene.forLocation(state.location);
+    Scene newScene = Scene.forLocation(state.location);
+    if (newScene != scene) {
+      setScene(newScene);
+    }
+
     scene.update(state);
-    layers = scene.layers;
-    sprites = scene.sprites();
-    for (Sprite sprite : sprites) {
+    for (Sprite sprite : Sprites.ALL) {
       sprite.update(state);
     }
   }
   
-  public void move() {
-    for (Sprite sprite : sprites) {
-      sprite.move(scene);
+  public void setScene(Scene newScene) {
+    Scene oldScene = this.scene;
+    if (oldScene != null) {
+      for (Sprite sprite : oldScene.sprites()) {
+        sprite.visible = false;
+      }
     }
-    Arrays.sort(sprites, Sprites.SORT_BY_Y);
+    for (Sprite sprite : newScene.sprites()) {
+      sprite.visible = true;
+    }
+    this.scene = newScene;
+  }
+  
+  public void move() {
+    for (Sprite sprite : Sprites.ALL) {
+      if (sprite.visible) {
+        sprite.move(scene);
+      }
+    }
+    Arrays.sort(Sprites.ALL, Sprites.SORT_BY_Y);
   }
     
   public void draw(Surface surface, int frame) {
@@ -33,15 +48,15 @@ public class SceneRenderer {
     int spriteIndex = 0;
     int spriteZ = spriteZ(spriteIndex);
     
-    for (Layer layer : layers) {      
+    for (Layer layer : scene.layers) {      
       while (spriteZ < layer.zIndex) {
-        sprites[spriteIndex].draw(surface, frame);
+        Sprites.ALL[spriteIndex].draw(surface, frame);
         spriteZ = spriteZ(++spriteIndex);
       }
       layer.draw(surface, frame);
     }
     while (spriteZ < Z.FOREGROUND.value) {
-      sprites[spriteIndex].draw(surface, frame);
+      Sprites.ALL[spriteIndex].draw(surface, frame);
       spriteZ = spriteZ(++spriteIndex);
     }
     
@@ -49,7 +64,7 @@ public class SceneRenderer {
   }
   
   private int spriteZ(int spriteIndex) {
-    if (spriteIndex >= sprites.length) return Z.IN_FRONT_OF_FOREGROUND.value;
-    return sprites[spriteIndex].y;
+    if (spriteIndex >= Sprites.ALL.length) return Z.IN_FRONT_OF_FOREGROUND.value;
+    return Sprites.ALL[spriteIndex].y;
   }
 }

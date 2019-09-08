@@ -92,7 +92,6 @@ public class FrodosQuest extends SceneGame {
   public static boolean changeLocation(Location loc) {
     if (state.changeLocation(loc)) {
       sceneRenderer.update(state);
-      Sprites.FRODO.update(state);
       controlState.pause();
       return true;
     }

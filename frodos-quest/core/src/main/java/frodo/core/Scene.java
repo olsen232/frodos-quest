@@ -90,7 +90,7 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
     
     public Sprite[] sprites() {
-      return new Sprite[] { Sprites.FRODO, Sprites.GOOSE, Sprites.GOAT };
+      return new Sprite[] { Sprites.GOOSE };
     }
   },
   
@@ -183,7 +183,7 @@ public enum Scene {
   }
   
   public Sprite[] sprites() {
-    return new Sprite[]{ Sprites.FRODO };
+    return Sprites.NONE;
   }
   
   public static boolean isOutside(Scene scene) {
