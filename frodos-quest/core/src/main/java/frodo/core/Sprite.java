@@ -64,7 +64,8 @@ public abstract class Sprite {
   }
     
   public boolean isCloseTo(Sprite that, int px) {
-    return Math.abs(that.x - this.x) <= (px * SCENE_X_ZOOM)
+    return that.visible
+        && Math.abs(that.x - this.x) <= (px * SCENE_X_ZOOM)
         && Math.abs(that.y - this.y) <= (px * SCENE_Y_ZOOM);
   }
 }

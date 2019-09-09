@@ -11,6 +11,7 @@ public class FrodoSprite extends Sprite {
   
   private int drunkenness = 0;
   private int staggerTimer = 0;  
+  private boolean standingOnStool = false;
   
   @Override
   public void move(Scene scene) {
@@ -30,7 +31,15 @@ public class FrodoSprite extends Sprite {
         moveDrunkenly(scene.mask, direction);
       }
       touchingSpecial = Pixels.isNonWhite(scene.mask.pixelOnce(x, y));
+      standingOnStool = isCloseTo(Sprites.STOOL, 4);
     }
+  }
+  
+  @Override
+  public void draw(Surface surface, int frame) {
+    if (standingOnStool) y -= 20;
+    super.draw(surface, frame);
+    if (standingOnStool) y += 20;
   }
   
   public void drinkAlcohol() {

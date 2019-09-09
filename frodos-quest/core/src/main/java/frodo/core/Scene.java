@@ -63,16 +63,18 @@ public enum Scene {
     Layer background = addLayer(Z.BACKGROUND);
     Layer fire1 = addLayer(Z.BACKGROUND, Animations.cycle(1, 3).withDuration(4));
     Layer fire2 = addLayer(Z.BACKGROUND, Animations.cycle(2, 3).withDuration(4));
-    Layer fire3 = addLayer(Z.BACKGROUND, Animations.cycle(3, 3).withDuration(4));
     Layer bottle = addLayer(Z.BACKGROUND);
-    Layer stool = addLayer(Z.AUTO);
     Layer table = addLayer(Z.AUTO);
     Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
     
     public void update(State state) {
-      showIf(!state.has(STOOL), stool);
       showIf(!state.has(OLIVE_OIL), bottle);
+    }
+    
+    @Override
+    public Sprite[] sprites(State state) {
+      return !state.has(STOOL) ? Sprites.STOOL_1 : Sprites.NONE;
     }
   },
   
@@ -89,7 +91,8 @@ public enum Scene {
     Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
     
-    public Sprite[] sprites() {
+    @Override
+    public Sprite[] sprites(State state) {
       return new Sprite[] { Sprites.GOOSE };
     }
   },
@@ -182,7 +185,7 @@ public enum Scene {
     // nothing needed.  
   }
   
-  public Sprite[] sprites() {
+  public Sprite[] sprites(State state) {
     return Sprites.NONE;
   }
   

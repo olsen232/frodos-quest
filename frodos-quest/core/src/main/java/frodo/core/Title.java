@@ -65,7 +65,17 @@ public class Title {
     eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 2));
     eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
     eventManager.add(new QueuedUpcomingEvent(new LocationEvent(Location.BAGEND_HILL, false, new MusicEvent(CONCERNING_HOBBITS))));
-  } 
+  }
+  
+  public void skipFinish() {
+    Loader.stopAllMusic();
+    EventManager eventManager = FrodosQuest.eventManager;
+    eventManager.add(new CutSceneEvent(Location.FRODOS_ROOM));
+    eventManager.add(new CutSceneEvent(Location.FRODOS_ROOM));
+    eventManager.add(new ShowSpriteEvent(Sprites.FRODO, true));
+    eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
+    eventManager.add(new QueuedUpcomingEvent(new LocationEvent(Location.BAGEND_HILL, false, new MusicEvent(CONCERNING_HOBBITS))));
+  }
   
   public boolean done() {
     return done;
@@ -119,7 +129,7 @@ public class Title {
   public void skip() {
     if (loadingFinished && !done) {
       ONE_RING_INTRO.stop();
-      finish();
+      skipFinish();
       done = true;
     }
   }

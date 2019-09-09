@@ -10,12 +10,14 @@ public final class Sprites {
   public static FrodoSprite FRODO = new FrodoSprite();  
   public static AnimalSprite GOAT = new AnimalSprite();
   public static GooseSprite GOOSE = new GooseSprite();
+  public static StaticSprite STOOL = new StaticSprite(100, 130);
   
   public static Sprite[] ALL = new Sprite[] {
-    FRODO, GOAT, GOOSE,
+    FRODO, GOAT, GOOSE, STOOL,
   };
   
   public static Sprite[] NONE = new Sprite[] {};
+  public static Sprite[] STOOL_1 = new Sprite[] { STOOL };
   
   public static Image[] FRODO_LARGE;
   public static Image[] FRODO_SMALL;
@@ -27,12 +29,14 @@ public final class Sprites {
   private static Image FRODO_SMALL_RAW;
   private static Image GOAT_RAW;
   private static Image GOOSE_RAW;
+  private static Image STOOL_RAW;
   
   public static void startLoading() {
     FRODO_LARGE_RAW = Image.load("frodo_large.png");
     FRODO_SMALL_RAW = Image.load("frodo_small.png");
     GOAT_RAW = Image.load("goat.png");
     GOOSE_RAW = Image.load("goose.png");
+    STOOL_RAW = Image.load("stool.png");
   }
   
   public static void finishLoading() {
@@ -45,6 +49,7 @@ public final class Sprites {
     FRODO.init(FRODO_LARGE);
     GOAT.init(GOAT_TILES);
     GOOSE.init(GOOSE_TILES);
+    STOOL.init(scaleSprite(STOOL_RAW));
   }
   
   private static Image scaleSprite(Image image) {

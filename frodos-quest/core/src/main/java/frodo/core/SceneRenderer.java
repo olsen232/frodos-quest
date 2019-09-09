@@ -7,30 +7,18 @@ import java.util.Arrays;
 public class SceneRenderer {
 
   public Scene scene;
+  public Sprite[] sceneSprites = Sprites.NONE;
   
   public void update(State state) {
-    Scene newScene = Scene.forLocation(state.location);
-    if (newScene != scene) {
-      setScene(newScene);
-    }
+    this.scene = Scene.forLocation(state.location);
+    setVisible(sceneSprites, false);
+    this.sceneSprites = scene.sprites(state);
+    setVisible(sceneSprites, true);
 
     scene.update(state);
     for (Sprite sprite : Sprites.ALL) {
       sprite.update(state);
     }
-  }
-  
-  public void setScene(Scene newScene) {
-    Scene oldScene = this.scene;
-    if (oldScene != null) {
-      for (Sprite sprite : oldScene.sprites()) {
-        sprite.visible = false;
-      }
-    }
-    for (Sprite sprite : newScene.sprites()) {
-      sprite.visible = true;
-    }
-    this.scene = newScene;
   }
   
   public void move() {
@@ -61,6 +49,12 @@ public class SceneRenderer {
     }
     
     surface.translate(0, -HEADER_Y);
+  }
+  
+  private static void setVisible(Sprite[] sprites, boolean visible) {
+    for (Sprite sprite : sprites) {
+      sprite.visible = visible;
+    }
   }
   
   private int spriteZ(int spriteIndex) {
