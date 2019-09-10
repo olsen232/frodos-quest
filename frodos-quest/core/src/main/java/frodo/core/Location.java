@@ -6,11 +6,12 @@ public enum Location {
   BILBOS_ROOM,
   BAGEND_KITCHEN,
   BAGEND_HILL,
-  LAKE_TREE,
-  LAKE_HOUSE,
+  TREE_BY_LAKE,
+  HOUSE_BY_LAKE,
   NEIGHBOR,
   HOBBITON,
-  GREEN_DRAGON;
+  GREEN_DRAGON,
+  APPLE_TREE_FIELD;
   
   public static final Location[] ALL_LOCATIONS = Location.values();
 }

@@ -21,6 +21,7 @@ public class State {
   public boolean talkedToGandalf = false;
   public int gandalfTalk = 0;
   public int meal = 0;
+  public Location stoolLocation = BAGEND_KITCHEN;
 
   private void copyFrom(State that) {
     this.location = that.location;
@@ -150,7 +151,7 @@ public class State {
     if (at(BAGEND_KITCHEN)) {
       if (typed(LOOK)) {
         return display("This is the kitchen at Bag End. It is well stocked as a hobbit's should be - the pantry is filled with food."
-            + cond(!has(STOOL), " Next to the pantry is a wooden stool, for reaching the top shelf.")
+            + cond(stoolLocation == BAGEND_KITCHEN, " Next to the pantry is a wooden stool, for reaching the top shelf.")
             + cond(!has(OLIVE_OIL), " A bottle of olive oil stands on the bench."));
       }
       if (typed(EXAMINE, STOOL)) return display("Next to the pantry is a wooden stool, for reaching the top shelf.");
@@ -159,8 +160,9 @@ public class State {
         else return display(BENCH.desc);
       }
       if (typed(EXAMINE, OLIVE_OIL)) return display("A bottle of olive oil stands on the bench.");
-      if (!has(STOOL) && typed(TAKE, STOOL)) {
+      if (stoolLocation == BAGEND_KITCHEN && typed(TAKE, STOOL)) {
         changeState(inventory.add(STOOL));
+        changeState(stoolLocation = null);
         return display("You take the wooden stool with you, for a hobbit never knows when he might need some extra height.");
       }
       if (!has(OLIVE_OIL) && typed(TAKE, OLIVE_OIL)) {
@@ -198,13 +200,13 @@ public class State {
       if (typed(TAKE, ROCK)) return display("It's bigger than you are!");
     }
 
-    if (at(LAKE_TREE)) {
+    if (at(TREE_BY_LAKE)) {
       if (typed(LOOK)) {
         return display("You are on the shore of Hobbiton's lake.");
       }
       if (typed(EXAMINE, TREE)) return display("A huge elm tree overlooks the lake.");
       if (typed(EXAMINE, LAKE)) return display(LAKE.desc);
-      if (typed(CLIMB_UP, TREE)) return display("The top of the tree has a great view! But perhaps now is not the time.");
+      if (typed(CLIMB_UP, TREE)) return display("Climbing trees is a bit tricky for hobbits. The branches are far apart and your arms are not long.");
       if (typed(EXAMINE, WALL)) return display(WALL.desc);
       if (typed(EXAMINE, ROAD)) return display(ROAD.desc);
       if (typed(EXAMINE, REEDS)) return display(REEDS.desc);
@@ -279,7 +281,7 @@ public class State {
       }
     }
 
-    if (at(LAKE_HOUSE)) {
+    if (at(HOUSE_BY_LAKE)) {
       if (typed(LOOK)) {
         return display("Here you see Halfred, fishing from the side of the lake. His boat is moored here too.");
       }
@@ -311,6 +313,24 @@ public class State {
         return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
       }
     }
+    
+    if (at(APPLE_TREE_FIELD)) {
+      if (typed(LOOK)) {
+        return display("In the middle of a field is a great big apple tree.");
+      }
+      if (typed(EXAMINE, TREE) || typed(EXAMINE, APPLE_TREE)) return display(APPLE_TREE.desc);
+      if (typed(CLIMB_UP, TREE)) return display("The branches of the apple tree are much too high for you to reach.");
+      if (typed(EXAMINE, APPLES)) return display("The apples are already ripe and look juicy and sweet.");
+      if (typed(TAKE, APPLES)) return display("The tree is tall and even the lowest hanging apples are out of reach."); 
+      if (stoolLocation == null) {
+        if (typed(USE, STOOL) || typed(PUT_DOWN, STOOL) || typed(CLIMB_ON, STOOL)) {
+          //Sprites.STOOL.spawnNearbyOnSpecial(Sprites.FRODO, Scene.APPLE_TREE_FIELD.mask);
+          changeState(inventory.remove(STOOL));
+          return changeState(stoolLocation = Location.APPLE_TREE_FIELD);
+        }
+      }
+    }
+    
     return false;
   }
 

@@ -6,14 +6,13 @@ public enum Verb implements Synonym {
   LOOK,
   EXAMINE("look at", "look"),
   READ("examine", "look at", "look"),
-  TAKE("pick up", "get"),
+  TAKE("pick up", "get", "pick"),
   TALK_TO("talk"),
   USE,
   OPEN,
   CLOSE("shut"),
   OIL,
-  CLIMB_IN("climb through"),
-  CLIMB_OUT("climb through"),
+  CLIMB_ON("stand on"),
   SLEEP_IN("use", "get in"),
   SLEEP(),
   EAT("use"),
@@ -25,7 +24,8 @@ public enum Verb implements Synonym {
   BUY_AN("order an", "ask for an"),
   DRINK,
   GIVE,
-  TO();
+  TO,
+  PUT_DOWN;
 
   public final String[] variants;
 

@@ -7,7 +7,7 @@ public enum Item implements Synonym {
   FISHING_ROD("rod", "A wooden fishing rod, including hook, line and sinker."),
   STOOL("wooden stool", "A wooden stool from the kitchen, for reaching high shelves."),
   OLIVE_OIL("oil", "bottle", "A bottle of olive oil from the kitchen."),
-  APPLES("Several red juicy apples"),
+  APPLES("apple", "Several red juicy apples."),
   POCKET_WATCH("watch", "Bilbo's pocket watch is mostly brass, but it looks shiny and ornate, with a long chain. Attached to the watch is a small key, for winding it up."),
   WATCH_KEY("key", "Attached to Bilbo's pocket watch is a golden watch key, for winding it up. Unlike a house key, it has no blade, so its notched shaft would fit into a circular keyhole."),
   RING("Bilbo's ring is simple, small, but brightly shining gold. Twisting it in the light, you think you can see writing inside, but you cannot make it out.");

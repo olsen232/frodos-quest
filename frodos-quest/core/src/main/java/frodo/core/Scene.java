@@ -74,7 +74,7 @@ public enum Scene {
     
     @Override
     public Sprite[] sprites(State state) {
-      return !state.has(STOOL) ? Sprites.STOOL_1 : Sprites.NONE;
+      return (state.stoolLocation == Location.BAGEND_KITCHEN) ? Sprites.STOOL_1 : Sprites.NONE;
     }
   },
   
@@ -85,7 +85,7 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this); 
   },
   
-  LAKE_TREE {
+  TREE_BY_LAKE {
     Layer background = addLayer(Z.BACKGROUND);
     Layer tree = addLayer(Z.AUTO);
     Layer foreground = addLayer(Z.FOREGROUND);
@@ -97,7 +97,7 @@ public enum Scene {
     }
   },
   
-  LAKE_HOUSE {
+  HOUSE_BY_LAKE {
     Layer background = addLayer(Z.BACKGROUND);
     Layer house = addLayer(Z.AUTO);
     Layer tree = addLayer(Z.AUTO);
@@ -133,7 +133,20 @@ public enum Scene {
     protected void onLayersLoaded() {
       gandalfArm.zIndex = gandalf.zIndex;
     }
-  };
+  },
+  
+  APPLE_TREE_FIELD { 
+    Layer background = addLayer(Z.BACKGROUND);
+    Layer tree = addLayer(Z.AUTO);
+    Layer maskLayer = addMaskLayer(this);
+    
+    @Override
+    public Sprite[] sprites(State state) {
+      return (state.stoolLocation == Location.APPLE_TREE_FIELD) ? Sprites.STOOL_1 : Sprites.NONE;
+    }
+  },
+  
+  /** END SCENES **/ ;
      
   private static final Scene[] ALL_SCENES = Scene.values();
     

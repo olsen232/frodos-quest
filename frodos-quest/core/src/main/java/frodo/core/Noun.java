@@ -37,6 +37,7 @@ public enum Noun implements Synonym {
   REGULARS("customers", "hobbits", "At this hour of the morning, a few older hobbits gather here to meet their friends. Younger hobbits are out fishing and farming, they tend to arrive later in the day."),
   HALFRED("hobbit", "man", "fisherman", "Like most hobbits, Halfred grows most of his food on land, but he fishes whenever he can and he even has his own boat."),
   BOAT("rowboat", "Halfred's rowboat, just large enough for a hobbit."),
+  APPLE_TREE("The apple tree is large and tall and loaded with dozens of juicy apples."),
   
   ;
 
