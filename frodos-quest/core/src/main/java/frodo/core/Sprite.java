@@ -7,8 +7,8 @@ public abstract class Sprite {
   public Image[] images;
   public Image image;
 
-  public int x = 160;
-  public int y = 140;
+  public int x = SCENE_WIDTH / 2;
+  public int y = SCENE_HEIGHT * 2/3;
   public boolean visible = false;
   
   protected int imageFrame = 0;

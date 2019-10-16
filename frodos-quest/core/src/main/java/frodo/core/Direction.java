@@ -1,14 +1,12 @@
 package frodo.core;
 
-import static frodo.core.PixelConstants.*;
-
 import playn.core.Key;
 
 public enum Direction {
-  LEFT( -X_STEP,       0, Key.LEFT),
-  RIGHT( X_STEP,       0, Key.RIGHT),
-  UP(         0, -Y_STEP, Key.UP),
-  DOWN(       0, +Y_STEP, Key.DOWN);
+  LEFT( -1,  0, Key.LEFT),
+  RIGHT( 1,  0, Key.RIGHT),
+  UP(    0, -1, Key.UP),
+  DOWN(  0, +1, Key.DOWN);
   
   public static final Direction[] ALL_DIRECTIONS = Direction.values();
   public static final int NUM_DIRECTIONS = ALL_DIRECTIONS.length;

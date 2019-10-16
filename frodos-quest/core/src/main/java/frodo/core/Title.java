@@ -30,7 +30,7 @@ public class Title {
   }
   
   public static void finishLoading() {
-    LAYERS = TITLE_RAW.scale(SCENE_X_ZOOM, SCENE_Y_ZOOM).tile(SCENE_WIDTH, SCENE_HEIGHT);
+    LAYERS = TITLE_RAW.tile(SCENE_WIDTH, SCENE_HEIGHT);
   }
   
   public void update() {
@@ -83,16 +83,24 @@ public class Title {
       return;
     }
     
-    int layerId = 0;
     int ms = ms();
-    for (Image layer : LAYERS) {
-      surface.draw(layer, 0, HEADER_Y);
-      surface.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, fade(layerId++, ms));
-    }
+    drawLayers(surface, ms);
     if (ms > 13000) {
       Font.WHITE.centeredSingleLine(surface, COPYRIGHT_TEXT, SCREEN_WIDTH / 2, PROMPT_Y);
     }
     surface.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, fadeOut(ms));
+  }
+
+  private void drawLayers(Surface surface, int ms) {
+    surface.saveTx();
+    surface.translate(0, HEADER_Y);
+    surface.scale(SCENE_X_ZOOM, SCENE_Y_ZOOM);
+    int layerId = 0;
+    for (Image layer : LAYERS) {
+      surface.draw(layer, 0, 0);
+      surface.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, fade(layerId++, ms));
+    }
+    surface.restoreTx();
   }
   
   private int fade(int layerId, int ms) {

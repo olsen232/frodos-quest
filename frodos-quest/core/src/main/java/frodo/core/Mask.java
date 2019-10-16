@@ -1,7 +1,5 @@
 package frodo.core;
 
-import static frodo.core.PixelConstants.*;
-
 public class Mask {
   public final Image image;
   public Bounds mainBounds = new Bounds();
@@ -20,8 +18,8 @@ public class Mask {
     int w = image.width();
     int h = image.height();
     image.startPixelCalls();
-    for (int x = 0; x < w; x += X_STEP) {
-      for (int y = 0; y < h; y += Y_STEP) {
+    for (int x = 0; x < w; x++) {
+      for (int y = 0; y < h; y++) {
         int pixel = image.pixel(x, y);
         if (Pixels.isWhite(pixel)) {
           updateEdges(x, y);

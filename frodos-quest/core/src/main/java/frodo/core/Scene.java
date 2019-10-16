@@ -160,7 +160,7 @@ public enum Scene {
   }
   
   protected void doFinishLoading() {
-    Image[] images = raw.scale(SCENE_X_ZOOM, SCENE_Y_ZOOM).tile(SCENE_WIDTH, SCENE_HEIGHT);
+    Image[] images = raw.tile(SCENE_WIDTH, SCENE_HEIGHT);
     
     if (images.length != layers.length) {
       throw new IllegalArgumentException("Wrong number of layers - images=" + images.length + " layers=" + layers.length);

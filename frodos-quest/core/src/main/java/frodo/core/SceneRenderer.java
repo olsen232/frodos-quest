@@ -43,7 +43,9 @@ public class SceneRenderer {
   }
     
   public void draw(Surface surface, int frame) {
+    surface.saveTx();
     surface.translate(0, HEADER_Y);
+    surface.scale(SCENE_X_ZOOM, SCENE_Y_ZOOM);
     
     int spriteIndex = 0;
     int spriteZ = spriteZ(spriteIndex);
@@ -60,7 +62,7 @@ public class SceneRenderer {
       spriteZ = spriteZ(++spriteIndex);
     }
     
-    surface.translate(0, -HEADER_Y);
+    surface.restoreTx();
   }
   
   private int spriteZ(int spriteIndex) {

@@ -11,14 +11,13 @@ public final class PixelConstants {
   public static final int SCENE_X_ZOOM = 2;
   public static final int SCENE_Y_ZOOM = 1;
 
-  public static final int X_STEP = SCENE_X_ZOOM;
-  public static final int Y_STEP = SCENE_Y_ZOOM;
-    
   public static final int SCREEN_WIDTH = 320;
   public static final int SCREEN_HEIGHT = 224;
 
-  public static final int SCENE_WIDTH = 320;
+  public static final int SCENE_WIDTH = 160;
   public static final int SCENE_HEIGHT = 200;
+
+  public static final int STEP_PX = 1;
 
   public static final int FONT_SIZE = 8;
   
