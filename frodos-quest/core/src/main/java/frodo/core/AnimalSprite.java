@@ -38,8 +38,8 @@ public class AnimalSprite extends Sprite {
   }
   
   protected void wander() {
-    dx = isAngry() ? fastRand(X_STEP) : slowRand(X_STEP);
-    dy = slowRand(Y_STEP);
+    dx = isAngry() ? fastRand(STEP_PX) : slowRand(STEP_PX);
+    dy = slowRand(STEP_PX);
     if (!stopped()) imageDirection = imageDirection(dx, dy, imageDirection);
   }
   

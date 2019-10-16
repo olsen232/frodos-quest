@@ -108,7 +108,7 @@ public class Image {
   
   // ================= Scaling =======================
 
-  public Image scale(int scale) {
+  /*public Image scale(int scale) {
     return scale(scale, scale);
   }
   
@@ -127,7 +127,7 @@ public class Image {
     playn.core.Canvas c = Platform.INSTANCE.createRawCanvas(w2, h2);
     c.image.setRgb(0, 0, w2, h2, pixels2, 0, w2);
     return new Image(c.image);
-  }
+  }*/
   
   // ================= Recoloring =======================
 
