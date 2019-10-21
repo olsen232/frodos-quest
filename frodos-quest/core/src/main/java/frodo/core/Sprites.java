@@ -10,7 +10,7 @@ public final class Sprites {
   public static FrodoSprite FRODO = new FrodoSprite();  
   public static AnimalSprite GOAT = new AnimalSprite();
   public static GooseSprite GOOSE = new GooseSprite();
-  public static StaticSprite STOOL = new StoolSprite();
+  public static StoolSprite STOOL = new StoolSprite();
   
   public static Sprite[] ALL = new Sprite[] {
     FRODO, GOAT, GOOSE, STOOL,

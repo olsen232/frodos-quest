@@ -14,4 +14,16 @@ public enum Location {
   APPLE_TREE_FIELD;
   
   public static final Location[] ALL_LOCATIONS = Location.values();
-}
+  
+  public static boolean isInside(Location location) {
+    switch (location) {
+      case FRODOS_ROOM:
+      case BAGEND_HALLWAY:
+      case BILBOS_ROOM:
+      case BAGEND_KITCHEN:
+      case GREEN_DRAGON:
+        return true;
+      default: 
+        return false;
+    }
+  }}

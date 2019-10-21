@@ -21,7 +21,7 @@ public class FrodosQuest extends SceneGame {
   private int frameCounter = 0;
   private int frameBuffer = 0;
   
-  private boolean debugMode = false;
+  private boolean debugMode = false, debugRun = false;
   
   static Title title = new Title();
   static Prompt prompt = new Prompt();
@@ -51,15 +51,21 @@ public class FrodosQuest extends SceneGame {
   @Override
   public void update(Clock clock) {
     frameBuffer = 0;
-    frameCounter++;
     
     if (!title.done()) {
       title.update();
       return;
     }
     
+    frameCounter++;
     sceneRenderer.move();
     eventManager.tick(state);
+    
+    if (debugRun) {
+      frameCounter++;
+      sceneRenderer.move();
+      eventManager.tick(state);
+    }
   }
   
   @Override
@@ -134,6 +140,9 @@ public class FrodosQuest extends SceneGame {
 	    }
 	    if (ke.key == Key.F7 && ke.down) {
 	      debugMode = true;
+	    }
+	    if (ke.key == Key.SHIFT) {
+	      if (ke.down) debugRun = debugMode; else debugRun = false;
 	    }
 	    if (ke.key == Key.ESCAPE) {
 	      if (!title.done()) title.skip();

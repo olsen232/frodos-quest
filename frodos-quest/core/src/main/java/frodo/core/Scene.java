@@ -186,9 +186,9 @@ public enum Scene {
     }
     onLayersLoaded();
     Layer.checkLayers(layers);
-    boolean isOutside = isOutside(this);
-    int shrinkX = isOutside ? 4 : 10;
-    int shrinkY = isOutside ? 0 : 2;
+    boolean isInside = Location.isInside(this.toLocation());
+    int shrinkX = isInside ? 10 : 4;
+    int shrinkY = isInside ? 2 : 0;
     this.mask = Mask.shrink(images[images.length - 1], shrinkX, shrinkY);
   }
    
@@ -200,19 +200,6 @@ public enum Scene {
   
   public Sprite[] sprites(State state) {
     return Sprites.NONE;
-  }
-  
-  public static boolean isOutside(Scene scene) {
-    switch (scene) {
-      case FRODOS_ROOM:
-      case BAGEND_HALLWAY:
-      case BILBOS_ROOM:
-      case BAGEND_KITCHEN:
-      case GREEN_DRAGON:
-        return false;
-      default: 
-        return true;
-    }
   }
   
   // TODO: Scenes and Locations?

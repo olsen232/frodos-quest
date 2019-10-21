@@ -4,12 +4,23 @@ import static frodo.core.PixelConstants.*;
 
 public class StoolSprite extends StaticSprite {
 
-  private Image indoorImage;
-  private Image outdoorImage;
+  private Image insideImage;
+  private Image outsideImage;
+  
+  private int height;
+  private int radius;
+  
+  public int height() {
+    return height;
+  }
+  
+  public int radius() {
+    return radius;
+  }
   
   public void init(Image[] sizes) {
-    this.indoorImage = sizes[0];
-    this.outdoorImage = sizes[1];
+    this.insideImage = sizes[0];
+    this.outsideImage = sizes[1];
     place(Location.BAGEND_KITCHEN);
   }
   
@@ -24,7 +35,17 @@ public class StoolSprite extends StaticSprite {
     }
   }
   
-  public void place(Location location) {
+  public void place(Location location) {    
+    if (Location.isInside(location)) {
+      image = insideImage;
+      height = 20;
+      radius = 4;
+    } else {
+      image = outsideImage;
+      height = 8;
+      radius = 3;
+    }
+    
     switch (location) {
       case BAGEND_KITCHEN:
         x = SCENE_WIDTH / 3;
@@ -36,6 +57,5 @@ public class StoolSprite extends StaticSprite {
         break;
       default:
     }
-    image = Scene.isOutside(Scene.forLocation(location)) ? outdoorImage : indoorImage;
   }  
 }

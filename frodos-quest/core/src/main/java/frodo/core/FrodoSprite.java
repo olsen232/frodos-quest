@@ -31,13 +31,13 @@ public class FrodoSprite extends Sprite {
         moveDrunkenly(scene.mask, direction);
       }
       touchingSpecial = Pixels.isNonWhite(scene.mask.pixelOnce(x, y));
-      standingOnStool = isCloseTo(Sprites.STOOL, 4);
+      standingOnStool = isCloseTo(Sprites.STOOL, Sprites.STOOL.radius());
     }
   }
   
   @Override
   public void draw(Surface surface, int frame) {
-    int stoolHeight = (this.images == Sprites.FRODO_LARGE) ? 20 : 6;
+    int stoolHeight = Sprites.STOOL.height();
     if (standingOnStool) y -= stoolHeight;
     super.draw(surface, frame);
     if (standingOnStool) y += stoolHeight;
@@ -110,8 +110,8 @@ public class FrodoSprite extends Sprite {
   }
   
   private static Image[] chooseImages(Location location) {
-    return Scene.isOutside(Scene.forLocation(location)) 
-        ? Sprites.FRODO_SMALL
-        : Sprites.FRODO_LARGE;
+    return Location.isInside(location) 
+        ? Sprites.FRODO_LARGE
+        : Sprites.FRODO_SMALL;
   }
 }
