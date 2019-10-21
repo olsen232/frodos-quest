@@ -60,6 +60,6 @@ public class TextDisplay {
     canvas.strokeRectPlusBorder(x, y, maxWidthPx, maxHeightPx, BOX_INNER_COLOR, BOX_INNER_BORDER);
     Font.BLACK.justified(canvas, sb, x, y, maxWidth);
     snapshot = canvas.snapshot();
-    snapshot.raw.updateTexture();
+    snapshot.updateTexture();
   }
 }

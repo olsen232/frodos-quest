@@ -37,9 +37,10 @@ public class FrodoSprite extends Sprite {
   
   @Override
   public void draw(Surface surface, int frame) {
-    if (standingOnStool) y -= 20;
+    int stoolHeight = (this.images == Sprites.FRODO_LARGE) ? 20 : 6;
+    if (standingOnStool) y -= stoolHeight;
     super.draw(surface, frame);
-    if (standingOnStool) y += 20;
+    if (standingOnStool) y += stoolHeight;
   }
   
   public void drinkAlcohol() {
@@ -48,6 +49,10 @@ public class FrodoSprite extends Sprite {
   
   public boolean isDrunk() {
     return drunkenness > 0;
+  }
+  
+  public boolean isStandingOnStool() {
+    return standingOnStool;
   }
   
   protected void moveDrunkenly(Mask mask, Direction direction) {

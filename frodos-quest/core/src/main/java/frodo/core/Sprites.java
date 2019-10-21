@@ -10,7 +10,7 @@ public final class Sprites {
   public static FrodoSprite FRODO = new FrodoSprite();  
   public static AnimalSprite GOAT = new AnimalSprite();
   public static GooseSprite GOOSE = new GooseSprite();
-  public static StaticSprite STOOL = new StaticSprite(100, 130);
+  public static StaticSprite STOOL = new StoolSprite();
   
   public static Sprite[] ALL = new Sprite[] {
     FRODO, GOAT, GOOSE, STOOL,
@@ -24,6 +24,9 @@ public final class Sprites {
   
   public static Image[] GOOSE_TILES;
   public static Image[] GOAT_TILES;
+  
+  public static Image[] STOOL_TILES;
+
   
   private static Image FRODO_LARGE_RAW;
   private static Image FRODO_SMALL_RAW;
@@ -45,11 +48,13 @@ public final class Sprites {
     
     GOAT_TILES = GOAT_RAW.tileInto(4, 4);
     GOOSE_TILES = GOOSE_RAW.tileInto(4, 2);
+
+    STOOL_TILES = STOOL_RAW.tileInto(2, 1);
     
     FRODO.init(FRODO_LARGE);
     GOAT.init(GOAT_TILES);
     GOOSE.init(GOOSE_TILES);
-    STOOL.init(scaleSprite(STOOL_RAW));
+    STOOL.init(STOOL_TILES);
   }
   
   public static Comparator<Sprite> SORT_BY_Y = new Comparator<Sprite>() {

@@ -147,8 +147,8 @@ public class FrodosQuest extends SceneGame {
       if (!debugMode) return;
       if (!(e instanceof Mouse.ButtonEvent)) return;
       if (!((Mouse.ButtonEvent) e).down) return;
-      int x = ((int) e.x) / ZOOM;
-      int y = ((int) e.y) / ZOOM - HEADER_Y;
+      int x = ((int) e.x) / ZOOM / SCENE_X_ZOOM;
+      int y = (((int) e.y) / ZOOM - HEADER_Y) / SCENE_Y_ZOOM;
       x /= STEP_PX; x *= STEP_PX;
       y /= STEP_PX; y *= STEP_PX;
       if (sceneRenderer.scene.mask.contains(x, y)) {

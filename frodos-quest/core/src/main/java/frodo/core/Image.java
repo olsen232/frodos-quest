@@ -106,29 +106,6 @@ public class Image {
     return new Image(c.image);
   }
   
-  // ================= Scaling =======================
-
-  /*public Image scale(int scale) {
-    return scale(scale, scale);
-  }
-  
-  public Image scale(int xScale, int yScale) {
-    int w = width();
-    int h = height();
-    int[] pixels = getPixelsOnce();
-    int w2 = xScale * w;
-    int h2 = yScale * h;
-    int[] pixels2 = new int[w2 * h2];
-    for (int x = 0; x < w2; x++) {
-      for (int y = 0; y < h2; y++) {
-        pixels2[y * w2 + x] = pixels[(y / yScale) * w + (x / xScale)];
-      }
-    }
-    playn.core.Canvas c = Platform.INSTANCE.createRawCanvas(w2, h2);
-    c.image.setRgb(0, 0, w2, h2, pixels2, 0, w2);
-    return new Image(c.image);
-  }*/
-  
   // ================= Recoloring =======================
 
   public Image recolor(int recolor) {
@@ -141,5 +118,9 @@ public class Image {
     playn.core.Canvas c = Platform.INSTANCE.createRawCanvas(w, h);
     c.image.setRgb(0, 0, w, h, pixels, 0, w);
     return new Image(c.image);
+  }
+  
+  public void updateTexture() {
+    raw.updateTexture();
   }
 }

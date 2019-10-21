@@ -1,6 +1,13 @@
 package frodo.core;
 
+import static frodo.core.PixelConstants.*;
+
 public class GooseSprite extends SidewaysAnimalSprite {
+
+  {
+    x = SCENE_WIDTH / 3;
+    y = SCENE_HEIGHT * 3/4;
+  }
 
   @Override
   protected Image image(Direction d, int frame) {

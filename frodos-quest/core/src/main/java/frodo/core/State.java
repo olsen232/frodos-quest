@@ -321,13 +321,25 @@ public class State {
       if (typed(EXAMINE, TREE) || typed(EXAMINE, APPLE_TREE)) return display(APPLE_TREE.desc);
       if (typed(CLIMB_UP, TREE)) return display("The branches of the apple tree are much too high for you to reach.");
       if (typed(EXAMINE, APPLES)) return display("The apples are already ripe and look juicy and sweet.");
-      if (typed(TAKE, APPLES)) return display("The tree is tall and even the lowest hanging apples are out of reach."); 
+      if (typed(TAKE, APPLES)) {
+        if (has(APPLES)) return display("You already have plenty of apples.");
+        if (Sprites.FRODO.isStandingOnStool()) {
+          changeState(inventory.add(APPLES));
+          return display("From here, you can reach a dozen or so red, juicy, low-hanging apples. So you take them all.");
+        }
+        if (stoolLocation == APPLE_TREE_FIELD) return display("Maybe if you were standing on the stool.");
+        return display("The tree is tall and even the lowest hanging apples are out of reach."); 
+      }
       if (stoolLocation == null) {
         if (typed(USE, STOOL) || typed(PUT_DOWN, STOOL) || typed(CLIMB_ON, STOOL)) {
-          //Sprites.STOOL.spawnNearbyOnSpecial(Sprites.FRODO, Scene.APPLE_TREE_FIELD.mask);
           changeState(inventory.remove(STOOL));
           return changeState(stoolLocation = Location.APPLE_TREE_FIELD);
         }
+      }
+      if (stoolLocation == APPLE_TREE_FIELD && typed(TAKE, STOOL)) {
+        changeState(inventory.add(STOOL));
+        changeState(stoolLocation = null);
+        return display("You take the wooden stool with you, for a hobbit never knows when he might need some extra height.");
       }
     }
     
