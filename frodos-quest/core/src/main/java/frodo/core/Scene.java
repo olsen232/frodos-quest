@@ -137,7 +137,8 @@ public enum Scene {
   
   APPLE_TREE_FIELD { 
     Layer background = addLayer(Z.BACKGROUND);
-    Layer tree = addLayer(Z.AUTO);
+    Layer appleTree = addLayer(Z.AUTO);
+    Layer foregroundTree = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
     
     @Override
@@ -187,7 +188,7 @@ public enum Scene {
     onLayersLoaded();
     Layer.checkLayers(layers);
     boolean isInside = Location.isInside(this.toLocation());
-    int shrinkX = isInside ? 10 : 4;
+    int shrinkX = isInside ? 5 : 2;
     int shrinkY = isInside ? 2 : 0;
     this.mask = Mask.shrink(images[images.length - 1], shrinkX, shrinkY);
   }
