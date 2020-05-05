@@ -15,11 +15,17 @@ public class SceneLinks {
     addLink(portal(FRODOS_ROOM, DOWN), portal(BAGEND_HALLWAY, LEFT));
     addLink(portal(BILBOS_ROOM, DOWN), portal(BAGEND_HALLWAY, RIGHT));
     
-    addHorizontalLinks(HOUSE_BY_LAKE, TREE_BY_LAKE, BAGEND_HILL, NEIGHBOR, HOBBITON);
+    
+    addHorizontalLinks(               APPLE_TREE_FIELD, WEST_FIELD);
+    addHorizontalLinks(HOUSE_BY_LAKE, TREE_BY_LAKE,     BAGEND_HILL, NEIGHBOR, HOBBITON);
+
     
     addVerticalLinks(APPLE_TREE_FIELD, TREE_BY_LAKE);
     
     addLink(portal(HOBBITON, UP), portal(GREEN_DRAGON, LEFT));
+
+    // FIXME
+    addLink(portal(NEIGHBOR, UP), portal(WEST_FIELD, RIGHT));
   }
   
   private static void addLink(Portal p1, Portal p2) {

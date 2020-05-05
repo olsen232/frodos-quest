@@ -146,6 +146,13 @@ public enum Scene {
       return (state.stoolLocation == Location.APPLE_TREE_FIELD) ? Sprites.STOOL_1 : Sprites.NONE;
     }
   },
+
+  WEST_FIELD {
+    Layer background = addLayer(Z.BACKGROUND);
+    Layer tree = addLayer(Z.FOREGROUND);
+    Layer foregroundTree = addLayer(Z.FOREGROUND);
+    Layer maskLayer = addMaskLayer(this);
+  }
   
   /** END SCENES **/ ;
      
