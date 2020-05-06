@@ -152,6 +152,11 @@ public enum Scene {
     Layer tree = addLayer(Z.FOREGROUND);
     Layer foregroundTree = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
+
+    @Override
+    public Sprite[] sprites(State state) {
+      return new Sprite[] { Sprites.GOAT };
+    }
   }
   
   /** END SCENES **/ ;
