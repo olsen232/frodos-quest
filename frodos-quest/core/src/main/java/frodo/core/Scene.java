@@ -155,7 +155,7 @@ public enum Scene {
 
     @Override
     public Sprite[] sprites(State state) {
-      return new Sprite[] { Sprites.GOAT };
+      return new Sprite[] { Sprites.GOAT, Sprites.PIG };
     }
   }
   
