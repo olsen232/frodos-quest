@@ -12,7 +12,10 @@ public enum Location {
   HOBBITON,
   GREEN_DRAGON,
   APPLE_TREE_FIELD,
-  WEST_FIELD;
+  WEST_FIELD,
+  EAST_FIELD,
+
+  /** END LOCATIONS **/ ;
   
   public static final Location[] ALL_LOCATIONS = Location.values();
   

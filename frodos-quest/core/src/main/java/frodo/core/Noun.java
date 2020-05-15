@@ -38,8 +38,11 @@ public enum Noun implements Synonym {
   HALFRED("hobbit", "man", "fisherman", "Like most hobbits, Halfred grows most of his food on land, but he fishes whenever he can and he even has his own boat."),
   BOAT("rowboat", "Halfred's rowboat, just large enough for a hobbit."),
   APPLE_TREE("The apple tree is large and tall and loaded with dozens of juicy apples."),
-  
-  ;
+  GOAT("Luckily the goat is tame, having known you for years."),
+  PIG("pigs", "Two pigs are here, both quite young and playful."),
+  PONY("riddle", "Riddle the pony often makes deliveries around the village."),
+
+  /** END NOUNS **/ ;
 
   public final String[] variants;
   public final String desc;

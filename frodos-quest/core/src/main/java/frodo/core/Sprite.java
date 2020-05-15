@@ -45,13 +45,13 @@ public abstract class Sprite {
     if (dx == 0 && dy == 0) return false;
     int newX = x + dx;
     int newY = y + dy;
-    if (mask.contains(newX, newY) &&
-        (canGo(mask, newX, newY) || !canGo(mask, x, y))) {
-      x = newX;
-      y = newY;
-      return true;
+    if (mask != null) {
+      if (!mask.contains(newX, newY)) return false;
+      if (!canGo(mask, newX, newY) && canGo(mask, x, y)) return false;
     }
-    return false;
+    x = newX;
+    y = newY;
+    return true;
   }
   
   protected void animate(Direction d) {

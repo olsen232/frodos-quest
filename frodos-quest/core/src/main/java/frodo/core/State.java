@@ -22,6 +22,7 @@ public class State {
   public int gandalfTalk = 0;
   public int meal = 0;
   public Location stoolLocation = BAGEND_KITCHEN;
+  public int ponyMeal = 0;
 
   private void copyFrom(State that) {
     this.location = that.location;
@@ -72,6 +73,9 @@ public class State {
       Sprites.FRODO.drinkAlcohol();
       changeState(inventory.remove(MUG_OF_ALE));
       return display("You drink the mug of ale. Refreshing, but quite strong.");
+    }
+    if (has(APPLES) && typed(EAT, APPLES)) {
+      return display("Just one, then - don't ruin your appetite for lunch. The apple is crisp and sweet.");
     }
 
 
@@ -340,6 +344,39 @@ public class State {
         changeState(inventory.add(STOOL));
         changeState(stoolLocation = null);
         return display("You take the wooden stool with you, for a hobbit never knows when he might need some extra height.");
+      }
+    }
+
+    if (at(WEST_FIELD)) {
+      if (typed(LOOK)) {
+        return display("In this field is a goat and two pigs.");
+      }
+      if (typed(EXAMINE, TREE)) return display("There are several trees, but none that stand out.");
+      if (typed(EXAMINE, GOAT)) return display(GOAT.desc);
+      if (typed(EXAMINE, PIG)) return display(PIG.desc);
+      if (has(APPLES)) {
+        if (typed(GIVE, APPLES, PIG) || typed(GIVE, APPLES, TO, PIG)) {
+          Sprites.makeAnimalsFollow();
+          return display("The pig greedily munches on an apple. Now the animals are all following you, hoping for apples.");
+        }
+        if (typed(GIVE, APPLES, GOAT) || typed(GIVE, APPLES, TO, GOAT)) {
+          Sprites.makeAnimalsFollow();
+          return display("The goat greedily munches on an apple. The animals all come towards you, hoping for apples.");
+        }
+      }
+    }
+
+    if (at(EAST_FIELD)) {
+      if (typed(LOOK)) {
+        return display("This is the field of Riddle, the pony.");
+      }
+      if (typed(EXAMINE, TREE)) return display("There are several trees, but none that stand out.");
+      if (typed(EXAMINE, PONY)) return display(PONY.desc);
+      if (has(APPLES)) {
+        if (typed(GIVE, APPLES, PONY) || typed(GIVE, APPLES, TO, PONY)) {
+          changeState(ponyMeal += 1);
+          return display("Riddle the pony eats the whole apple from your hand. He starts to follow you, hoping for more.");
+        }
       }
     }
     

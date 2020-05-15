@@ -40,11 +40,21 @@ public class AnimalSprite extends Sprite {
   protected void wander() {
     dx = isAngry() ? fastRand(STEP_PX) : slowRand(STEP_PX);
     dy = slowRand(STEP_PX);
+    if (isFollowing()) doFollow();
     if (!stopped()) imageDirection = imageDirection(dx, dy, imageDirection);
+  }
+
+  protected void doFollow() {
+    if (Math.signum(dx) == Math.signum(x - Sprites.FRODO.x)) dx = 0;
+    if (Math.signum(dy) == Math.signum(y - Sprites.FRODO.y)) dy = 0;
   }
   
   protected Direction imageDirection(int dx, int dy, Direction prevDirection) {
     return Direction.approximate(dx, dy);
+  }
+
+  protected boolean isFollowing() {
+    return Sprites.animalsFollowing();
   }
   
   protected boolean isAngry() {
@@ -64,7 +74,7 @@ public class AnimalSprite extends Sprite {
   
   protected int fastRand(int step) {
     int result = (int) (2 * Math.random()); // 0, 1
-    if (result == 0) result = -1;
+    if (result == 0) result = -1;  // -1, 1
     return result * step;
   }
   

@@ -7,13 +7,14 @@ import java.util.Arrays;
 public class SceneRenderer {
 
   public Scene scene;
-  public Sprite[] sceneSprites = Sprites.NONE;
   
   public void update(State state) {
     this.scene = Scene.forLocation(state.location);
-    setVisible(sceneSprites, false);
-    this.sceneSprites = scene.sprites(state);
-    setVisible(sceneSprites, true);
+    for (Sprite sprite : Sprites.ALL) {
+      sprite.visible = scene.sprites(sprite, state);
+    }
+    // FIXME
+    Sprites.FRODO.visible = true;
 
     scene.update(state);
     for (Sprite sprite : Sprites.ALL) {
@@ -22,6 +23,7 @@ public class SceneRenderer {
   }
   
   public void move() {
+    Sprites.tick();
     for (Sprite sprite : Sprites.ALL) {
       if (sprite.visible) {
         sprite.move(scene);

@@ -70,7 +70,7 @@ public class Title {
   public void skipFinish() {
     Loader.stopAllMusic();
     EventManager eventManager = FrodosQuest.eventManager;
-    eventManager.add(new CutSceneEvent(Location.WEST_FIELD)); // TODO
+    eventManager.add(new CutSceneEvent(Location.FRODOS_ROOM));
     eventManager.add(new ShowSpriteEvent(Sprites.FRODO, true));
     eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
     eventManager.add(new QueuedUpcomingEvent(new LocationEvent(Location.BAGEND_HILL, false, new MusicEvent(CONCERNING_HOBBITS))));

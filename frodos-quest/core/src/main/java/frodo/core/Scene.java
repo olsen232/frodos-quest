@@ -73,8 +73,8 @@ public enum Scene {
     }
     
     @Override
-    public Sprite[] sprites(State state) {
-      return (state.stoolLocation == Location.BAGEND_KITCHEN) ? Sprites.STOOL_1 : Sprites.NONE;
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || (sprite == Sprites.STOOL && state.stoolLocation == Location.BAGEND_KITCHEN);
     }
   },
   
@@ -92,8 +92,8 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
     
     @Override
-    public Sprite[] sprites(State state) {
-      return new Sprite[] { Sprites.GOOSE };
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || sprite == Sprites.GOOSE;
     }
   },
   
@@ -142,8 +142,8 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
     
     @Override
-    public Sprite[] sprites(State state) {
-      return (state.stoolLocation == Location.APPLE_TREE_FIELD) ? Sprites.STOOL_1 : Sprites.NONE;
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || (sprite == Sprites.STOOL && state.stoolLocation == Location.BAGEND_KITCHEN);
     }
   },
 
@@ -154,10 +154,20 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
 
     @Override
-    public Sprite[] sprites(State state) {
-      return new Sprite[] { Sprites.GOAT, Sprites.PIG };
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || sprite == Sprites.GOAT || sprite == Sprites.PIG || sprite == Sprites.PIG2;
     }
-  }
+  },
+
+  EAST_FIELD {
+    Layer background = addLayer(Z.BACKGROUND);
+    Layer maskLayer = addMaskLayer(this);
+
+    @Override
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || (sprite == Sprites.PONY);
+    }
+  },
   
   /** END SCENES **/ ;
      
@@ -211,8 +221,8 @@ public enum Scene {
     // nothing needed.  
   }
   
-  public Sprite[] sprites(State state) {
-    return Sprites.NONE;
+  public boolean sprites(Sprite sprite, State state) {
+    return (sprite == Sprites.PONY && state.ponyMeal >= 2 && !Location.isInside(state.location));
   }
   
   // TODO: Scenes and Locations?

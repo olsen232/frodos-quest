@@ -22,4 +22,9 @@ public class GooseSprite extends SidewaysAnimalSprite {
   protected boolean isAngry() {
     return isCloseTo(Sprites.FRODO, 10);
   }
+
+  @Override
+  protected boolean isFollowing() {
+    return false;
+  }
 }
