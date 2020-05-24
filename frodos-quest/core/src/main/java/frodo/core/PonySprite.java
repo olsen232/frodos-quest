@@ -6,25 +6,38 @@ import static frodo.core.PixelConstants.*;
 
 public class PonySprite extends AnimalSprite {
 
-  static int FOLLOW_DISTANCE = 20;
+  protected int followDistance() {
+    return 20;
+  }
 
-  private int ponyMeal = 0;
-  private Location prevLocation = null;
+  protected int ponyMeal = 0;
+  protected Location prevLocation = null;
 
-  private int f = 0;
-  private int[] followX = new int[FOLLOW_DISTANCE];
-  private int[] followY = new int[FOLLOW_DISTANCE];
-  private boolean hide = false;
+  protected int f = 0;
+  protected int[] followX = new int[followDistance()];
+  protected int[] followY = new int[followDistance()];
+  protected boolean hide = false;
 
   @Override
   public void update(State state) {
     super.update(state);
-    this.ponyMeal = state.ponyMeal;
     if (state.location != prevLocation) {
+      if (Location.isInside(state.location) && state.ponyMeal > 0) {
+        if (state.deliveredBarrel || !state.hitchedBarrel) {
+          resetToField(state);
+        }
+      }
       prevLocation = state.location;
       Arrays.fill(followX, -1);
       Arrays.fill(followY, -1);
     }
+    this.ponyMeal = state.ponyMeal;
+  }
+
+  protected void resetToField(State state) {
+    state.ponyMeal = 0;
+    x = SCENE_WIDTH / 2;
+    y = SCENE_HEIGHT / 2;
   }
 
   protected boolean isFollowing() {
@@ -37,13 +50,7 @@ public class PonySprite extends AnimalSprite {
 
   @Override
   public void move(Scene scene) {
-    int fx = Sprites.FRODO.x;
-    int fy = Sprites.FRODO.y;
-    if (followX[f] != fx || followY[f] != fy) {
-      f = (f + 1) % FOLLOW_DISTANCE;
-      followX[f] = fx;
-      followY[f] = fy;
-    }
+    storeFollowData();
 
     if (isFollowingClosely()) {
       followClosely();
@@ -52,8 +59,18 @@ public class PonySprite extends AnimalSprite {
     }
   }
 
+  protected void storeFollowData() {
+    int fx = Sprites.FRODO.x;
+    int fy = Sprites.FRODO.y;
+    if (followX[f] != fx || followY[f] != fy) {
+      f = (f + 1) % followDistance();
+      followX[f] = fx;
+      followY[f] = fy;
+    }
+  }
+
   protected void followClosely() {
-    int ff = (f + 1) % FOLLOW_DISTANCE;
+    int ff = (f + 1) % followDistance();
     int fx = followX[ff];
     int fy = followY[ff];
     if (fx == -1 && fy == -1) {

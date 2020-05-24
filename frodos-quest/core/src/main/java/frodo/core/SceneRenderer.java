@@ -13,8 +13,6 @@ public class SceneRenderer {
     for (Sprite sprite : Sprites.ALL) {
       sprite.visible = scene.sprites(sprite, state);
     }
-    // FIXME
-    Sprites.FRODO.visible = true;
 
     scene.update(state);
     for (Sprite sprite : Sprites.ALL) {

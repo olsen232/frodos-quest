@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.EnumSet;
 
 public class State {
-
+  public boolean gameStarted = false;
   public Location location = BAGEND_HILL;
   public EnumSet<Item> inventory = EnumSet.noneOf(Item.class);
   public boolean isWardrobeOpen = false;
@@ -23,6 +23,10 @@ public class State {
   public int meal = 0;
   public Location stoolLocation = BAGEND_KITCHEN;
   public int ponyMeal = 0;
+  public boolean needBarrel = false;
+  public boolean boughtBarrel = false;
+  public boolean hitchedBarrel = false;
+  public boolean deliveredBarrel = false;
 
   private void copyFrom(State that) {
     this.location = that.location;
@@ -67,6 +71,7 @@ public class State {
     if (typed("teaser")) return display("Frodo's Quest\n\nComing 2019");
     if (typed("help")) return display("Use arrow keys to move.\nTry typing: \n look \n look at [something] \n talk to [someone] \n take [something] \n inventory");
 
+    if (FrodosQuest.debugMode && maybeDebugCommand()) return true;
     if (maybeLookAtInventory()) return true;
 
     if (has(MUG_OF_ALE) && typed(DRINK, MUG_OF_ALE)) {
@@ -140,13 +145,15 @@ public class State {
             changeState(isBilboFishing = true);
             return display("\"I was talking to Halfred and he lent me this fishing rod. Do you want to go fishing?\" you ask.",
                            "Bilbo looks out the window. \"It would be a shame to waste this sunshine,\" he says. \"I'll catch us something for dinner!\"",
-                           "He takes the fishing rod and sets off for the lake.");
+                           "He takes the fishing rod and sets off for the lake. You don't know if he has his ring with him.");
           }
         }
         if (typed(OPEN, WARDROBE)) return display("Bilbo will let you know if he wants you to go through his wardrobe.");
         if (typed(OPEN, DRESSER)) return display("Bilbo will let you know if he wants you to go through his dresser.");
       } else {
         if (typed(LOOK)) return display("This is Bilbo's room. His memoirs are sitting on his desk. A window looks out into the garden.");
+        if (typed(OPEN, WARDROBE)) return display("You open Bilbo's wardrobe and look through his clothes, but you don't find anything interesting.");
+        if (typed(OPEN, DRESSER)) return display("The dresser is locked. Bilbo sometimes keeps the ring in there. He must have the key with him.");
       }
       if (typed(READ, MEMOIRS)) return display(MEMOIRS.desc);
       if (typed(TAKE, MEMOIRS)) return display("Bilbo would probably prefer you left those as they are.");
@@ -218,6 +225,10 @@ public class State {
       if (typed(TAKE, REEDS)) return display("The scenery is fine where it already is.");
       if (typed(SWIM)) return display(NO_SWIMMING);
       if (typed(TAKE, GOOSE)) return Sprites.FRODO.isCloseTo(Sprites.GOOSE, 16) ? display("Ouch! You try to pick up the goose, but you quickly change your mind.") : display("You're not close enough.");
+      if (isBilboFishing) {
+        if (typed(EXAMINE, BILBO)) return display("Bilbo is here fishing with the fishing rod you lent him.");
+        if (typed(TALK_TO, BILBO)) return display("\"Are they biting, Bilbo?\" you ask. \"Not so far, I'm afraid. I haven't seen many fish here in the shallows. That's why Halfred has a boat I suppose.\"");
+      }
     }
 
     if (at(NEIGHBOR)) {
@@ -236,7 +247,8 @@ public class State {
 
     if (at(HOBBITON)) {
       if (typed(LOOK)) {
-        return display("A bridge crosses the river and leads into the Green Dragon inn, which is the centre of Hobbiton.");
+        return display("A bridge crosses the river and leads into the Green Dragon inn, which is the centre of Hobbiton."
+                       + cond(boughtBarrel && !hitchedBarrel, " A barrel of ale stands here on a little cart."));
       }
       if (typed(SWIM)) return display(NO_SWIMMING);
       if (typed(EXAMINE, RIVER)) return display(RIVER.desc);
@@ -244,6 +256,10 @@ public class State {
       if (typed(EXAMINE, INN)) return display(INN.desc);
       if (typed(EXAMINE, HOUSE)) return display(INN.desc);
       if (typed(EXAMINE, MILL)) return display(MILL.desc);
+      if (boughtBarrel && !hitchedBarrel) {
+        if (typed(EXAMINE, BARREL_OF_ALE) || typed(EXAMINE, CART)) return display("A barrel of ale stands here on a litte cart.");
+        if (typed(TAKE, BARREL_OF_ALE) || typed(TAKE, CART)) return display("You tug on the barrel. Even on wheels, you can barely shift it an inch.");
+      }
     }
 
     if (at(GREEN_DRAGON)) {
@@ -261,6 +277,11 @@ public class State {
         changeState(inventory.add(MUG_OF_ALE));
         return display("Rosie pours and hands you a mug of ale.");
       }
+      if (needBarrel && (typed(BUY, BARREL_OF_ALE) || typed(BUY_A, BARREL_OF_ALE) || typed(BUY_AN, BARREL_OF_ALE))) {
+        if (boughtBarrel) return display("You already bought a whole barrel of ale today.");
+        changeState(boughtBarrel = true);
+        return display("Rosie looks surprised, but sells you a whole barrel of ale at quite a reasonable price. \"I'll bring it up from the cellar and leave it outside for you,\" she says.");
+      }
       if (typed(TALK_TO, GANDALF)) {
         changeState(gandalfTalk += 1);
         switch (gandalfTalk) {
@@ -271,7 +292,7 @@ public class State {
             addLocationEvent(Location.HOBBITON, true, "As you cross the river, an idea comes to you. Bilbo loves fishing. If you can organise a day of fishing for him, perhaps he'll leave his ring at home.");
             return display("\"Gandalf, I thought you left the Shire yesterday?\" you ask.",
                            "\"I did give that impression, but I stayed the night here. I had a good reason for it. Tell me, have you ever seen Bilbo without his ring?\"",
-                           "\"That little golden ring? He never has it on his finger, but I think he always carries it in his pocket,\" you say.",
+                           "\"That little golden ring? He never has it on his finger, but I think he normally carries it in his pocket,\" you say.",
                            "\"Exactly. There's something odd about that ring, and I think it makes Bilbo odd too. I want to have a closer look at it, but Bilbo won't let me. And now whenever he sees me, he guards it jealously.\"",
                            "\"Now that he thinks I'm gone, try and get a hold of it and bring it here. Oh and you should be aware - it is an invisibility ring.\"");
           case 4:
@@ -298,7 +319,6 @@ public class State {
       if (typed(EXAMINE, FISHING_ROD)) return display("Halfred is holding a fishing rod, but doesn't seem to have a bite yet.");
       if (typed(TAKE, FISHING_ROD)) return display("Out of Halfred's hands? I think better not.");
       if (typed(EXAMINE, BOAT)) return display(BOAT.desc);
-      if (typed(TAKE, BOAT)) return display("\"Mind if I borrow your boat, Halfred?\" you ask.", "\"Where are you off to?\"", "\"Just... around,\" you answer.", "\"Come back tomorrow and you can take it across the lake on an errand for me.\"");
       if (has(MUG_OF_ALE)) {
         if (typed(GIVE, MUG_OF_ALE, HALFRED) || typed(GIVE, MUG_OF_ALE, TO, HALFRED)) {
           if (!has(FISHING_ROD)) {
@@ -310,11 +330,25 @@ public class State {
           }
         }
       }
+      boolean askAboutBoat = false;
       if (typed(TALK_TO, HALFRED)) {
-        if (!talkedToGandalf) return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
-        if (!has(FISHING_ROD)) return display("\"Halfred\", you ask, \"could I borrow a fishing rod?\"",
-                                            "\"I have a spare but I don't like to lend it out, it's always getting broken. But for you, Mister Frodo, you can have if you bring me a mug of ale.\"");
-        return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
+        if (bilboHasABoat) return display("\"All well Mister Frodo?\" asks Halfred. \"Very well Halfred, many thanks!\" you reply.");
+        if (isBilboFishing) {
+          askAboutBoat = true;
+        } else {
+          if (talkedToGandalf && !has(FISHING_ROD)) return display("\"Halfred\", you ask, \"could I borrow a fishing rod?\"",
+                                                        "\"I have a spare but I don't like to lend it out, it's always getting broken. But for you, Mister Frodo, you can have it if you bring me a mug of ale.\"");
+          return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
+        }
+      }
+      if ((!bilboHasABoat && typed(TAKE, BOAT)) || askAboutBoat) {
+        if (isBilboFishing) {
+          changeState(needBarrel = true);
+          return display("\"Halfred\", you ask, \"could I - well, can Bilbo - borrow your boat?\"",
+             "\"Mister Frodo, I owe you one since our last misadventure - but I don't want people to think this boat is for hire.\" says Halfred.",
+             "\"Tell you what - you can borrow the boat if you bring me a barrel of ale.\"");
+        }
+        return display("\"Mind if I borrow your boat, Halfred?\" you ask.", "\"Where are you off to?\"", "\"Just... around,\" you answer.", "\"Come back tomorrow and you can take it across the lake on an errand for me.\"");
       }
     }
     
@@ -390,6 +424,22 @@ public class State {
             || typed(EXAMINE, item)) {
           return display(item.desc);
         }
+      }
+    }
+    return false;
+  }
+
+  private boolean maybeDebugCommand() {
+    for (Item item : Item.values()) {
+      if (!has(item) && typed(SUMMON, item)) {
+        changeState(inventory.add(item));
+        return display("YOU HAVE SUMMONED " + item.name());
+      }
+    }
+    for (Location location : Location.values()) {
+      if (typed("warp", Synonyms.spacedLowerCase(location.name()))) {
+        Sprites.FRODO.ensureInBounds(Scene.forLocation(location));
+        return changeLocation(location);
       }
     }
     return false;

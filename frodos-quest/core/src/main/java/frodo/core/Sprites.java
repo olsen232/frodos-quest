@@ -14,15 +14,11 @@ public final class Sprites {
   public static GooseSprite GOOSE = new GooseSprite();
   public static PonySprite PONY = new PonySprite();
   public static StoolSprite STOOL = new StoolSprite();
+  public static CartSprite CART = new CartSprite();
   
   public static Sprite[] ALL = new Sprite[] {
-    FRODO, GOAT, PIG, PIG2, GOOSE, PONY, STOOL,
+    FRODO, GOAT, PIG, PIG2, GOOSE, PONY, STOOL, CART,
   };
-  
-  public static Sprite[] NONE = new Sprite[] {};
-  public static Sprite[] STOOL_1 = new Sprite[] { STOOL };
-  public static Sprite[] PONY_1 = new Sprite[] { PONY };
-
   
   public static Image[] FRODO_LARGE;
   public static Image[] FRODO_SMALL;
@@ -33,7 +29,8 @@ public final class Sprites {
   public static Image[] PIG2_TILES;
   public static Image[] PONY_TILES;
   public static Image[] STOOL_TILES;
-  
+  public static Image[] CART_TILES;
+
   private static Image FRODO_LARGE_RAW;
   private static Image FRODO_SMALL_RAW;
   private static Image GOAT_RAW;
@@ -42,6 +39,7 @@ public final class Sprites {
   private static Image PONY_RAW;
   private static Image GOOSE_RAW;
   private static Image STOOL_RAW;
+  private static Image CART_RAW;
   
   public static void startLoading() {
     FRODO_LARGE_RAW = Image.load("frodo_large.png");
@@ -52,6 +50,7 @@ public final class Sprites {
     PIG2_RAW = Image.load("pig2.png");
     PONY_RAW = Image.load("pony.png");
     STOOL_RAW = Image.load("stool.png");
+    CART_RAW = Image.load("cart.png");
   }
   
   public static void finishLoading() {
@@ -65,6 +64,7 @@ public final class Sprites {
     PONY_TILES = PONY_RAW.tileInto(6, 4);
 
     STOOL_TILES = STOOL_RAW.tileInto(2, 1);
+    CART_TILES = CART_RAW.tileInto(2, 2);
     
     FRODO.init(FRODO_LARGE);
     GOAT.init(GOAT_TILES);
@@ -73,6 +73,7 @@ public final class Sprites {
     GOOSE.init(GOOSE_TILES);
     PONY.init(PONY_TILES);
     STOOL.init(STOOL_TILES);
+    CART.init(CART_TILES);
 
     GOAT.x = SCENE_WIDTH / 4;
     PIG.x = SCENE_WIDTH * 3 / 4;

@@ -40,7 +40,9 @@ public enum Noun implements Synonym {
   APPLE_TREE("The apple tree is large and tall and loaded with dozens of juicy apples."),
   GOAT("Luckily the goat is tame, having known you for years."),
   PIG("pigs", "Two pigs are here, both quite young and playful."),
-  PONY("riddle", "Riddle the pony often makes deliveries around the village."),
+  PONY("riddle", "horse", "Riddle the pony often makes deliveries around the village."),
+  BARREL_OF_ALE("barrel of beer", "A barrel of ale on a little cart with wheels."),
+  CART,
 
   /** END NOUNS **/ ;
 

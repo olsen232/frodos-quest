@@ -89,7 +89,12 @@ public enum Scene {
     Layer background = addLayer(Z.BACKGROUND);
     Layer tree = addLayer(Z.AUTO);
     Layer foreground = addLayer(Z.FOREGROUND);
+    Layer bilbo = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
+
+    public void update(State state) {
+      showIf(state.isBilboFishing, bilbo);
+    }
     
     @Override
     public boolean sprites(Sprite sprite, State state) {
@@ -120,6 +125,12 @@ public enum Scene {
     Layer bridge = addLayer(Z.AUTO);
     Layer wall = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
+
+
+    @Override
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || (sprite == Sprites.CART && state.boughtBarrel && !state.deliveredBarrel);
+    }
   },
   
   GREEN_DRAGON {
@@ -130,6 +141,7 @@ public enum Scene {
     Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
     
+    @Override
     protected void onLayersLoaded() {
       gandalfArm.zIndex = gandalf.zIndex;
     }
@@ -143,7 +155,7 @@ public enum Scene {
     
     @Override
     public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || (sprite == Sprites.STOOL && state.stoolLocation == Location.BAGEND_KITCHEN);
+      return super.sprites(sprite, state) || (sprite == Sprites.STOOL && state.stoolLocation == Location.APPLE_TREE_FIELD);
     }
   },
 
@@ -160,6 +172,7 @@ public enum Scene {
   },
 
   EAST_FIELD {
+    Layer fixme = addLayer(Z.BACKGROUND);
     Layer background = addLayer(Z.BACKGROUND);
     Layer maskLayer = addMaskLayer(this);
 
@@ -222,7 +235,10 @@ public enum Scene {
   }
   
   public boolean sprites(Sprite sprite, State state) {
-    return (sprite == Sprites.PONY && state.ponyMeal >= 2 && !Location.isInside(state.location));
+    if (sprite == Sprites.FRODO) return state.gameStarted;
+    if (sprite == Sprites.PONY) return state.ponyMeal >= 2 && !Location.isInside(state.location);
+    if (sprite == Sprites.CART) return state.hitchedBarrel && !state.deliveredBarrel && !Location.isInside(state.location);
+    return false;
   }
   
   // TODO: Scenes and Locations?

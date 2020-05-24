@@ -68,4 +68,12 @@ public abstract class Sprite {
         && Math.abs(that.x - this.x) <= (px * SCENE_X_ZOOM)
         && Math.abs(that.y - this.y) <= (px * SCENE_Y_ZOOM);
   }
+
+  public void ensureInBounds(Scene scene) {
+    if (!scene.mask.contains(x, y)) {
+      Bounds entrance = scene.mask.getEdge(Direction.DOWN);
+      this.x = entrance.midX();
+      this.y = entrance.midY();
+    }
+  }
 }

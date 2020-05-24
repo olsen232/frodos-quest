@@ -17,12 +17,16 @@ public class Events {
     public void enact() {}
   }
 
-  /*public static class StateChangedEvent implements Event {
-    public final State newState;
-    public StateChangedEvent(State newState) {
-      this.newState = newState;
+  public static class StartGameEvent extends Event {
+    public StartGameEvent() {
+      super(UNINTERACTIVE);
     }
-  }*/
+    
+    @Override
+    public void enact() {
+      FrodosQuest.state.gameStarted = true;
+    }
+  }
 
   public static class DisplayTextEvent extends Event {
     public final String text;
@@ -56,21 +60,6 @@ public class Events {
     @Override
     public void enact() {
       FrodosQuest.changeLocation(location);
-    }
-  }
-  
-  public static class ShowSpriteEvent extends Event {
-    public final Sprite sprite;
-    public final boolean visible;
-    public ShowSpriteEvent(Sprite sprite, boolean visible) {
-      super(UNINTERACTIVE);
-      this.sprite = sprite;
-      this.visible = visible;
-    }
-    
-    @Override
-    public void enact() {
-      sprite.visible = visible;
     }
   }
   

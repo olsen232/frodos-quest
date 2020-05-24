@@ -91,6 +91,11 @@ public final class Loader {
         return false;
       }
     }
+    for (Sound music : MUSICS.values()) {
+      if (!music.isLoaded()) {
+        return false;
+      }
+    }
     return true;
   }
 }

@@ -21,7 +21,7 @@ public class FrodosQuest extends SceneGame {
   private int frameCounter = 0;
   private int frameBuffer = 0;
   
-  private boolean debugMode = false, debugRun = false;
+  static boolean debugMode = false, debugRun = false;
   
   static Title title = new Title();
   static Prompt prompt = new Prompt();

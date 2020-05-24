@@ -3,7 +3,7 @@ package frodo.core;
 public enum Item implements Synonym {
   MONEY_POUCH("wallet", "money", "pouch", "Your money pouch has a nice heavy feel with the weight of many coins."),
   LETTER("It's a message for you! It says simply, that a friend is waiting to meet with you at the Green Dragon inn."),
-  MUG_OF_ALE("ale", "beer", "drink", "A half-pint of ale from the Green Dragon, still refreshingly cool."),
+  MUG_OF_ALE("mug of beer", "ale", "beer", "drink", "A half-pint of ale from the Green Dragon, still refreshingly cool."),
   FISHING_ROD("rod", "A wooden fishing rod, including hook, line and sinker."),
   STOOL("wooden stool", "A wooden stool from the kitchen, for reaching high shelves."),
   OLIVE_OIL("oil", "bottle", "A bottle of olive oil from the kitchen."),

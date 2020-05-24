@@ -25,7 +25,10 @@ public enum Verb implements Synonym {
   DRINK,
   GIVE,
   TO,
-  PUT_DOWN;
+  PUT_DOWN,
+  SUMMON,
+
+  /** END VERBS **/ ;
 
   public final String[] variants;
 
