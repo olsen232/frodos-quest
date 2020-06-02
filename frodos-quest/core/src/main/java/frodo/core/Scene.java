@@ -88,8 +88,8 @@ public enum Scene {
   TREE_BY_LAKE {
     Layer background = addLayer(Z.BACKGROUND);
     Layer tree = addLayer(Z.AUTO);
-    Layer foreground = addLayer(Z.FOREGROUND);
-    Layer bilbo = addLayer(Z.FOREGROUND);
+    Layer foreground = addLayer(Z.AUTO);
+    Layer bilbo = addLayer(Z.AUTO, Animations.bob(Direction.LEFT, 136));
     Layer maskLayer = addMaskLayer(this);
 
     public void update(State state) {
@@ -106,9 +106,19 @@ public enum Scene {
     Layer background = addLayer(Z.BACKGROUND);
     Layer house = addLayer(Z.AUTO);
     Layer tree = addLayer(Z.AUTO);
-    Layer fisherman = addLayer(Z.FOREGROUND);
-    Layer boat = addLayer(Z.FOREGROUND);
-    Layer maskLayer = addMaskLayer(this); 
+    Layer rope = addLayer(Z.AUTO, Animations.bob(Direction.LEFT, 40));
+    Layer fisherman = addLayer(Z.AUTO, Animations.bob(Direction.RIGHT, 60));
+    Layer maskLayer = addMaskLayer(this);
+
+    public void update(State state) {
+      // FIXME
+      showIf(false, rope);
+    }
+
+    @Override
+    public boolean sprites(Sprite sprite, State state) {
+      return super.sprites(sprite, state) || (sprite == Sprites.BOAT) || (sprite == Sprites.CART && state.deliveredBarrel);
+    }
   },
   
   NEIGHBOR {
@@ -236,6 +246,7 @@ public enum Scene {
   
   public boolean sprites(Sprite sprite, State state) {
     if (sprite == Sprites.FRODO) return state.gameStarted;
+    if (sprite == Sprites.BOAT) return state.frodoInBoat;
     if (sprite == Sprites.PONY) return state.ponyMeal >= 2 && !Location.isInside(state.location);
     if (sprite == Sprites.CART) return state.hitchedBarrel && !state.deliveredBarrel && !Location.isInside(state.location);
     return false;

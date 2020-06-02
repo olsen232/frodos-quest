@@ -17,7 +17,6 @@ public class State {
   public EnumSet<Item> inventory = EnumSet.noneOf(Item.class);
   public boolean isWardrobeOpen = false;
   public boolean isBilboFishing = false;
-  public boolean bilboHasABoat = false;
   public boolean talkedToGandalf = false;
   public int gandalfTalk = 0;
   public int meal = 0;
@@ -27,6 +26,8 @@ public class State {
   public boolean boughtBarrel = false;
   public boolean hitchedBarrel = false;
   public boolean deliveredBarrel = false;
+  public boolean frodoInBoat = false;
+  public boolean bilboInBoat = false;
 
   private void copyFrom(State that) {
     this.location = that.location;
@@ -140,7 +141,7 @@ public class State {
           }
         }
         if (has(FISHING_ROD)) {
-          if (typed(GIVE, FISHING_ROD, BILBO) || typed(GIVE, FISHING_ROD, TO, BILBO)) {
+          if (typed(GIVE, FISHING_ROD, BILBO) || typed(GIVE, FISHING_ROD, TO, BILBO) || typed(GIVE, BILBO, FISHING_ROD)) {
             changeState(inventory.remove(FISHING_ROD));
             changeState(isBilboFishing = true);
             return display("\"I was talking to Halfred and he lent me this fishing rod. Do you want to go fishing?\" you ask.",
@@ -320,7 +321,7 @@ public class State {
       if (typed(TAKE, FISHING_ROD)) return display("Out of Halfred's hands? I think better not.");
       if (typed(EXAMINE, BOAT)) return display(BOAT.desc);
       if (has(MUG_OF_ALE)) {
-        if (typed(GIVE, MUG_OF_ALE, HALFRED) || typed(GIVE, MUG_OF_ALE, TO, HALFRED)) {
+        if (typed(GIVE, MUG_OF_ALE, HALFRED) || typed(GIVE, MUG_OF_ALE, TO, HALFRED) || typed(GIVE, HALFRED, MUG_OF_ALE)) {
           if (!has(FISHING_ROD)) {
             changeState(inventory.remove(MUG_OF_ALE));
             changeState(inventory.add(FISHING_ROD));
@@ -332,7 +333,7 @@ public class State {
       }
       boolean askAboutBoat = false;
       if (typed(TALK_TO, HALFRED)) {
-        if (bilboHasABoat) return display("\"All well Mister Frodo?\" asks Halfred. \"Very well Halfred, many thanks!\" you reply.");
+        if (bilboInBoat || frodoInBoat) return display("\"All well Mister Frodo?\" asks Halfred. \"Very well Halfred, many thanks!\" you reply.");
         if (isBilboFishing) {
           askAboutBoat = true;
         } else {
@@ -341,7 +342,7 @@ public class State {
           return display("\"Are they biting, Halfred?\" you ask. \"None yet this morning, Frodo!\"");
         }
       }
-      if ((!bilboHasABoat && typed(TAKE, BOAT)) || askAboutBoat) {
+      if ((!bilboInBoat && !frodoInBoat && typed(TAKE, BOAT)) || askAboutBoat) {
         if (isBilboFishing) {
           changeState(needBarrel = true);
           return display("\"Halfred\", you ask, \"could I - well, can Bilbo - borrow your boat?\"",
@@ -389,13 +390,13 @@ public class State {
       if (typed(EXAMINE, GOAT)) return display(GOAT.desc);
       if (typed(EXAMINE, PIG)) return display(PIG.desc);
       if (has(APPLES)) {
-        if (typed(GIVE, APPLES, PIG) || typed(GIVE, APPLES, TO, PIG)) {
+        if (typed(GIVE, APPLES, PIG) || typed(GIVE, APPLES, TO, PIG) || typed(GIVE, PIG, APPLES)) {
           Sprites.makeAnimalsFollow();
           return display("The pig greedily munches on an apple. Now the animals are all following you, hoping for apples.");
         }
-        if (typed(GIVE, APPLES, GOAT) || typed(GIVE, APPLES, TO, GOAT)) {
+        if (typed(GIVE, APPLES, GOAT) || typed(GIVE, APPLES, TO, GOAT) || typed(GIVE, GOAT, APPLES)) {
           Sprites.makeAnimalsFollow();
-          return display("The goat greedily munches on an apple. The animals all come towards you, hoping for apples.");
+          return display("The goat greedily munches on an apple. Now the animals are all following you, hoping for apples.");
         }
       }
     }
@@ -407,7 +408,7 @@ public class State {
       if (typed(EXAMINE, TREE)) return display("There are several trees, but none that stand out.");
       if (typed(EXAMINE, PONY)) return display(PONY.desc);
       if (has(APPLES)) {
-        if (typed(GIVE, APPLES, PONY) || typed(GIVE, APPLES, TO, PONY)) {
+        if (typed(GIVE, APPLES, PONY) || typed(GIVE, APPLES, TO, PONY) || typed(GIVE, PONY, APPLES)) {
           changeState(ponyMeal += 1);
           return display("Riddle the pony eats the whole apple from your hand. He starts to follow you, hoping for more.");
         }
@@ -438,11 +439,29 @@ public class State {
     }
     for (Location location : Location.values()) {
       if (typed("warp", Synonyms.spacedLowerCase(location.name()))) {
-        Sprites.FRODO.ensureInBounds(Scene.forLocation(location));
-        return changeLocation(location);
+        return warp(location);
       }
     }
+    if (typed("halfway")) {
+      inventory.add(LETTER);
+      inventory.add(MONEY_POUCH);
+      inventory.add(STOOL);
+      inventory.add(FISHING_ROD);
+      inventory.add(APPLES);
+      inventory.add(MUG_OF_ALE);
+      talkedToGandalf = true;
+      isWardrobeOpen = true;
+      gandalfTalk = 4;
+      stoolLocation = null;
+      return warp(BILBOS_ROOM);
+    }
     return false;
+  }
+
+  private boolean warp(Location location) {
+    Sprites.FRODO.ensureInBounds(Scene.forLocation(location));
+    changeLocation(location);
+    return true;
   }
 
   /*private void commit() {
@@ -515,6 +534,13 @@ public class State {
 
   private String cond(boolean condition, String s) {
     return condition ? s : "";
+  }
+
+  public boolean hitchBarrel() {
+    changeState(hitchedBarrel = true);
+    display("Before he can back out of it, you quickly hitch Riddle to the little cart.");
+    eventManager.add(new LocationEvent(HOUSE_BY_LAKE, true, new DeliveredBarrelEvent()));
+    return true;
   }
 }
 

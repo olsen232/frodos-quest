@@ -1,9 +1,12 @@
 package frodo.core;
 
 import static frodo.core.PixelConstants.FONT_SIZE;
+import static frodo.core.PixelConstants.ZOOM;
+
 
 public class Surface implements DrawImage {
   public final playn.core.Surface raw;
+  public float clipFactor = 1;
 
   public Surface(playn.core.Surface raw) {
     this.raw = raw;
@@ -27,7 +30,11 @@ public class Surface implements DrawImage {
   }
 
   public void startClipped(int x, int y, int w, int h) {
-    raw.startClipped(x, y, w, h);
+    raw.startClipped(
+        (int) (x * clipFactor * ZOOM),
+        (int) (y * clipFactor * ZOOM),
+        (int) (w * clipFactor * ZOOM),
+        (int) (h * clipFactor * ZOOM));
   }
 
   public void endClipped() {

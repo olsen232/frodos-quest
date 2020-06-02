@@ -4,6 +4,9 @@ import static frodo.core.PixelConstants.SCREEN_HEIGHT;
 
 public class FrodoSprite extends Sprite {
 
+  private Image[] largeTiles;
+  private Image[] smallTiles;
+
   public final ControlState controlState = new ControlState();
   public boolean touchingSpecial;
 
@@ -12,12 +15,13 @@ public class FrodoSprite extends Sprite {
   private int drunkenness = 0;
   private int staggerTimer = 0;  
   private boolean standingOnStool = false;
+  private boolean isInBoat = false;
   
   @Override
   public void move(Scene scene) {
     drunkenness--;
     Direction direction = (controlState != null) ? controlState.outcome() : null;
-    if (direction == null) return;
+    if (direction == null || !doMove()) return;
     
     if (direction != prevDirection) {
       staggerTimer = 0;
@@ -37,6 +41,7 @@ public class FrodoSprite extends Sprite {
   
   @Override
   public void draw(Surface surface, int frame) {
+    if (isInBoat) return;
     int stoolHeight = Sprites.STOOL.height();
     if (standingOnStool) y -= stoolHeight;
     super.draw(surface, frame);
@@ -94,24 +99,34 @@ public class FrodoSprite extends Sprite {
     return false;
   }
   
-  @Override
-  public void init(Image[] images) {
-    this.images = images;
+  public void init(Image[] largeTiles, Image[] smallTiles) {
+    super.init(largeTiles);
+    this.largeTiles = largeTiles;
+    this.smallTiles = smallTiles;
     animate(prevDirection);
   }
   
   @Override
   public void update(State state) {
+    this.isInBoat = state.frodoInBoat;
+    framesPerImage = isInBoat ? 8 : 4;
     Image[] locationImages = chooseImages(state.location);
     if (this.images != locationImages) {
       this.images = locationImages;
       animate(prevDirection);
     }
   }
+
+  @Override
+  protected void animate(Direction d) {
+    if (isInBoat) {
+      super.animate(d.opposite());
+    } else {
+      super.animate(d);
+    }
+  }
   
-  private static Image[] chooseImages(Location location) {
-    return Location.isInside(location) 
-        ? Sprites.FRODO_LARGE
-        : Sprites.FRODO_SMALL;
+  private Image[] chooseImages(Location location) {
+    return Location.isInside(location) ? largeTiles : smallTiles;
   }
 }

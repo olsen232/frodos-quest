@@ -118,4 +118,34 @@ public class Events {
       return false;
     }
   }
+
+  public static class DeliveredBarrelEvent extends Event {
+    public DeliveredBarrelEvent() {
+      super(INTERACTIVE);
+    }
+
+    @Override
+    public void enact() {
+      FrodosQuest.state.deliveredBarrel = true;
+      FrodosQuest.state.frodoInBoat = true;
+      FrodosQuest.eventManager.add(new DisplayTextEvent("\"Halfred! I've brought your barrel of ale!\""));
+      FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have! I didn't think you really would! I suppose you can borrow the boat, then,\" says Halfred."));
+      FrodosQuest.sceneRenderer.update(FrodosQuest.state);
+    }
+  }
+
+  public static class DeliveredBoatEvent extends Event {
+    public DeliveredBoatEvent() {
+      super(INTERACTIVE);
+    }
+
+    @Override
+    public void enact() {
+      FrodosQuest.state.frodoInBoat = false;
+      FrodosQuest.state.bilboInBoat = true;
+      FrodosQuest.eventManager.add(new DisplayTextEvent("\"Bilbo! I've brought you a boat!\""));
+      FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have!"));
+      FrodosQuest.sceneRenderer.update(FrodosQuest.state);
+    }
+  }
 }

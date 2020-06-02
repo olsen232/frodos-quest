@@ -13,10 +13,17 @@ public abstract class Sprite {
   
   protected int imageFrame = 0;
   protected int framesPerImage = 4;
+
+  protected int moveFrame = 0;
+  protected int framesPerMove = 1;
     
   public void update(State state) {}
 
   public abstract void move(Scene scene);
+
+  protected boolean doMove() {
+    return (moveFrame++) % framesPerMove == 0;
+  }
   
   public void init(Image[] images) {
     this.images = images;
@@ -25,6 +32,10 @@ public abstract class Sprite {
     
   public void draw(Surface surface, int frame) {
     if (!visible) return;
+    drawSpriteImage(surface, image, x, y);
+  }
+
+  public static void drawSpriteImage(Surface surface, Image image, int x, int y) {
     surface.draw(image, x - (image.width() / 2), y - image.height() + 2);
   }
   

@@ -7,12 +7,13 @@ public class AnimalSprite extends Sprite {
   protected int wanderFrame = 0;
   protected int framesPerWander = 20;
   
-  protected int moveFrame = 0;
-  protected int framesPerMove = 2;
-  
   protected Direction imageDirection = Direction.DOWN;
   protected int dx;
   protected int dy;
+
+  {
+    framesPerMove = 2;
+  }
   
   @Override
   public void move(Scene scene) {
@@ -31,10 +32,6 @@ public class AnimalSprite extends Sprite {
   
   protected boolean doWander() {
     return (wanderFrame++) % framesPerWander == 0;
-  }
-  
-  protected boolean doMove() {
-    return (moveFrame++) % framesPerMove == 0;
   }
   
   protected void wander() {

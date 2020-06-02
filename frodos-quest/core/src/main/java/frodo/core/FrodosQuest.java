@@ -34,6 +34,7 @@ public class FrodosQuest extends SceneGame {
 
   public FrodosQuest(Platform platform) {
     super(platform.raw, FRAME_MS);
+    surface.clipFactor = platform.raw.graphics().scale().factor;
 
     Font.startLoading();
     Scene.startLoading();

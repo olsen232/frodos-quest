@@ -40,8 +40,7 @@ public class CartSprite extends PonySprite {
     }
 
     if (!isHitched && ponyFollowing && isCloseTo(Sprites.FRODO, 10)) {
-      FrodosQuest.eventManager.add(new DisplayTextEvent("Before he can back out of it, you quickly hitch Riddle to the little cart."));
-      FrodosQuest.state.hitchedBarrel = true;
+      FrodosQuest.state.hitchBarrel();
       this.isHitched = true;
     }
   }

@@ -1,5 +1,7 @@
 package frodo.core;
 
+import static frodo.core.PixelConstants.*;
+
 public enum Animations implements Animation {
 
   NONE,
@@ -42,7 +44,9 @@ public enum Animations implements Animation {
         case 20: case 40: case 70: case 85: surface.draw(image, 0, 0);
       }
     }
-  };
+  },
+
+  /** END ANIMATIONS **/;
   
   public void draw(Image image, Surface surface, int frame) {
     surface.draw(image, 0, 0);
@@ -71,6 +75,43 @@ public enum Animations implements Animation {
       this.duration = duration;
       return this;
     }
+  }
+
+  public static BobAnimation bob(Direction d, int x) {
+    return new BobAnimation(d, x);
+  }
+
+  static class BobAnimation implements Animation {
+    Direction d;
+    int x;
+    BobAnimation(Direction d, int x) {
+      this.d = d;
+      this.x = SCENE_X_ZOOM * x;
+    }
+
+    public void draw(Image image, Surface surface, int frame) {
+      double s = 1 + Math.sin(0.025 * frame);
+      int y0 = (d == Direction.LEFT) ? (int) Math.round(s) : 0;
+      int y1 = (int) Math.round(0.5 * s);
+      int y2 = (d == Direction.RIGHT) ? (int) Math.round(s) : 0;
+      int w = SCENE_X_ZOOM * 2;
+
+      surface.startClipped(0, 0, x - w, SCREEN_HEIGHT);
+      surface.draw(image, 0, y0);
+      surface.endClipped();
+
+      surface.startClipped(x - w, 0, 2 * w, SCREEN_HEIGHT);
+      surface.draw(image, 0, y1);
+      surface.endClipped();
+
+      surface.startClipped(x + w, 0, SCREEN_WIDTH - x - w, SCREEN_HEIGHT);
+      surface.draw(image, 0, y2);
+      surface.endClipped();
+    }
+  }
+
+  public static int bobOffset(int frame) {
+    return (int) Math.round(1 + Math.sin(0.05 * frame));
   }
 }
   
