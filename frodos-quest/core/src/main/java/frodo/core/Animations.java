@@ -111,7 +111,7 @@ public enum Animations implements Animation {
   }
 
   public static int bobOffset(int frame) {
-    return (int) Math.round(1 + Math.sin(0.05 * frame));
+    return (int) Math.round(1 + Math.sin(0.025 * frame));
   }
 }
   

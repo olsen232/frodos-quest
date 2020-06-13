@@ -41,6 +41,10 @@ public class Surface implements DrawImage {
     raw.endClipped();
   }
 
+  public void setAlpha(float alpha) {
+    raw.setAlpha(alpha);
+  }
+
   public void draw(Image image, int x, int y) {
     Platform.INSTANCE.pixelate();
     raw.draw(image.raw.texture(), x, y);

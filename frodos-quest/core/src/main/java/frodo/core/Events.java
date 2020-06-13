@@ -128,8 +128,21 @@ public class Events {
     public void enact() {
       FrodosQuest.state.deliveredBarrel = true;
       FrodosQuest.state.frodoInBoat = true;
+      FrodosQuest.state.ponyMeal = 0;
       FrodosQuest.eventManager.add(new DisplayTextEvent("\"Halfred! I've brought your barrel of ale!\""));
       FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have! I didn't think you really would! I suppose you can borrow the boat, then,\" says Halfred."));
+      FrodosQuest.eventManager.add(new UpdateSceneEvent());
+      FrodosQuest.eventManager.add(new LocationEvent(Location.TREE_BY_LAKE, true, new DeliveredBoatEvent()));
+    }
+  }
+
+  public static class UpdateSceneEvent extends Event {
+    public UpdateSceneEvent() {
+      super(INTERACTIVE);
+    }
+
+    @Override
+    public void enact() {
       FrodosQuest.sceneRenderer.update(FrodosQuest.state);
     }
   }
@@ -143,9 +156,24 @@ public class Events {
     public void enact() {
       FrodosQuest.state.frodoInBoat = false;
       FrodosQuest.state.bilboInBoat = true;
-      FrodosQuest.eventManager.add(new DisplayTextEvent("\"Bilbo! I've brought you a boat!\""));
-      FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have!"));
-      FrodosQuest.sceneRenderer.update(FrodosQuest.state);
+      FrodosQuest.state.inventory.add(Item.POCKET_WATCH);
+      FrodosQuest.eventManager.add(new DisplayTextEvent("\"Bilbo! I've brought you a boat to take fishing!\""));
+      FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have!\" says Bilbo. \"What a treat for your uncle Bilbo!\""));
+      FrodosQuest.eventManager.add(new DisplayTextEvent("Bilbo takes a golden watch out of his pocket and hands it to you. \"Mind this for me while I'm on the water, will you?\" he says. Then he paddles out onto the lake."));
+
+      FrodosQuest.eventManager.add(new UpdateSceneEvent());
+    }
+  }
+
+  public static class WearRingEvent extends Event {
+    public WearRingEvent() {
+      super(INTERACTIVE);
+    }
+
+    @Override
+    public void enact() {
+      FrodosQuest.state.frodoWearingRing = true;      
+      FrodosQuest.eventManager.add(new UpdateSceneEvent());
     }
   }
 }

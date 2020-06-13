@@ -93,7 +93,7 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
 
     public void update(State state) {
-      showIf(state.isBilboFishing, bilbo);
+      showIf(state.isBilboFishing && !state.bilboInBoat, bilbo);
     }
     
     @Override
@@ -111,8 +111,7 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
 
     public void update(State state) {
-      // FIXME
-      showIf(false, rope);
+      showIf(!state.bilboInBoat && !state.frodoInBoat, rope);
     }
 
     @Override

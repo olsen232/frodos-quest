@@ -10,6 +10,11 @@ public class PonySprite extends AnimalSprite {
     return 20;
   }
 
+  {
+    x = SCENE_WIDTH / 2;
+    y = SCENE_HEIGHT * 3 / 4;
+  }
+
   protected int ponyMeal = 0;
   protected Location prevLocation = null;
 
@@ -20,18 +25,37 @@ public class PonySprite extends AnimalSprite {
 
   @Override
   public void update(State state) {
-    super.update(state);
-    if (state.location != prevLocation) {
+    if (maybeChangeLocation(state.location)) {
       if (Location.isInside(state.location) && state.ponyMeal > 0) {
         if (state.deliveredBarrel || !state.hitchedBarrel) {
           resetToField(state);
         }
       }
-      prevLocation = state.location;
-      Arrays.fill(followX, -1);
-      Arrays.fill(followY, -1);
     }
+
+    boolean wasFollowingClosely = isFollowingClosely();
     this.ponyMeal = state.ponyMeal;
+
+    if (isFollowingClosely() && !wasFollowingClosely) {
+      for (int i = 0; i < followDistance(); i++) {
+        if (followX[i] == 0 && followY[i] == 0) {
+          followX[i] = Sprites.FRODO.x;
+          followY[i] = Sprites.FRODO.y;
+        }
+      }
+    }
+  }
+
+  protected boolean maybeChangeLocation(Location location) {
+    if (location != prevLocation) {
+      prevLocation = location;
+      if (isFollowingClosely()) {
+        Arrays.fill(followX, 0);
+        Arrays.fill(followY, 0);
+      }
+      return true;
+    }
+    return false;
   }
 
   protected void resetToField(State state) {
@@ -73,7 +97,7 @@ public class PonySprite extends AnimalSprite {
     int ff = (f + 1) % followDistance();
     int fx = followX[ff];
     int fy = followY[ff];
-    if (fx == -1 && fy == -1) {
+    if (fx == 0 && fy == 0) {
       hide = true;
     } else if (hide == true) {
       x = fx;
@@ -90,6 +114,7 @@ public class PonySprite extends AnimalSprite {
 
   @Override
   public void draw(Surface surface, int frame) {
-    if (!hide) super.draw(surface, frame);
+    if (isFollowingClosely() && hide) return;
+    super.draw(surface, frame);
   }
 }

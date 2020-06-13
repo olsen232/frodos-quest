@@ -119,6 +119,21 @@ public class Image {
     c.image.setRgb(0, 0, w, h, pixels, 0, w);
     return new Image(c.image);
   }
+
+  public Image grey(float r, float g, float b) {
+    int w = width();
+    int h = height();
+    int[] pixels = getPixelsOnce();
+    for (int i = 0; i < pixels.length; i++) {
+      int alpha = pixels[i] & 0xff000000;
+      int rgb = pixels[i] & 0xffffff;
+      int grey = (((rgb & 0xff0000) >> 16) + ((rgb & 0xff00) >> 8) + (rgb & 0xff)) / 3;
+      pixels[i] = alpha | ((int)(grey * r) << 16) | ((int)(grey * g) << 8) | (int)(grey * b);
+    }
+    playn.core.Canvas c = Platform.INSTANCE.createRawCanvas(w, h);
+    c.image.setRgb(0, 0, w, h, pixels, 0, w);
+    return new Image(c.image);
+  }
   
   public void updateTexture() {
     raw.updateTexture();

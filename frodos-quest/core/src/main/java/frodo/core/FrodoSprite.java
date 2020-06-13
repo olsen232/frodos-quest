@@ -4,21 +4,27 @@ import static frodo.core.PixelConstants.SCREEN_HEIGHT;
 
 public class FrodoSprite extends Sprite {
 
-  private Image[] largeTiles;
-  private Image[] smallTiles;
+  protected Image[] largeTiles;
+  protected Image[] smallTiles;
 
   public final ControlState controlState = new ControlState();
   public boolean touchingSpecial;
 
-  private Direction prevDirection = Direction.DOWN;
+  protected Direction prevDirection = Direction.DOWN;
   
-  private int drunkenness = 0;
-  private int staggerTimer = 0;  
-  private boolean standingOnStool = false;
-  private boolean isInBoat = false;
+  protected int drunkenness = 0;
+  protected int staggerTimer = 0;  
+  protected boolean standingOnStool = false;
+  protected boolean isInBoat = false;
+  protected boolean isWearingRing = false;
+  protected boolean isInside = true;
+
+  private RingEffect ringEffect = new RingEffect();
   
   @Override
   public void move(Scene scene) {
+    ringEffect.move();
+
     drunkenness--;
     Direction direction = (controlState != null) ? controlState.outcome() : null;
     if (direction == null || !doMove()) return;
@@ -41,11 +47,21 @@ public class FrodoSprite extends Sprite {
   
   @Override
   public void draw(Surface surface, int frame) {
-    if (isInBoat) return;
-    int stoolHeight = Sprites.STOOL.height();
-    if (standingOnStool) y -= stoolHeight;
-    super.draw(surface, frame);
-    if (standingOnStool) y += stoolHeight;
+    if (!visible || isInBoat) return;
+    if (!isWearingRing || isInside) {
+      drawSpriteImage(surface, image, x, drawY());
+    }
+    if (isWearingRing) {
+      ringEffect.draw(surface, image, x, drawY());
+    }
+  }
+
+  protected int drawY() {
+    return (standingOnStool) ? y - Sprites.STOOL.height() : y;
+  }
+
+  protected void drawRingEffects(Surface surface, int frame) {
+    // pass
   }
   
   public void drinkAlcohol() {
@@ -87,12 +103,11 @@ public class FrodoSprite extends Sprite {
 
   private boolean checkPortal(int x, int y, Scene scene, Direction direction) {
     if (scene.mask.getEdge(direction).contains(x, y)) {
-      SceneLinks.Portal p = SceneLinks.getPortal(scene, direction);
-      if (p != null && FrodosQuest.changeLocation(p.scene.toLocation())) {
-        Bounds entrance = p.scene.mask.getEdge(p.direction);
-        this.x = entrance.midX();
-        this.y = entrance.midY();
-        this.image = image(p.direction.opposite(), 0);
+      SceneLinks.Portal in = SceneLinks.portal(scene, direction);
+      SceneLinks.Portal out = SceneLinks.getLinkedPortal(in);
+      if (out != null && FrodosQuest.changeLocation(out.scene.toLocation())) {
+        SceneLinks.sendThroughPortal(this, in, out);
+        this.image = image(out.direction.opposite(), 0);
         return true; 
       }
     }
@@ -108,13 +123,23 @@ public class FrodoSprite extends Sprite {
   
   @Override
   public void update(State state) {
-    this.isInBoat = state.frodoInBoat;
-    framesPerImage = isInBoat ? 8 : 4;
-    Image[] locationImages = chooseImages(state.location);
-    if (this.images != locationImages) {
-      this.images = locationImages;
+    if (state.frodoInBoat && !this.isInBoat) {
+      this.x = Sprites.BOAT.x;
+      this.y = Sprites.BOAT.y;
+    } else if (!state.frodoInBoat && this.isInBoat) {
+      this.y = 160;
+    }
+
+    boolean isInside = Location.isInside(state.location);
+    if (isInside != this.isInside) {
+      this.isInside = isInside;
+      this.images = this.isInside ? largeTiles : smallTiles;
       animate(prevDirection);
     }
+
+    this.isInBoat = state.frodoInBoat;
+    this.framesPerImage = isInBoat ? 8 : 4;
+    this.isWearingRing = state.frodoWearingRing;
   }
 
   @Override
@@ -124,9 +149,5 @@ public class FrodoSprite extends Sprite {
     } else {
       super.animate(d);
     }
-  }
-  
-  private Image[] chooseImages(Location location) {
-    return Location.isInside(location) ? largeTiles : smallTiles;
   }
 }

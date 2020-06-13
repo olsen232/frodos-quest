@@ -40,7 +40,6 @@ public class FrodosQuest extends SceneGame {
     Scene.startLoading();
     Sprites.startLoading();
     Title.startLoading();
-    sceneRenderer.update(state);
 
     plat.input().keyboardEnabled = true;
     plat.input().keyboardEvents.connect(keySlot);

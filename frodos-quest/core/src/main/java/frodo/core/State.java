@@ -28,6 +28,7 @@ public class State {
   public boolean deliveredBarrel = false;
   public boolean frodoInBoat = false;
   public boolean bilboInBoat = false;
+  public boolean frodoWearingRing = false;
 
   private void copyFrom(State that) {
     this.location = that.location;
@@ -82,6 +83,19 @@ public class State {
     }
     if (has(APPLES) && typed(EAT, APPLES)) {
       return display("Just one, then - don't ruin your appetite for lunch. The apple is crisp and sweet.");
+    }
+    if (has(RING)) {
+      if (typed(WEAR, RING)) {
+        if (frodoWearingRing) return display("You are already wearing Bilbo's ring.");
+        display("You slip Bilbo's ring on your finger.");
+        eventManager.add(new WearRingEvent());
+        return true;
+      }
+      if (typed(TAKE_OFF, RING)) {
+        if (!frodoWearingRing) return display("You're not wearing Bilbo's ring.");
+        changeState(frodoWearingRing = false);
+        return display("You take off Bilbo's ring.");
+      }
     }
 
 
@@ -155,6 +169,26 @@ public class State {
         if (typed(LOOK)) return display("This is Bilbo's room. His memoirs are sitting on his desk. A window looks out into the garden.");
         if (typed(OPEN, WARDROBE)) return display("You open Bilbo's wardrobe and look through his clothes, but you don't find anything interesting.");
         if (typed(OPEN, DRESSER)) return display("The dresser is locked. Bilbo sometimes keeps the ring in there. He must have the key with him.");
+        if (has(WATCH_KEY)) {
+          if (typed(USE, WATCH_KEY, ON, DRESSER) || typed(USE, WATCH_KEY, DRESSER) || typed(UNLOCK, DRESSER) || typed(UNLOCK, DRESSER, WITH, WATCH_KEY)) {
+            if (!has(RING)) {
+              changeState(inventory.add(RING));
+              return display("You unlock the dresser and open it. Without even having to search, you immediately see Bilbo's ring, hanging on a loop of string. You take it.");
+            } else {
+              return display("You already found Bilbo's ring in the dresser.");
+            }
+          }
+        }
+        if (has(POCKET_WATCH)) {
+          if (typed(USE, POCKET_WATCH, ON, DRESSER) || typed(USE, POCKET_WATCH, DRESSER) || typed(UNLOCK, DRESSER, WITH, POCKET_WATCH)) {
+            if (has(RING)) {
+              return display("You already found Bilbo's ring in the dresser.");
+            } else {
+              changeState(inventory.add(WATCH_KEY));
+              return display("Attached to the watch is a small key, for winding it up.");
+            }
+          }
+        }
       }
       if (typed(READ, MEMOIRS)) return display(MEMOIRS.desc);
       if (typed(TAKE, MEMOIRS)) return display("Bilbo would probably prefer you left those as they are.");
@@ -423,6 +457,9 @@ public class State {
       if (has(item)) {
         if ((item == LETTER && typed(READ, LETTER))
             || typed(EXAMINE, item)) {
+          if (item == POCKET_WATCH) {
+            changeState(inventory.add(WATCH_KEY));
+          }
           return display(item.desc);
         }
       }
@@ -431,6 +468,7 @@ public class State {
   }
 
   private boolean maybeDebugCommand() {
+    if (typed("boaty")) { changeState(frodoInBoat=true); return display("okay");}
     for (Item item : Item.values()) {
       if (!has(item) && typed(SUMMON, item)) {
         changeState(inventory.add(item));
@@ -543,4 +581,3 @@ public class State {
     return true;
   }
 }
-

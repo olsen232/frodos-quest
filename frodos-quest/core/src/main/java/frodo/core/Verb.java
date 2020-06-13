@@ -9,6 +9,7 @@ public enum Verb implements Synonym {
   TAKE("pick up", "get", "pick"),
   TALK_TO("talk"),
   USE,
+  ON,
   OPEN,
   CLOSE("shut"),
   OIL,
@@ -26,6 +27,10 @@ public enum Verb implements Synonym {
   GIVE,
   TO,
   PUT_DOWN,
+  UNLOCK,
+  WITH,
+  WEAR("put on"),
+  TAKE_OFF,
   SUMMON,
 
   /** END VERBS **/ ;

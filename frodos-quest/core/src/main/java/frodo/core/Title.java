@@ -55,6 +55,7 @@ public class Title {
   } 
   
   public void finish() {
+    FrodosQuest.sceneRenderer.update(FrodosQuest.state);
     Loader.stopAllMusic();
     CONCERNING_HOBBITS_INTRO.play();
     EventManager eventManager = FrodosQuest.eventManager;
@@ -68,6 +69,7 @@ public class Title {
   }
   
   public void skipFinish() {
+    FrodosQuest.sceneRenderer.update(FrodosQuest.state);
     Loader.stopAllMusic();
     EventManager eventManager = FrodosQuest.eventManager;
     eventManager.add(new StartGameEvent());

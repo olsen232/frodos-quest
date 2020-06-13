@@ -16,8 +16,8 @@ public class SceneLinks {
     addLink(portal(BILBOS_ROOM, DOWN), portal(BAGEND_HALLWAY, RIGHT));
     
     
-    addHorizontalLinks(               APPLE_TREE_FIELD, WEST_FIELD,  EAST_FIELD);
-    addHorizontalLinks(HOUSE_BY_LAKE, TREE_BY_LAKE,     BAGEND_HILL, NEIGHBOR, HOBBITON);
+    addHorizontalLinks(               APPLE_TREE_FIELD, WEST_FIELD,  EAST_FIELD           );
+    addHorizontalLinks(HOUSE_BY_LAKE, TREE_BY_LAKE,     BAGEND_HILL, NEIGHBOR,    HOBBITON);
 
     
     addVerticalLinks(APPLE_TREE_FIELD, TREE_BY_LAKE);
@@ -50,9 +50,28 @@ public class SceneLinks {
       prev = curr;
     }
   }
-  
-  public static Portal getPortal(Scene scene, Direction direction) {
-    return links.get(portal(scene, direction));
+
+  public static Portal portal(Scene scene, Direction direction) {
+    return new Portal(scene, direction);
+  }
+
+  public static Portal getLinkedPortal(Portal portal) {
+    return links.get(portal);
+  }
+
+  public static void sendThroughPortal(FrodoSprite sprite, Portal in, Portal out) {
+    Bounds entrance = out.scene.mask.getEdge(out.direction);
+    if (in.scene == Scene.TREE_BY_LAKE && out.scene == Scene.HOUSE_BY_LAKE) {
+      sprite.x = entrance.midX();
+      sprite.y = sprite.isInBoat ? 170 : 105;
+      return;
+    } else if (in.scene == Scene.HOUSE_BY_LAKE && out.scene == Scene.TREE_BY_LAKE) {
+      sprite.x = entrance.midX();
+      sprite.y = sprite.isInBoat ? 190 : 120;
+      return;
+    }
+    sprite.x = entrance.midX();
+    sprite.y = entrance.midY();
   }
   
   static class Portal {
@@ -75,11 +94,4 @@ public class SceneLinks {
           && this.direction == that.direction;
     }
   }
-  
-  private static Portal portal(Scene scene, Direction direction) {
-    return new Portal(scene, direction);
-  }
 }
-  
-  
-   

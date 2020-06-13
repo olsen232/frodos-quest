@@ -8,6 +8,12 @@ public class BoatSprite extends Sprite {
   private Image frontImage;
   private Splash[] splashes = {new Splash(), new Splash(), new Splash(), new Splash() };
   private int lastSplash = 0;
+  private boolean frodoInBoat = false;
+
+  {
+    x = 33;
+    y = 160;
+  }
 
   public void init(Image[] boatImages, Image[] splashImages) {
     super.init(boatImages);
@@ -17,6 +23,8 @@ public class BoatSprite extends Sprite {
 
   @Override
   public void move(Scene scene) {
+    if (!frodoInBoat) return;
+
     this.x = Sprites.FRODO.x;
     this.y = Sprites.FRODO.y;
     for (Splash s : splashes) {
@@ -50,14 +58,21 @@ public class BoatSprite extends Sprite {
   @Override
   public void draw(Surface surface, int frame) {
     if (!visible) return;
-    int y2 = y + Animations.bobOffset(frame);
+    int f = frodoInBoat ? 2 * frame : frame;
+    int y2 = y + Animations.bobOffset(f);
     Sprite.drawSpriteImage(surface, image, x, y2);
+    if (!frodoInBoat) return;
     Sprite.drawSpriteImage(surface, Sprites.FRODO.image, x, y2);
     Sprite.drawSpriteImage(surface, frontImage, x, y2);
 
     for (Splash s : splashes) {
       s.draw(surface, frame);
     }
+  }
+
+  @Override
+  public void update(State state) {
+    this.frodoInBoat = state.frodoInBoat;
   }
 
   private class Splash {

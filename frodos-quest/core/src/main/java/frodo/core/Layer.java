@@ -10,6 +10,8 @@ public class Layer {
   public Animation animation;
   public int zIndex;
   public boolean show;
+
+  private Image greyImage;
   
   public Layer() {
     this(Z.NONE.value, Animations.NONE, false);
@@ -40,6 +42,21 @@ public class Layer {
     if (show) {
       animation.draw(image, surface, frame);
     }
+  }
+
+  public void drawGrey(Surface surface, int frame, float alpha) {
+    if (show) {
+      surface.setAlpha(alpha);
+      animation.draw(greyImage(), surface, frame);
+      surface.setAlpha(1f);
+    }
+  }
+
+  private Image greyImage() {
+    if (greyImage == null) {
+      greyImage = image.grey(0.25f, 0.25f, 1f);
+    }
+    return greyImage;
   }
   
   public static void showIf(boolean condition, Layer... layers) {

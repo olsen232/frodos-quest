@@ -17,11 +17,7 @@ public class CartSprite extends PonySprite {
 
   @Override
   public void update(State state) {
-    if (state.location != prevLocation) {
-      prevLocation = state.location;
-      Arrays.fill(followX, -1);
-      Arrays.fill(followY, -1);
-    }
+    maybeChangeLocation(state.location);
     this.ponyFollowing = state.ponyMeal >= 2;
     this.isHitched = state.hitchedBarrel && !state.deliveredBarrel;
   }
@@ -37,6 +33,8 @@ public class CartSprite extends PonySprite {
 
     if (isFollowingClosely()) {
       followClosely();
+    } else {
+      image = images[0];
     }
 
     if (!isHitched && ponyFollowing && isCloseTo(Sprites.FRODO, 10)) {
