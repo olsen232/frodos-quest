@@ -181,8 +181,8 @@ public enum Scene {
   },
 
   EAST_FIELD {
-    Layer fixme = addLayer(Z.BACKGROUND);
     Layer background = addLayer(Z.BACKGROUND);
+    Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
 
     @Override

@@ -468,11 +468,16 @@ public class State {
   }
 
   private boolean maybeDebugCommand() {
-    if (typed("boaty")) { changeState(frodoInBoat=true); return display("okay");}
+    if (typed("summon", "boat")) {
+      Sprites.BOAT.x = Sprites.FRODO.x;
+      Sprites.BOAT.y = Sprites.FRODO.y;
+      changeState(frodoInBoat=true);
+      return display(Elvish.sayElvish() + " You have summoned: boat");
+    }
     for (Item item : Item.values()) {
       if (!has(item) && typed(SUMMON, item)) {
         changeState(inventory.add(item));
-        return display("YOU HAVE SUMMONED " + item.name());
+        return display(Elvish.sayElvish() + " You have summoned: " + Synonyms.spacedLowerCase(item.name()));
       }
     }
     for (Location location : Location.values()) {
