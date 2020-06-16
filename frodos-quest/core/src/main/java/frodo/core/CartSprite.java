@@ -1,6 +1,7 @@
 package frodo.core;
 
 import static frodo.core.PixelConstants.*;
+import static frodo.core.Progress.*;
 import frodo.core.Events.DisplayTextEvent;
 
 import java.util.Arrays;
@@ -19,7 +20,10 @@ public class CartSprite extends PonySprite {
   public void update(State state) {
     maybeChangeLocation(state.location);
     this.ponyFollowing = state.ponyMeal >= 2;
-    this.isHitched = state.hitchedBarrel && !state.deliveredBarrel;
+    this.isHitched = state.at(HITCHED_BARREL);
+    this.visible = (state.at(BOUGHT_BARREL) && state.at(Location.HOBBITON))
+                  || (state.at(HITCHED_BARREL) && !state.isInside())
+                  || (state.atOrAfter(DELIVERED_BARREL) && state.at(Location.HOUSE_BY_LAKE));
   }
     
   @Override

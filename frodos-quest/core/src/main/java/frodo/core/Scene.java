@@ -3,6 +3,7 @@ package frodo.core;
 import static frodo.core.Item.*;
 import static frodo.core.Layer.*;
 import static frodo.core.PixelConstants.*;
+import static frodo.core.Progress.*;
 
 import java.io.IOException;
 
@@ -54,8 +55,7 @@ public enum Scene {
     }
     
     public void update(State state) {
-      showIf(!state.isBilboFishing, bilbo);
-      showIf(!state.isBilboFishing, quill);
+      showIf(state.before(BILBO_FISHING), bilbo, quill);
     }
   },
   
@@ -70,11 +70,6 @@ public enum Scene {
     
     public void update(State state) {
       showIf(!state.has(OLIVE_OIL), bottle);
-    }
-    
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || (sprite == Sprites.STOOL && state.stoolLocation == Location.BAGEND_KITCHEN);
     }
   },
   
@@ -93,12 +88,7 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
 
     public void update(State state) {
-      showIf(state.isBilboFishing && !state.bilboInBoat, bilbo);
-    }
-    
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || sprite == Sprites.GOOSE;
+      showIf(state.atOrAfter(BILBO_FISHING) && state.before(BILBO_IN_BOAT), bilbo);
     }
   },
   
@@ -111,12 +101,7 @@ public enum Scene {
     Layer maskLayer = addMaskLayer(this);
 
     public void update(State state) {
-      showIf(!state.bilboInBoat && !state.frodoInBoat, rope);
-    }
-
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || (sprite == Sprites.BOAT) || (sprite == Sprites.CART && state.deliveredBarrel);
+      showIf(state.before(FRODO_IN_BOAT), rope);
     }
   },
   
@@ -134,12 +119,6 @@ public enum Scene {
     Layer bridge = addLayer(Z.AUTO);
     Layer wall = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
-
-
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || (sprite == Sprites.CART && state.boughtBarrel && !state.deliveredBarrel);
-    }
   },
   
   GREEN_DRAGON {
@@ -161,11 +140,6 @@ public enum Scene {
     Layer appleTree = addLayer(Z.AUTO);
     Layer foregroundTree = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
-    
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || (sprite == Sprites.STOOL && state.stoolLocation == Location.APPLE_TREE_FIELD);
-    }
   },
 
   WEST_FIELD {
@@ -173,22 +147,12 @@ public enum Scene {
     Layer tree = addLayer(Z.FOREGROUND);
     Layer foregroundTree = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
-
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || sprite == Sprites.GOAT || sprite == Sprites.PIG || sprite == Sprites.PIG2;
-    }
   },
 
   EAST_FIELD {
     Layer background = addLayer(Z.BACKGROUND);
     Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
-
-    @Override
-    public boolean sprites(Sprite sprite, State state) {
-      return super.sprites(sprite, state) || (sprite == Sprites.PONY);
-    }
   },
   
   /** END SCENES **/ ;
@@ -241,14 +205,6 @@ public enum Scene {
     
   public void update(State state) {
     // nothing needed.  
-  }
-  
-  public boolean sprites(Sprite sprite, State state) {
-    if (sprite == Sprites.FRODO) return state.gameStarted;
-    if (sprite == Sprites.BOAT) return state.frodoInBoat;
-    if (sprite == Sprites.PONY) return state.ponyMeal >= 2 && !Location.isInside(state.location);
-    if (sprite == Sprites.CART) return state.hitchedBarrel && !state.deliveredBarrel && !Location.isInside(state.location);
-    return false;
   }
   
   // TODO: Scenes and Locations?

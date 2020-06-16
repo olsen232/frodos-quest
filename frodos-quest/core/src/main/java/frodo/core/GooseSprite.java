@@ -10,6 +10,11 @@ public class GooseSprite extends SidewaysAnimalSprite {
   }
 
   @Override
+  public void update(State state) {
+    this.visible = state.at(Location.TREE_BY_LAKE);
+  }
+
+  @Override
   protected Image image(Direction d, int frame) {
     if (!d.isHorizontal()) throw new IllegalArgumentException();
     int numFrames = images.length / Direction.NUM_HORIZONTAL_DIRECTIONS;

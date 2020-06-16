@@ -24,6 +24,9 @@ public class SceneLinks {
     addVerticalLinks(EAST_FIELD, NEIGHBOR);
     
     addLink(portal(HOBBITON, UP), portal(GREEN_DRAGON, LEFT));
+
+    // Trapped in Hobbiton.
+    addLink(portal(HOBBITON, RIGHT), portal(HOBBITON, RIGHT));
   }
   
   private static void addLink(Portal p1, Portal p2) {

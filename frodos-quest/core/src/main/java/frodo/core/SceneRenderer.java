@@ -13,16 +13,12 @@ public class SceneRenderer {
   
   public void update(State state) {
     this.scene = Scene.forLocation(state.location);
-    for (Sprite sprite : Sprites.ALL) {
-      sprite.visible = scene.sprites(sprite, state);
-    }
-
     scene.update(state);
     for (Sprite sprite : Sprites.ALL) {
       sprite.update(state);
     }
 
-    boolean ringEffect = state.frodoWearingRing && Location.isInside(state.location);
+    boolean ringEffect = state.frodoWearingRing && state.isInside();
     if (ringEffect != this.ringEffect) {
       this.ringEffect = ringEffect;
       effectCounter = 0;

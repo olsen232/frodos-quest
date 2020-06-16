@@ -26,10 +26,8 @@ public class PonySprite extends AnimalSprite {
   @Override
   public void update(State state) {
     if (maybeChangeLocation(state.location)) {
-      if (Location.isInside(state.location) && state.ponyMeal > 0) {
-        if (state.deliveredBarrel || !state.hitchedBarrel) {
-          resetToField(state);
-        }
+      if (state.isInside() && state.ponyMeal > 0 && !state.at(Progress.HITCHED_BARREL)) {
+        resetToField(state);
       }
     }
 
@@ -44,6 +42,8 @@ public class PonySprite extends AnimalSprite {
         }
       }
     }
+    this.visible = state.at(Location.EAST_FIELD)
+        || (this.isFollowingClosely() && !state.isInside());
   }
 
   protected boolean maybeChangeLocation(Location location) {
@@ -61,7 +61,7 @@ public class PonySprite extends AnimalSprite {
   protected void resetToField(State state) {
     state.ponyMeal = 0;
     x = SCENE_WIDTH / 2;
-    y = SCENE_HEIGHT / 2;
+    y = SCENE_HEIGHT * 3 / 4;
   }
 
   protected boolean isFollowing() {

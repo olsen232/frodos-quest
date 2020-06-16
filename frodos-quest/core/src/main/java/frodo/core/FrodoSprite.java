@@ -123,21 +123,22 @@ public class FrodoSprite extends Sprite {
   
   @Override
   public void update(State state) {
-    if (state.frodoInBoat && !this.isInBoat) {
+    this.visible = state.atOrAfter(Progress.GAME_STARTED);
+    if (state.at(Progress.FRODO_IN_BOAT) && !this.isInBoat) {
       this.x = Sprites.BOAT.x;
       this.y = Sprites.BOAT.y;
-    } else if (!state.frodoInBoat && this.isInBoat) {
+    } else if (!state.at(Progress.FRODO_IN_BOAT) && this.isInBoat) {
       this.y = 160;
     }
 
-    boolean isInside = Location.isInside(state.location);
+    boolean isInside = state.isInside();
     if (isInside != this.isInside) {
       this.isInside = isInside;
       this.images = this.isInside ? largeTiles : smallTiles;
       animate(prevDirection);
     }
 
-    this.isInBoat = state.frodoInBoat;
+    this.isInBoat = state.at(Progress.FRODO_IN_BOAT);
     this.framesPerImage = isInBoat ? 8 : 4;
     this.isWearingRing = state.frodoWearingRing;
   }

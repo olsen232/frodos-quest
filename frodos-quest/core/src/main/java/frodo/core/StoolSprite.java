@@ -25,6 +25,7 @@ public class StoolSprite extends StaticSprite {
   }
   
   public void update(State state) {
+    this.visible = state.location == state.stoolLocation;
     place(state.location);
   }
   

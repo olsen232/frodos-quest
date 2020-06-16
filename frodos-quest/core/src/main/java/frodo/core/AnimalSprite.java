@@ -14,6 +14,11 @@ public class AnimalSprite extends Sprite {
   {
     framesPerMove = 2;
   }
+
+  @Override
+  public void update(State state) {
+    this.visible = state.at(Location.WEST_FIELD);
+  }
   
   @Override
   public void move(Scene scene) {

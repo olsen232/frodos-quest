@@ -72,7 +72,8 @@ public class BoatSprite extends Sprite {
 
   @Override
   public void update(State state) {
-    this.frodoInBoat = state.frodoInBoat;
+    this.frodoInBoat = state.at(Progress.FRODO_IN_BOAT);
+    this.visible = this.frodoInBoat || state.at(Location.HOUSE_BY_LAKE);
   }
 
   private class Splash {

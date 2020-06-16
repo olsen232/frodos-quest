@@ -17,14 +17,16 @@ public class Events {
     public void enact() {}
   }
 
-  public static class StartGameEvent extends Event {
-    public StartGameEvent() {
-      super(UNINTERACTIVE);
+  public static class ProgressEvent extends Event {
+    public final Progress progress;
+    public ProgressEvent(boolean interactive, Progress progress) {
+      super(interactive);
+      this.progress = progress;
     }
     
     @Override
     public void enact() {
-      FrodosQuest.state.gameStarted = true;
+      FrodosQuest.state.progress = progress;
     }
   }
 
@@ -126,8 +128,7 @@ public class Events {
 
     @Override
     public void enact() {
-      FrodosQuest.state.deliveredBarrel = true;
-      FrodosQuest.state.frodoInBoat = true;
+      FrodosQuest.state.progress = Progress.FRODO_IN_BOAT;
       FrodosQuest.state.ponyMeal = 0;
       FrodosQuest.eventManager.add(new DisplayTextEvent("\"Halfred! I've brought your barrel of ale!\""));
       FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have! I didn't think you really would! I suppose you can borrow the boat, then,\" says Halfred."));
@@ -154,8 +155,7 @@ public class Events {
 
     @Override
     public void enact() {
-      FrodosQuest.state.frodoInBoat = false;
-      FrodosQuest.state.bilboInBoat = true;
+      FrodosQuest.state.progress = Progress.BILBO_IN_BOAT;
       FrodosQuest.state.inventory.add(Item.POCKET_WATCH);
       FrodosQuest.eventManager.add(new DisplayTextEvent("\"Bilbo! I've brought you a boat to take fishing!\""));
       FrodosQuest.eventManager.add(new DisplayTextEvent("\"So you have!\" says Bilbo. \"What a treat for your uncle Bilbo!\""));

@@ -61,7 +61,7 @@ public class Title {
     EventManager eventManager = FrodosQuest.eventManager;
     eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 5));
     eventManager.add(new DisplayTextEvent("The sun rises over Hobbiton, the largest Hobbit settlement in The Shire, and shines through the windows at Bag End, the nicest Hobbit hole in Hobbiton - where you, Frodo, live with your wealthy uncle Bilbo."));
-    eventManager.add(new StartGameEvent());
+    eventManager.add(new ProgressEvent(Events.UNINTERACTIVE, Progress.GAME_STARTED));
     eventManager.add(new CutSceneEvent(Location.FRODOS_ROOM));
     eventManager.add(new PauseEvent(Events.UNINTERACTIVE, 2));
     eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
@@ -72,7 +72,7 @@ public class Title {
     FrodosQuest.sceneRenderer.update(FrodosQuest.state);
     Loader.stopAllMusic();
     EventManager eventManager = FrodosQuest.eventManager;
-    eventManager.add(new StartGameEvent());
+    eventManager.add(new ProgressEvent(Events.UNINTERACTIVE, Progress.GAME_STARTED));
     eventManager.add(new CutSceneEvent(Location.FRODOS_ROOM));
     eventManager.add(new DisplayTextEvent("You have just gotten out of bed. You hear Bilbo call from the hallway \"Frodo! There's a letter for you!\""));
     eventManager.add(new QueuedUpcomingEvent(new LocationEvent(Location.BAGEND_HILL, false, new MusicEvent(CONCERNING_HOBBITS))));
