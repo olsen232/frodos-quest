@@ -174,6 +174,12 @@ public class Events {
     public void enact() {
       FrodosQuest.state.frodoWearingRing = true;      
       FrodosQuest.eventManager.add(new UpdateSceneEvent());
+      if (!FrodosQuest.state.frodoHasWornRing) {
+        FrodosQuest.eventManager.add(new PauseEvent(INTERACTIVE, 2));
+        FrodosQuest.eventManager.add(new DisplayTextEvent("The world seems to turn dark to you as you disappear from the visible realm."));
+      }
+      FrodosQuest.state.frodoHasWornRing = true;      
+
     }
   }
 }

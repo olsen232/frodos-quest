@@ -25,6 +25,7 @@ public class State {
   public int ponyMeal = 0;
   
   public boolean frodoWearingRing = false;
+  public boolean frodoHasWornRing = false;
 
   private void copyFrom(State that) {
     this.location = that.location;
@@ -143,7 +144,7 @@ public class State {
         if (typed(LOOK)) return display("This is Bilbo's room. Bilbo is sitting at his desk, working on his memoirs. A window looks out into the garden.");
         if (typed(EXAMINE, BILBO)) return display("Bilbo is over one hundred, but still in great health. He is working on his memoirs, telling of all the adventures he had in his younger days.");
         if (typed(TALK_TO, BILBO)) {
-          if (atOrAfter(TALKED_TO_GANDALF)) {
+          if (before(TALKED_TO_GANDALF)) {
             return display("\"Good morning!\" says Bilbo. \"You can fix yourself some breakfast. " +
                 "I'm writing the chapter in the cave with the goblins and I may just keep writing until I can see the sun out the other side.\"");
           } else {
@@ -169,7 +170,7 @@ public class State {
           if (typed(USE, WATCH_KEY, ON, DRESSER) || typed(USE, WATCH_KEY, DRESSER) || typed(UNLOCK, DRESSER) || typed(UNLOCK, DRESSER, WITH, WATCH_KEY)) {
             if (!has(RING)) {
               changeState(inventory.add(RING));
-              return display("You unlock the dresser and open it. Without even having to search, you immediately see Bilbo's ring, hanging on a loop of string. You take it.");
+              return display("You unlock the dresser and open it. Without even having to search, you immediately see Bilbo's ring, hanging on a loop of string. You put it in your pocket.");
             } else {
               return display("You already found Bilbo's ring in the dresser.");
             }
@@ -363,7 +364,7 @@ public class State {
       }
       boolean askAboutBoat = false;
       if (typed(TALK_TO, HALFRED)) {
-        if (atOrAfter(BILBO_IN_BOAT)) return display("\"All well Mister Frodo?\" asks Halfred. \"Very well Halfred, many thanks!\" you reply.");
+        if (atOrAfter(FRODO_IN_BOAT)) return display("\"All well Mister Frodo?\" asks Halfred. \"Very well Halfred, many thanks!\" you reply.");
         if (atOrAfter(BILBO_FISHING)) {
           askAboutBoat = true;
         } else {
