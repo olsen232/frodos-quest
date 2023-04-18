@@ -27,6 +27,8 @@ public class State {
   public boolean frodoWearingRing = false;
   public boolean frodoHasWornRing = false;
 
+  public boolean gameOver = false;
+
   private void copyFrom(State that) {
     this.location = that.location;
     this.inventory.clear(); this.inventory.addAll(that.inventory);
@@ -82,7 +84,7 @@ public class State {
       return display("Just one, then - don't ruin your appetite for lunch. The apple is crisp and sweet.");
     }
     if (has(RING)) {
-      if (typed(WEAR, RING)) {
+      if (typed(WEAR, RING) || typed(USE, RING)) {
         if (frodoWearingRing) return display("You are already wearing Bilbo's ring.");
         display("You slip Bilbo's ring on your finger.");
         eventManager.add(new WearRingEvent());
@@ -212,6 +214,14 @@ public class State {
         changeState(inventory.add(OLIVE_OIL));
         return display("You take the bottle of olive oil.");
       }
+      if (!has(SKILLET) && typed(TAKE, SKILLET)) {
+        changeState(inventory.add(SKILLET));
+        return display("You take your favourite skillet.");
+      }
+      if (!has(KNIFE) && typed(TAKE, KNIFE)) {
+        changeState(inventory.add(KNIFE));
+        return display("You take your favourite knife.");
+      }
       if (typed(EXAMINE, PANTRY) || typed(EXAMINE, FOOD)) return display(PANTRY.desc);
       if (typed(EXAMINE, FIRE)) return display(FIRE.desc);
       if (typed(EXAMINE, TABLE)) return display(TABLE.desc);
@@ -257,6 +267,7 @@ public class State {
       if (typed(TAKE, REEDS)) return display("The scenery is fine where it already is.");
       if (typed(SWIM)) return display(NO_SWIMMING);
       if (typed(TAKE, GOOSE)) return Sprites.FRODO.isCloseTo(Sprites.GOOSE, 16) ? display("Ouch! You try to pick up the goose, but you quickly change your mind.") : display("You're not close enough.");
+      if (typed(TALK_TO, GOOSE)) return display(randomOneOf(GOOSE_CONVO));
       if (atOrAfter(BILBO_FISHING) && before(BILBO_IN_BOAT)) {
         if (typed(EXAMINE, BILBO)) return display("Bilbo is here fishing with the fishing rod you lent him.");
         if (typed(TALK_TO, BILBO)) return display("\"Are they biting, Bilbo?\" you ask. \"Not so far, I'm afraid. I haven't seen many fish here in the shallows. That's why Halfred has a boat I suppose.\"");
@@ -421,7 +432,11 @@ public class State {
       }
       if (typed(EXAMINE, TREE)) return display("There are several trees, but none that stand out.");
       if (typed(EXAMINE, GOAT)) return display(GOAT.desc);
+      if (typed(TALK_TO, GOAT)) return display(randomOneOf(GOAT_CONVO));
       if (typed(EXAMINE, PIG)) return display(PIG.desc);
+      if (typed(TALK_TO, PIG)) return display(randomOneOf(PIG_CONVO));
+      if (typed(TAKE, GOAT)) return display("A bit on the heavy side... and you don't even really want a goat.");
+      if (typed(TAKE, PIG)) return display("A bit on the heavy side... and you don't even really want a pig.");
       if (has(APPLES)) {
         if (typed(GIVE, APPLES, PIG) || typed(GIVE, APPLES, TO, PIG) || typed(GIVE, PIG, APPLES)) {
           Sprites.makeAnimalsFollow();
@@ -440,6 +455,8 @@ public class State {
       }
       if (typed(EXAMINE, TREE)) return display("There are several trees, but none that stand out.");
       if (typed(EXAMINE, PONY)) return display(PONY.desc);
+      if (typed(TALK_TO, PONY)) return display(randomOneOf(PONY_CONVO));
+      if (typed(TAKE, PONY)) return display("Riddle is much too heavy to carry! And much stronger than you are.");
       if (has(APPLES)) {
         if (typed(GIVE, APPLES, PONY) || typed(GIVE, APPLES, TO, PONY) || typed(GIVE, PONY, APPLES)) {
           changeState(ponyMeal += 1);
@@ -540,6 +557,12 @@ public class State {
       display("To your surprise, you see your friend Gandalf the Grey sitting in the Green Dragon. Yesterday he said farewell and set off for the town of Bree. Why is he still here?");
     }
 
+    if (location == Location.BAGEND_HILL && has(RING) && !gameOver) {
+      changeState(gameOver = true);
+      pause(INTERACTIVE, 2);
+      display("You have completed the playable demo of Frodo's Quest - no more than this has been written. It should hopefully be ready by the end of 1989!");
+    }
+
     this.location = location;
     return true;
   }
@@ -634,5 +657,42 @@ public class State {
     display("Before he can back out of it, you quickly hitch Riddle to the little cart.");
     eventManager.add(new LocationEvent(HOUSE_BY_LAKE, true, new DeliveredBarrelEvent()));
     return true;
+  }
+
+  private static String[] GOOSE_CONVO = new String[] {
+    "\"Good morning, Goose!\"",
+    "\"Stay calm... there's a good goose.\"",
+    "\"Stop following me!\"",
+    "\"Don't come near me!\"",
+    "\"Leave me alone!\"",
+    "\"Good goose. Good goose. No! I mean you no harm!\"",
+    "\"If you hiss at me one more time I'll wring your neck!\"",
+  };
+
+  private static String[] PONY_CONVO = new String[] {
+    "\"Good morning, Riddle!\"",
+    "\"You're a good pony.\"",
+    "\"Are you still hungry?\"",
+    "\"Good boy, Riddle.\"",
+    "\"Can you come with me, Riddle?\"",
+  };
+
+  private static String[] GOAT_CONVO = new String[] {
+    "\"Good morning, Goat!\"",
+    "\"Are you still hungry?\"",
+    "\"Don't even thing about headbutting me.\"",
+    "\"Nice day, isn't it!\"",
+  };
+
+    private static String[] PIG_CONVO = new String[] {
+    "\"Good morning, Pig!\"",
+    "\"That'll do, pig. That'll do.\"",
+    "\"Are you still hungry?\"",
+    "\"Nice day, isn't it!\"",
+  };
+
+  private static String randomOneOf(String[] options) {
+    int selected = (int) (options.length * Math.random());
+    return options[selected];
   }
 }

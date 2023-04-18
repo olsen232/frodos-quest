@@ -64,12 +64,16 @@ public enum Scene {
     Layer fire1 = addLayer(Z.BACKGROUND, Animations.cycle(1, 3).withDuration(4));
     Layer fire2 = addLayer(Z.BACKGROUND, Animations.cycle(2, 3).withDuration(4));
     Layer bottle = addLayer(Z.BACKGROUND);
+    Layer skillet = addLayer(Z.BACKGROUND);
+    Layer knife = addLayer(Z.BACKGROUND);
     Layer table = addLayer(Z.AUTO);
     Layer foreground = addLayer(Z.FOREGROUND);
     Layer maskLayer = addMaskLayer(this);
     
     public void update(State state) {
       showIf(!state.has(OLIVE_OIL), bottle);
+      showIf(!state.has(SKILLET), skillet);
+      showIf(!state.has(KNIFE), knife);
     }
   },
   

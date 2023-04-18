@@ -3,7 +3,7 @@ var __gwtModuleFunction = $wnd.frodosquest;
 var $sendStats = __gwtModuleFunction.__sendStats;
 $sendStats('moduleStartup', 'moduleEvalStart');
 var $gwt_version = "2.8.2";
-var $strongName = 'BE6160CF24BE225608F8F2DD3B28AD71';
+var $strongName = 'D8AC2F4A70FAF404ED079F98C7A56120';
 var $gwt = {};
 var $doc = $wnd.document;
 var $moduleName, $moduleBase;
@@ -22,7 +22,7 @@ var $stats = $wnd.__gwtStatsEvent ? function(a) {
 return $wnd.__gwtStatsEvent && $wnd.__gwtStatsEvent(a);
 } : null;
 var $sessionId = $wnd.__gwtStatsSessionId ? $wnd.__gwtStatsSessionId : null;
-var $intern_0 = 2147483647, $intern_1 = {3:1, 8:1}, $intern_2 = {3:1}, $intern_3 = {3:1, 97:1, 139:1}, $intern_4 = {3:1, 14:1, 9:1, 10:1}, $intern_5 = {22:1, 43:1, 3:1, 7:1, 6:1}, $intern_6 = {22:1, 44:1, 3:1, 7:1, 6:1}, $intern_7 = {20:1, 3:1, 7:1, 6:1}, $intern_8 = {22:1, 75:1, 3:1, 7:1, 6:1}, $intern_9 = {22:1, 37:1, 3:1, 7:1, 6:1}, $intern_10 = {83:1, 3:1, 14:1, 9:1, 10:1}, $intern_11 = 4194303, $intern_12 = 1048575, $intern_13 = 17592186044416, $intern_14 = 4194304, $intern_15 = 524288, $intern_16 = {72:1, 51:1, 63:1, 62:1, 73:1, 47:1, 42:1}, $intern_17 = {111:1}, $intern_18 = {52:1}, $intern_19 = {60:1}, $intern_20 = 65536, $intern_21 = 16777216, $intern_22 = 33554432, $intern_23 = 67108864, $intern_24 = {72:1, 51:1, 63:1, 62:1, 73:1, 129:1, 47:1, 42:1}, $intern_25 = {25:1}, $intern_26 = -16777216, $intern_27 = {87:1, 34:1, 3:1, 7:1, 6:1}, $intern_28 = -2147483648, $intern_29 = {15:1}, $intern_30 = 16777215, $intern_31 = {86:1, 3:1}, $intern_32 = 65535, $intern_33 = 3.141592653589793, $intern_34 = {12:1, 3:1, 7:1, 6:1}, $intern_35 = {21:1, 24:1}, $intern_36 = {50:1}, $intern_37 = {40:1, 36:1, 55:1, 68:1, 61:1}, $intern_38 = 34962, $intern_39 = 34963, $intern_40 = {21:1, 78:1, 24:1}, $intern_41 = {3:1, 7:1, 6:1, 17:1}, $intern_42 = -3.4028234663852886E38, $intern_43 = 3.4028234663852886E38;
+var $intern_0 = 2147483647, $intern_1 = {3:1, 8:1}, $intern_2 = {3:1}, $intern_3 = {3:1, 97:1, 139:1}, $intern_4 = {3:1, 14:1, 9:1, 10:1}, $intern_5 = {22:1, 44:1, 3:1, 7:1, 6:1}, $intern_6 = {22:1, 45:1, 3:1, 7:1, 6:1}, $intern_7 = {20:1, 3:1, 7:1, 6:1}, $intern_8 = {22:1, 76:1, 3:1, 7:1, 6:1}, $intern_9 = {22:1, 37:1, 3:1, 7:1, 6:1}, $intern_10 = {84:1, 3:1, 14:1, 9:1, 10:1}, $intern_11 = 4194303, $intern_12 = 1048575, $intern_13 = 17592186044416, $intern_14 = 4194304, $intern_15 = 524288, $intern_16 = {73:1, 51:1, 65:1, 64:1, 74:1, 47:1, 43:1}, $intern_17 = {111:1}, $intern_18 = {52:1}, $intern_19 = {62:1}, $intern_20 = 65536, $intern_21 = 16777216, $intern_22 = 33554432, $intern_23 = 67108864, $intern_24 = {73:1, 51:1, 65:1, 64:1, 74:1, 129:1, 47:1, 43:1}, $intern_25 = {25:1}, $intern_26 = -16777216, $intern_27 = {87:1, 34:1, 3:1, 7:1, 6:1}, $intern_28 = -2147483648, $intern_29 = {15:1}, $intern_30 = 16777215, $intern_31 = {61:1, 3:1}, $intern_32 = 65535, $intern_33 = 3.141592653589793, $intern_34 = {12:1, 3:1, 7:1, 6:1}, $intern_35 = {21:1, 24:1}, $intern_36 = {50:1}, $intern_37 = {41:1, 36:1, 55:1, 70:1, 63:1}, $intern_38 = 34962, $intern_39 = 34963, $intern_40 = {21:1, 79:1, 24:1}, $intern_41 = {3:1, 7:1, 6:1, 17:1}, $intern_42 = -3.4028234663852886E38, $intern_43 = 3.4028234663852886E38;
 var _, prototypesByTypeId_0, initFnList_0, permutationId = -1;
 function setGwtProperty(propertyName, propertyValue){
   typeof window === 'object' && typeof window['$gwt'] === 'object' && (window['$gwt'][propertyName] = propertyValue);
@@ -799,7 +799,7 @@ function SoundController(){
   this.soundContainer = ($clinit_DOM() , $doc.createElement('div'));
   this.gwtVoicesSwfBaseUrl = ($clinit_Impl() , s = $doc.location.href , i = s.indexOf('#') , i != -1 && (s = s.substring(0, i)) , i = s.indexOf('?') , i != -1 && (s = s.substring(0, i)) , i = s.lastIndexOf('/') , i != -1 && (s = s.substring(0, i)) , s.length > 0?s + '/':'');
   gwtVoices = getParameter('gwt-voices');
-  $equals(($clinit_SoundType() , FLASH).queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 41, 0, [FLASH])):$equals(HTML5.queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 41, 0, [HTML5])):$equals(WEB_AUDIO.queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 41, 0, [WEB_AUDIO])):$equals(NATIVE.queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 41, 0, [NATIVE])):$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 41, 0, [WEB_AUDIO, FLASH, HTML5]));
+  $equals(($clinit_SoundType() , FLASH).queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 42, 0, [FLASH])):$equals(HTML5.queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 42, 0, [HTML5])):$equals(WEB_AUDIO.queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 42, 0, [WEB_AUDIO])):$equals(NATIVE.queryParameterValue, gwtVoices)?$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 42, 0, [NATIVE])):$setPreferredSoundTypes(this, stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 42, 0, [WEB_AUDIO, FLASH, HTML5]));
   $appendChild(($clinit_RootPanel() , $doc.body), this.soundContainer);
   style = this.soundContainer.style;
   style['position'] = ($clinit_Style$Position() , 'absolute');
@@ -827,12 +827,12 @@ function SoundController$MimeTypeSupport(enum$name, enum$ordinal){
 
 function values_1(){
   $clinit_SoundController$MimeTypeSupport();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundController$MimeTypeSupport_2_classLit, 1), $intern_1, 76, 0, [MIME_TYPE_NOT_SUPPORTED, MIME_TYPE_SUPPORT_NOT_READY, MIME_TYPE_SUPPORT_READY, MIME_TYPE_SUPPORT_UNKNOWN]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundController$MimeTypeSupport_2_classLit, 1), $intern_1, 77, 0, [MIME_TYPE_NOT_SUPPORTED, MIME_TYPE_SUPPORT_NOT_READY, MIME_TYPE_SUPPORT_READY, MIME_TYPE_SUPPORT_UNKNOWN]);
 }
 
-defineClass(76, 6, {76:1, 3:1, 7:1, 6:1}, SoundController$MimeTypeSupport);
+defineClass(77, 6, {77:1, 3:1, 7:1, 6:1}, SoundController$MimeTypeSupport);
 var MIME_TYPE_NOT_SUPPORTED, MIME_TYPE_SUPPORT_NOT_READY, MIME_TYPE_SUPPORT_READY, MIME_TYPE_SUPPORT_UNKNOWN;
-var Lcom_allen_1sauer_gwt_voices_client_SoundController$MimeTypeSupport_2_classLit = createForEnum(76, values_1);
+var Lcom_allen_1sauer_gwt_voices_client_SoundController$MimeTypeSupport_2_classLit = createForEnum(77, values_1);
 function $clinit_SoundType(){
   $clinit_SoundType = emptyMethod;
   FLASH = new SoundType('FLASH', 0, 'flash');
@@ -848,12 +848,12 @@ function SoundType(enum$name, enum$ordinal, queryParameterValue){
 
 function values_2(){
   $clinit_SoundType();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 41, 0, [FLASH, HTML5, NATIVE, WEB_AUDIO]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit, 1), $intern_1, 42, 0, [FLASH, HTML5, NATIVE, WEB_AUDIO]);
 }
 
-defineClass(41, 6, {41:1, 3:1, 7:1, 6:1}, SoundType);
+defineClass(42, 6, {42:1, 3:1, 7:1, 6:1}, SoundType);
 var FLASH, HTML5, NATIVE, WEB_AUDIO;
-var Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit = createForEnum(41, values_2);
+var Lcom_allen_1sauer_gwt_voices_client_SoundType_2_classLit = createForEnum(42, values_2);
 function $clinit_WebAudioSound(){
   $clinit_WebAudioSound = emptyMethod;
   $clinit_AbstractSound();
@@ -2385,35 +2385,35 @@ function Style$Overflow(enum$name, enum$ordinal){
 
 function values_3(){
   $clinit_Style$Overflow();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_google_gwt_dom_client_Style$Overflow_2_classLit, 1), $intern_1, 43, 0, [VISIBLE, HIDDEN, SCROLL, AUTO]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_google_gwt_dom_client_Style$Overflow_2_classLit, 1), $intern_1, 44, 0, [VISIBLE, HIDDEN, SCROLL, AUTO]);
 }
 
-defineClass(43, 6, $intern_5);
+defineClass(44, 6, $intern_5);
 var AUTO, HIDDEN, SCROLL, VISIBLE;
-var Lcom_google_gwt_dom_client_Style$Overflow_2_classLit = createForEnum(43, values_3);
+var Lcom_google_gwt_dom_client_Style$Overflow_2_classLit = createForEnum(44, values_3);
 function Style$Overflow$1(){
   Style$Overflow.call(this, 'VISIBLE', 0);
 }
 
-defineClass(255, 43, $intern_5, Style$Overflow$1);
+defineClass(255, 44, $intern_5, Style$Overflow$1);
 var Lcom_google_gwt_dom_client_Style$Overflow$1_2_classLit = createForEnum(255, null);
 function Style$Overflow$2(){
   Style$Overflow.call(this, 'HIDDEN', 1);
 }
 
-defineClass(256, 43, $intern_5, Style$Overflow$2);
+defineClass(256, 44, $intern_5, Style$Overflow$2);
 var Lcom_google_gwt_dom_client_Style$Overflow$2_2_classLit = createForEnum(256, null);
 function Style$Overflow$3(){
   Style$Overflow.call(this, 'SCROLL', 2);
 }
 
-defineClass(257, 43, $intern_5, Style$Overflow$3);
+defineClass(257, 44, $intern_5, Style$Overflow$3);
 var Lcom_google_gwt_dom_client_Style$Overflow$3_2_classLit = createForEnum(257, null);
 function Style$Overflow$4(){
   Style$Overflow.call(this, 'AUTO', 3);
 }
 
-defineClass(258, 43, $intern_5, Style$Overflow$4);
+defineClass(258, 44, $intern_5, Style$Overflow$4);
 var Lcom_google_gwt_dom_client_Style$Overflow$4_2_classLit = createForEnum(258, null);
 function $clinit_Style$Position(){
   $clinit_Style$Position = emptyMethod;
@@ -2429,35 +2429,35 @@ function Style$Position(enum$name, enum$ordinal){
 
 function values_4(){
   $clinit_Style$Position();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_google_gwt_dom_client_Style$Position_2_classLit, 1), $intern_1, 44, 0, [STATIC, RELATIVE, ABSOLUTE, FIXED]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_google_gwt_dom_client_Style$Position_2_classLit, 1), $intern_1, 45, 0, [STATIC, RELATIVE, ABSOLUTE, FIXED]);
 }
 
-defineClass(44, 6, $intern_6);
+defineClass(45, 6, $intern_6);
 var ABSOLUTE, FIXED, RELATIVE, STATIC;
-var Lcom_google_gwt_dom_client_Style$Position_2_classLit = createForEnum(44, values_4);
+var Lcom_google_gwt_dom_client_Style$Position_2_classLit = createForEnum(45, values_4);
 function Style$Position$1(){
   Style$Position.call(this, 'STATIC', 0);
 }
 
-defineClass(259, 44, $intern_6, Style$Position$1);
+defineClass(259, 45, $intern_6, Style$Position$1);
 var Lcom_google_gwt_dom_client_Style$Position$1_2_classLit = createForEnum(259, null);
 function Style$Position$2(){
   Style$Position.call(this, 'RELATIVE', 1);
 }
 
-defineClass(260, 44, $intern_6, Style$Position$2);
+defineClass(260, 45, $intern_6, Style$Position$2);
 var Lcom_google_gwt_dom_client_Style$Position$2_2_classLit = createForEnum(260, null);
 function Style$Position$3(){
   Style$Position.call(this, 'ABSOLUTE', 2);
 }
 
-defineClass(261, 44, $intern_6, Style$Position$3);
+defineClass(261, 45, $intern_6, Style$Position$3);
 var Lcom_google_gwt_dom_client_Style$Position$3_2_classLit = createForEnum(261, null);
 function Style$Position$4(){
   Style$Position.call(this, 'FIXED', 3);
 }
 
-defineClass(262, 44, $intern_6, Style$Position$4);
+defineClass(262, 45, $intern_6, Style$Position$4);
 var Lcom_google_gwt_dom_client_Style$Position$4_2_classLit = createForEnum(262, null);
 function $clinit_Style$Unit(){
   $clinit_Style$Unit = emptyMethod;
@@ -2550,23 +2550,23 @@ function Style$Visibility(enum$name, enum$ordinal){
 
 function values_6(){
   $clinit_Style$Visibility();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_google_gwt_dom_client_Style$Visibility_2_classLit, 1), $intern_1, 75, 0, [VISIBLE_0, HIDDEN_0]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lcom_google_gwt_dom_client_Style$Visibility_2_classLit, 1), $intern_1, 76, 0, [VISIBLE_0, HIDDEN_0]);
 }
 
-defineClass(75, 6, $intern_8);
+defineClass(76, 6, $intern_8);
 var HIDDEN_0, VISIBLE_0;
-var Lcom_google_gwt_dom_client_Style$Visibility_2_classLit = createForEnum(75, values_6);
+var Lcom_google_gwt_dom_client_Style$Visibility_2_classLit = createForEnum(76, values_6);
 function Style$Visibility$1(){
   Style$Visibility.call(this, 'VISIBLE', 0);
 }
 
-defineClass(263, 75, $intern_8, Style$Visibility$1);
+defineClass(263, 76, $intern_8, Style$Visibility$1);
 var Lcom_google_gwt_dom_client_Style$Visibility$1_2_classLit = createForEnum(263, null);
 function Style$Visibility$2(){
   Style$Visibility.call(this, 'HIDDEN', 1);
 }
 
-defineClass(264, 75, $intern_8, Style$Visibility$2);
+defineClass(264, 76, $intern_8, Style$Visibility$2);
 var Lcom_google_gwt_dom_client_Style$Visibility$2_2_classLit = createForEnum(264, null);
 function $clinit_Style$WhiteSpace(){
   $clinit_Style$WhiteSpace = emptyMethod;
@@ -2799,7 +2799,7 @@ function $fireEvent(this$static, event_0){
   }
    catch ($e0) {
     $e0 = toJava($e0);
-    if (instanceOf($e0, 83)) {
+    if (instanceOf($e0, 84)) {
       e = $e0;
       throw toJs(new UmbrellaException_0(e.causes));
     }
@@ -2977,13 +2977,13 @@ function makeMessage(causes){
   return b.string;
 }
 
-defineClass(83, 9, $intern_10, UmbrellaException);
-var Lcom_google_web_bindery_event_shared_UmbrellaException_2_classLit = createForClass(83);
+defineClass(84, 9, $intern_10, UmbrellaException);
+var Lcom_google_web_bindery_event_shared_UmbrellaException_2_classLit = createForClass(84);
 function UmbrellaException_0(causes){
   UmbrellaException.call(this, causes);
 }
 
-defineClass(170, 83, $intern_10, UmbrellaException_0);
+defineClass(170, 84, $intern_10, UmbrellaException_0);
 var Lcom_google_gwt_event_shared_UmbrellaException_2_classLit = createForClass(170);
 function throwIfNull(value_0){
   if (null == value_0) {
@@ -3217,7 +3217,7 @@ function $sinkBitlessEvent(this$static, eventTypeName){
   sinkBitlessEvent(($clinit_DOM() , this$static.element), eventTypeName);
 }
 
-defineClass(47, 1, {62:1, 47:1});
+defineClass(47, 1, {64:1, 47:1});
 _.toString_0 = function toString_10(){
   if (!this.element) {
     return '(null handle)';
@@ -3296,7 +3296,7 @@ function $setParent(this$static, parent_0){
   }
 }
 
-defineClass(42, 47, $intern_16);
+defineClass(43, 47, $intern_16);
 _.doAttachChildren = function doAttachChildren(){
 }
 ;
@@ -3323,13 +3323,13 @@ _.onBrowserEvent = function onBrowserEvent(event_0){
 ;
 _.attached = false;
 _.eventsToSink = 0;
-var Lcom_google_gwt_user_client_ui_Widget_2_classLit = createForClass(42);
+var Lcom_google_gwt_user_client_ui_Widget_2_classLit = createForClass(43);
 function $clinit_FocusWidget(){
   $clinit_FocusWidget = emptyMethod;
   $clinit_FocusImpl();
 }
 
-defineClass(452, 42, $intern_16);
+defineClass(452, 43, $intern_16);
 _.onAttach = function onAttach_0(){
   var tabIndex;
   $onAttach(this);
@@ -3684,7 +3684,7 @@ _.equals_0 = function equals_4(o){
   if (o === this) {
     return true;
   }
-  if (!instanceOf(o, 60)) {
+  if (!instanceOf(o, 62)) {
     return false;
   }
   other = o;
@@ -4016,7 +4016,7 @@ function $maybeInitializeEventSystem(){
 
 function getEventListener(elem){
   var maybeListener = elem.__listener;
-  return !instanceOfJso(maybeListener) && instanceOf(maybeListener, 63)?maybeListener:null;
+  return !instanceOfJso(maybeListener) && instanceOf(maybeListener, 65)?maybeListener:null;
 }
 
 function setEventListener(elem, listener){
@@ -4177,7 +4177,7 @@ function $initWindowResizeHandler(){
   );
 }
 
-defineClass(451, 42, $intern_16);
+defineClass(451, 43, $intern_16);
 _.doAttachChildren = function doAttachChildren_0(){
   tryCommand(this, ($clinit_AttachDetachException() , attachCommand));
 }
@@ -4391,7 +4391,7 @@ function $insert(this$static, w, beforeIndex){
     throw toJs(new IndexOutOfBoundsException);
   }
   if (this$static.size_0 == this$static.array.length) {
-    newArray = initUnidimensionalArray(Lcom_google_gwt_user_client_ui_Widget_2_classLit, $intern_2, 42, this$static.array.length * 2, 0, 1);
+    newArray = initUnidimensionalArray(Lcom_google_gwt_user_client_ui_Widget_2_classLit, $intern_2, 43, this$static.array.length * 2, 0, 1);
     for (i0 = 0; i0 < this$static.array.length; ++i0) {
       newArray[i0] = this$static.array[i0];
     }
@@ -4427,7 +4427,7 @@ function $remove_4(this$static, w){
 
 function WidgetCollection(parent_0){
   this.parent_0 = parent_0;
-  this.array = initUnidimensionalArray(Lcom_google_gwt_user_client_ui_Widget_2_classLit, $intern_2, 42, 4, 0, 1);
+  this.array = initUnidimensionalArray(Lcom_google_gwt_user_client_ui_Widget_2_classLit, $intern_2, 43, 4, 0, 1);
 }
 
 defineClass(406, 1, {}, WidgetCollection);
@@ -4989,7 +4989,7 @@ function $init_0(this$static, boatImages, splashImages){
 }
 
 function BoatSprite(){
-  this.splashes = stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_BoatSprite$Splash_2_classLit, 1), $intern_2, 80, 0, [new BoatSprite$Splash(this), new BoatSprite$Splash(this), new BoatSprite$Splash(this), new BoatSprite$Splash(this)]);
+  this.splashes = stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_BoatSprite$Splash_2_classLit, 1), $intern_2, 81, 0, [new BoatSprite$Splash(this), new BoatSprite$Splash(this), new BoatSprite$Splash(this), new BoatSprite$Splash(this)]);
   this.x_0 = 33;
   this.y_0 = 160;
 }
@@ -5071,13 +5071,13 @@ function BoatSprite$Splash(this$0){
   this.this$01 = this$0;
 }
 
-defineClass(80, 1, {80:1}, BoatSprite$Splash);
+defineClass(81, 1, {81:1}, BoatSprite$Splash);
 _.f = 999;
 _.framesPerImage = 4;
 _.image = null;
 _.x_0 = 0;
 _.y_0 = 0;
-var Lfrodo_core_BoatSprite$Splash_2_classLit = createForClass(80);
+var Lfrodo_core_BoatSprite$Splash_2_classLit = createForClass(81);
 function $contains_0(this$static, x_0, y_0){
   return this$static.left_0 <= x_0 && x_0 <= this$static.right && this$static.top_0 <= y_0 && y_0 <= this$static.bottom;
 }
@@ -5368,7 +5368,7 @@ function $clinit_Direction(){
   RIGHT = new Direction('RIGHT', 1, 1, 0, RIGHT_0);
   UP = new Direction('UP', 2, 0, -1, UP_0);
   DOWN = new Direction('DOWN', 3, 0, 1, DOWN_0);
-  ALL_DIRECTIONS = stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Direction_2_classLit, 1), $intern_1, 67, 0, [LEFT, RIGHT, UP, DOWN]);
+  ALL_DIRECTIONS = stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Direction_2_classLit, 1), $intern_1, 69, 0, [LEFT, RIGHT, UP, DOWN]);
   NUM_DIRECTIONS = ALL_DIRECTIONS.length;
 }
 
@@ -5445,14 +5445,14 @@ function forKey(key){
 
 function values_9(){
   $clinit_Direction();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Direction_2_classLit, 1), $intern_1, 67, 0, [LEFT, RIGHT, UP, DOWN]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Direction_2_classLit, 1), $intern_1, 69, 0, [LEFT, RIGHT, UP, DOWN]);
 }
 
-defineClass(67, 6, {67:1, 3:1, 7:1, 6:1}, Direction);
+defineClass(69, 6, {69:1, 3:1, 7:1, 6:1}, Direction);
 _.dx = 0;
 _.dy = 0;
 var ALL_DIRECTIONS, DOWN, LEFT, NUM_DIRECTIONS = 0, RIGHT, UP;
-var Lfrodo_core_Direction_2_classLit = createForEnum(67, values_9);
+var Lfrodo_core_Direction_2_classLit = createForEnum(69, values_9);
 function $clinit_Elvish(){
   $clinit_Elvish = emptyMethod;
   ELVISH = stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['A! Tollen gur na Balannor!', 'Nu goll dh\xFAath e nathron dhonn!', 'Onethelais panna i nor!', 'Gelaidh gelaid go linnod an!', 'Nestad. Ai nae uamdir dar!', 'Harnannin athan nestad ban!', 'Telperion a Laurelin!', 'In edhil si awarthar Dhun!', 'Farol i viriath corin!', 'E galad vedui o Aman!', 'I aear dholl. Saer d\xEEn vanadh!', "Aphadar 'lin e-fast i chin!", 'Finarfin. Athradar athrad!', 'Chelegnen. Si falas thrunen!', 'I ithil eria. Romru can!']);
@@ -5460,7 +5460,7 @@ function $clinit_Elvish(){
 
 var ELVISH;
 function $add_3(this$static, event_0){
-  if (instanceOf(event_0, 71)) {
+  if (instanceOf(event_0, 72)) {
     $addLast(this$static.upcomingEvents, event_0);
     return;
   }
@@ -5497,7 +5497,7 @@ function $processEvent(this$static, event_0){
   if (instanceOf(event_0, 23)) {
     this$static.textTimer = FRAME_RATE / 2 | 0;
   }
-   else if (instanceOf(event_0, 70)) {
+   else if (instanceOf(event_0, 60)) {
     pauseEvent = event_0;
     this$static.pauseTimer = FRAME_RATE * pauseEvent.seconds;
   }
@@ -5549,7 +5549,7 @@ function EventManager(controlState, textDisplay){
 
 function modifyInteractivity(prev, next){
   instanceOf(prev, 23) && (prev.interactive = false);
-  instanceOf(prev, 70) && instanceOf(next, 23) && (next.interactive = false);
+  instanceOf(prev, 60) && instanceOf(next, 23) && (next.interactive = false);
 }
 
 defineClass(312, 1, {}, EventManager);
@@ -5636,9 +5636,9 @@ function Events$LocationEvent(location_0, touchingSpecial, delegate){
   this.touchingSpecial = touchingSpecial;
 }
 
-defineClass(71, 135, {15:1, 71:1, 135:1}, Events$LocationEvent);
+defineClass(72, 135, {15:1, 72:1, 135:1}, Events$LocationEvent);
 _.touchingSpecial = false;
-var Lfrodo_core_Events$LocationEvent_2_classLit = createForClass(71);
+var Lfrodo_core_Events$LocationEvent_2_classLit = createForClass(72);
 function Events$MusicEvent(music){
   Events$Event.call(this, true);
   this.music = music;
@@ -5655,9 +5655,9 @@ function Events$PauseEvent(interactive, seconds){
   this.seconds = seconds;
 }
 
-defineClass(70, 15, {15:1, 70:1}, Events$PauseEvent);
+defineClass(60, 15, {15:1, 60:1}, Events$PauseEvent);
 _.seconds = 0;
-var Lfrodo_core_Events$PauseEvent_2_classLit = createForClass(70);
+var Lfrodo_core_Events$PauseEvent_2_classLit = createForClass(60);
 function Events$ProgressEvent(progress){
   Events$Event.call(this, false);
   this.progress = progress;
@@ -6256,10 +6256,12 @@ function $clinit_Item(){
   FISHING_ROD = new Item('FISHING_ROD', 3, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['rod', 'A wooden fishing rod, including hook, line and sinker.']));
   STOOL = new Item('STOOL', 4, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['wooden stool', 'A wooden stool from the kitchen, for reaching high shelves.']));
   OLIVE_OIL = new Item('OLIVE_OIL', 5, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['oil', 'bottle', 'A bottle of olive oil from the kitchen.']));
-  APPLES = new Item('APPLES', 6, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['apple', 'Several red juicy apples.']));
-  POCKET_WATCH = new Item('POCKET_WATCH', 7, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['watch', "Bilbo's pocket watch is mostly brass, but it looks shiny and ornate, with a long chain. Attached to the watch is a small key, for winding it up."]));
-  WATCH_KEY = new Item('WATCH_KEY', 8, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['key', "Attached to Bilbo's pocket watch is a golden watch key, for winding it up. Unlike a house key, it has no blade, so its notched shaft would fit into a circular keyhole."]));
-  RING = new Item('RING', 9, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["Bilbo's ring is simple, small, but brightly shining gold. Twisting it in the light, you think you can see writing inside, but you cannot make it out."]));
+  SKILLET = new Item('SKILLET', 6, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['pan', 'frying pan', 'Your favourite skillet from the kitchen. Pretty hefty.']));
+  KNIFE = new Item('KNIFE', 7, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['Your favourite knife from the kitchen. Looks like it would do about 1d4 damage.']));
+  APPLES = new Item('APPLES', 8, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['apple', 'Several red juicy apples.']));
+  POCKET_WATCH = new Item('POCKET_WATCH', 9, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['watch', "Bilbo's pocket watch is mostly brass, but it looks shiny and ornate, with a long chain. Attached to the watch is a small key, for winding it up."]));
+  WATCH_KEY = new Item('WATCH_KEY', 10, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['key', "Attached to Bilbo's pocket watch is a golden watch key, for winding it up. Unlike a house key, it has no blade, so its notched shaft would fit into a circular keyhole."]));
+  RING = new Item('RING', 11, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["Bilbo's ring is simple, small, but brightly shining gold. Twisting it in the light, you think you can see writing inside, but you cannot make it out."]));
 }
 
 function Item(enum$name, enum$ordinal, in_0){
@@ -6270,7 +6272,7 @@ function Item(enum$name, enum$ordinal, in_0){
 
 function values_10(){
   $clinit_Item();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Item_2_classLit, 1), $intern_1, 29, 0, [MONEY_POUCH, LETTER, MUG_OF_ALE, FISHING_ROD, STOOL, OLIVE_OIL, APPLES, POCKET_WATCH, WATCH_KEY, RING]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Item_2_classLit, 1), $intern_1, 29, 0, [MONEY_POUCH, LETTER, MUG_OF_ALE, FISHING_ROD, STOOL, OLIVE_OIL, SKILLET, KNIFE, APPLES, POCKET_WATCH, WATCH_KEY, RING]);
 }
 
 defineClass(29, 6, {29:1, 5:1, 3:1, 7:1, 6:1}, Item);
@@ -6278,7 +6280,7 @@ _.variants_0 = function variants_0(){
   return this.variants;
 }
 ;
-var APPLES, FISHING_ROD, LETTER, MONEY_POUCH, MUG_OF_ALE, OLIVE_OIL, POCKET_WATCH, RING, STOOL, WATCH_KEY;
+var APPLES, FISHING_ROD, KNIFE, LETTER, MONEY_POUCH, MUG_OF_ALE, OLIVE_OIL, POCKET_WATCH, RING, SKILLET, STOOL, WATCH_KEY;
 var Lfrodo_core_Item_2_classLit = createForEnum(29, values_10);
 function $clinit_Layer(){
   $clinit_Layer = emptyMethod;
@@ -6316,7 +6318,7 @@ function addMaskLayer(scene){
   $clinit_Layer();
   var layers, mask;
   mask = addLayer(($clinit_Z() , FOREGROUND), ($clinit_Animations() , NONE), false);
-  layers = $toArray(ADDED_LAYERS, initUnidimensionalArray(Lfrodo_core_Layer_2_classLit, $intern_31, 45, ADDED_LAYERS.array.length, 0, 1));
+  layers = $toArray(ADDED_LAYERS, initUnidimensionalArray(Lfrodo_core_Layer_2_classLit, $intern_31, 38, ADDED_LAYERS.array.length, 0, 1));
   ADDED_LAYERS.array = initUnidimensionalArray(Ljava_lang_Object_2_classLit, $intern_2, 1, 0, 5, 1);
   scene.layers = layers;
   return mask;
@@ -6367,11 +6369,11 @@ function showIf(condition, layers){
   }
 }
 
-defineClass(45, 1, {45:1}, Layer);
+defineClass(38, 1, {38:1}, Layer);
 _.show = false;
 _.zIndex = 0;
 var ADDED_LAYERS;
-var Lfrodo_core_Layer_2_classLit = createForClass(45);
+var Lfrodo_core_Layer_2_classLit = createForClass(38);
 function $clinit_Loader(){
   $clinit_Loader = emptyMethod;
   IMAGES = new HashMap;
@@ -7048,8 +7050,8 @@ _.onLayersLoaded = function onLayersLoaded_0(){
 }
 ;
 _.update = function update_7(state){
-  showIf(state.isWardrobeOpen, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.wdBackDoor, this.wdFrontDoor]));
-  showIf(state.isWardrobeOpen && !$has(state, ($clinit_Item() , MONEY_POUCH)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.moneyPouch]));
+  showIf(state.isWardrobeOpen, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.wdBackDoor, this.wdFrontDoor]));
+  showIf(state.isWardrobeOpen && !$has(state, ($clinit_Item() , MONEY_POUCH)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.moneyPouch]));
 }
 ;
 var Lfrodo_core_Scene$1_2_classLit = createForEnum(271, null);
@@ -7114,7 +7116,7 @@ function Scene$2(){
 
 defineClass(272, 12, $intern_34, Scene$2);
 _.update = function update_8(state){
-  showIf(!$has(state, ($clinit_Item() , LETTER)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.letter]));
+  showIf(!$has(state, ($clinit_Item() , LETTER)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.letter]));
 }
 ;
 var Lfrodo_core_Scene$2_2_classLit = createForEnum(272, null);
@@ -7137,7 +7139,7 @@ _.onLayersLoaded = function onLayersLoaded_2(){
 }
 ;
 _.update = function update_9(state){
-  showIf($before(state, ($clinit_Progress() , BILBO_FISHING)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.bilbo, this.quill]));
+  showIf($before(state, ($clinit_Progress() , BILBO_FISHING)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.bilbo, this.quill]));
 }
 ;
 var Lfrodo_core_Scene$3_2_classLit = createForEnum(273, null);
@@ -7148,6 +7150,8 @@ function Scene$4(){
   addLayer(BACKGROUND, $withDuration(new Animations$CycleAnimation(1)), true);
   addLayer(BACKGROUND, $withDuration(new Animations$CycleAnimation(2)), true);
   this.bottle = addLayer(BACKGROUND, NONE, true);
+  this.skillet = addLayer(BACKGROUND, NONE, true);
+  this.knife = addLayer(BACKGROUND, NONE, true);
   addLayer(AUTO_0, NONE, true);
   addLayer(FOREGROUND, NONE, true);
   addMaskLayer(this);
@@ -7155,7 +7159,9 @@ function Scene$4(){
 
 defineClass(274, 12, $intern_34, Scene$4);
 _.update = function update_10(state){
-  showIf(!$has(state, ($clinit_Item() , OLIVE_OIL)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.bottle]));
+  showIf(!$has(state, ($clinit_Item() , OLIVE_OIL)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.bottle]));
+  showIf(!$has(state, SKILLET), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.skillet]));
+  showIf(!$has(state, KNIFE), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.knife]));
 }
 ;
 var Lfrodo_core_Scene$4_2_classLit = createForEnum(274, null);
@@ -7182,7 +7188,7 @@ function Scene$6(){
 
 defineClass(276, 12, $intern_34, Scene$6);
 _.update = function update_11(state){
-  showIf($atOrAfter(state, ($clinit_Progress() , BILBO_FISHING)) && $before(state, BILBO_IN_BOAT), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.bilbo]));
+  showIf($atOrAfter(state, ($clinit_Progress() , BILBO_FISHING)) && $before(state, BILBO_IN_BOAT), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.bilbo]));
 }
 ;
 var Lfrodo_core_Scene$6_2_classLit = createForEnum(276, null);
@@ -7199,7 +7205,7 @@ function Scene$7(){
 
 defineClass(277, 12, $intern_34, Scene$7);
 _.update = function update_12(state){
-  showIf($before(state, ($clinit_Progress() , FRODO_IN_BOAT)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 45, 0, [this.rope]));
+  showIf($before(state, ($clinit_Progress() , FRODO_IN_BOAT)), stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Layer_2_classLit, 1), $intern_31, 38, 0, [this.rope]));
 }
 ;
 var Lfrodo_core_Scene$7_2_classLit = createForEnum(277, null);
@@ -7397,6 +7403,14 @@ _.equals_0 = function equals_6(other){
 }
 ;
 var Lfrodo_core_Sprites$1_2_classLit = createForClass(284);
+function $clinit_State(){
+  $clinit_State = emptyMethod;
+  GOOSE_CONVO = stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['"Good morning, Goose!"', '"Stay calm... there\'s a good goose."', '"Stop following me!"', '"Don\'t come near me!"', '"Leave me alone!"', '"Good goose. Good goose. No! I mean you no harm!"', '"If you hiss at me one more time I\'ll wring your neck!"']);
+  PONY_CONVO = stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['"Good morning, Riddle!"', '"You\'re a good pony."', '"Are you still hungry?"', '"Good boy, Riddle."', '"Can you come with me, Riddle?"']);
+  GOAT_CONVO = stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['"Good morning, Goat!"', '"Are you still hungry?"', '"Don\'t even thing about headbutting me."', '"Nice day, isn\'t it!"']);
+  PIG_CONVO = stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['"Good morning, Pig!"', '"That\'ll do, pig. That\'ll do."', '"Are you still hungry?"', '"Nice day, isn\'t it!"']);
+}
+
 function $addLocationEvent(this$static, location_0){
   $add_3(this$static.eventManager, new Events$LocationEvent(location_0, true, new Events$DisplayTextEvent("As you cross the river, an idea comes to you. Bilbo loves fishing. If you can organise a day of fishing for him, perhaps he'll leave his ring at home.")));
   return true;
@@ -7431,6 +7445,12 @@ function $changeLocation(this$static, location_0){
     valueOf(this$static.gandalfTalk += 1);
     $add_3(this$static.eventManager, new Events$PauseEvent(true, 2));
     $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['To your surprise, you see your friend Gandalf the Grey sitting in the Green Dragon. Yesterday he said farewell and set off for the town of Bree. Why is he still here?']));
+  }
+  if (location_0 == BAGEND_HILL && $has(this$static, ($clinit_Item() , RING)) && !this$static.gameOver) {
+    $clinit_Boolean();
+    (this$static.gameOver = true)?true:false;
+    $add_3(this$static.eventManager, new Events$PauseEvent(true, 2));
+    $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["You have completed the playable demo of Frodo's Quest - no more than this has been written. It should hopefully be ready by the end of 1989!"]));
   }
   this$static.location_0 = location_0;
   return true;
@@ -7475,7 +7495,7 @@ function $maybeDebugCommand(this$static){
     BOAT_0.y_0 = FRODO_0.y_0;
     return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [($clinit_Elvish() , '"' + ELVISH[round_int(ELVISH.length * $wnd.Math.random())] + '" you say.' + ' You have summoned: boat')]));
   }
-  for (item$array = ($clinit_Item() , stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Item_2_classLit, 1), $intern_1, 29, 0, [MONEY_POUCH, LETTER, MUG_OF_ALE, FISHING_ROD, STOOL, OLIVE_OIL, APPLES, POCKET_WATCH, WATCH_KEY, RING])) , item$index = 0 , item$max = item$array.length; item$index < item$max; ++item$index) {
+  for (item$array = values_10() , item$index = 0 , item$max = item$array.length; item$index < item$max; ++item$index) {
     item_0 = item$array[item$index];
     if (!$containsEnum(this$static.inventory, item_0) && $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [($clinit_Verb() , SUMMON), item_0]))) {
       $clinit_Boolean();
@@ -7497,7 +7517,7 @@ function $maybeDebugCommand(this$static){
     }
   }
   if ($typed_2(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['halfway']))) {
-    $add_4(this$static.inventory, LETTER);
+    $add_4(this$static.inventory, ($clinit_Item() , LETTER));
     $add_4(this$static.inventory, MONEY_POUCH);
     $add_4(this$static.inventory, STOOL);
     $add_4(this$static.inventory, FISHING_ROD);
@@ -7514,10 +7534,10 @@ function $maybeDebugCommand(this$static){
 
 function $maybeLookAtInventory(this$static){
   var item_0, item$array, item$index, item$max;
-  for (item$array = ($clinit_Item() , stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Item_2_classLit, 1), $intern_1, 29, 0, [MONEY_POUCH, LETTER, MUG_OF_ALE, FISHING_ROD, STOOL, OLIVE_OIL, APPLES, POCKET_WATCH, WATCH_KEY, RING])) , item$index = 0 , item$max = item$array.length; item$index < item$max; ++item$index) {
+  for (item$array = values_10() , item$index = 0 , item$max = item$array.length; item$index < item$max; ++item$index) {
     item_0 = item$array[item$index];
     if ($containsEnum(this$static.inventory, item_0)) {
-      if (item_0 == LETTER && $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [($clinit_Verb() , READ), LETTER])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [($clinit_Verb() , EXAMINE), item_0]))) {
+      if (item_0 == ($clinit_Item() , LETTER) && $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [($clinit_Verb() , READ), LETTER])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [($clinit_Verb() , EXAMINE), item_0]))) {
         if (item_0 == POCKET_WATCH) {
           $clinit_Boolean();
           $add_4(this$static.inventory, WATCH_KEY)?true:false;
@@ -7561,7 +7581,7 @@ function $promptInput(this$static){
     return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["Just one, then - don't ruin your appetite for lunch. The apple is crisp and sweet."]));
   }
   if ($has(this$static, RING)) {
-    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [WEAR, RING]))) {
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [WEAR, RING])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [USE, RING]))) {
       if (this$static.frodoWearingRing)
         return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["You are already wearing Bilbo's ring."]));
       $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["You slip Bilbo's ring on your finger."]));
@@ -7720,6 +7740,16 @@ function $promptInput(this$static){
       $add_4(this$static.inventory, OLIVE_OIL)?true:false;
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['You take the bottle of olive oil.']));
     }
+    if (!$has(this$static, SKILLET) && $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TAKE, SKILLET]))) {
+      $clinit_Boolean();
+      $add_4(this$static.inventory, SKILLET)?true:false;
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['You take your favourite skillet.']));
+    }
+    if (!$has(this$static, KNIFE) && $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TAKE, KNIFE]))) {
+      $clinit_Boolean();
+      $add_4(this$static.inventory, KNIFE)?true:false;
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['You take your favourite knife.']));
+    }
     if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, PANTRY])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, FOOD])))
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [PANTRY.desc]));
     if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, FIRE])))
@@ -7789,6 +7819,8 @@ function $promptInput(this$static){
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['It is a little early in the season for swimming - the water will still be freezing.']));
     if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TAKE, GOOSE])))
       return $isCloseTo(($clinit_Sprites() , FRODO_0), GOOSE_0, 16)?$display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['Ouch! You try to pick up the goose, but you quickly change your mind.'])):$display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["You're not close enough."]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TALK_TO, GOOSE])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [randomOneOf(GOOSE_CONVO)]));
     if ($atOrAfter(this$static, ($clinit_Progress() , BILBO_FISHING)) && $before(this$static, BILBO_IN_BOAT)) {
       if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, BILBO])))
         return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['Bilbo is here fishing with the fishing rod you lent him.']));
@@ -7991,8 +8023,16 @@ function $promptInput(this$static){
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['There are several trees, but none that stand out.']));
     if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, GOAT])))
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [GOAT.desc]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TALK_TO, GOAT])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [randomOneOf(GOAT_CONVO)]));
     if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, PIG])))
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [PIG.desc]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TALK_TO, PIG])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [randomOneOf(PIG_CONVO)]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TAKE, GOAT])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["A bit on the heavy side... and you don't even really want a goat."]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TAKE, PIG])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ["A bit on the heavy side... and you don't even really want a pig."]));
     if ($has(this$static, APPLES)) {
       if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [GIVE, APPLES, PIG])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [GIVE, APPLES, TO, PIG])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [GIVE, PIG, APPLES]))) {
         $clinit_Sprites();
@@ -8014,6 +8054,10 @@ function $promptInput(this$static){
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['There are several trees, but none that stand out.']));
     if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [EXAMINE, PONY])))
       return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [PONY.desc]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TALK_TO, PONY])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, [randomOneOf(PONY_CONVO)]));
+    if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [TAKE, PONY])))
+      return $display(this$static, stampJavaTypeInfo(getClassLiteralForArray(Ljava_lang_String_2_classLit, 1), $intern_2, 2, 6, ['Riddle is much too heavy to carry! And much stronger than you are.']));
     if ($has(this$static, APPLES)) {
       if ($typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [GIVE, APPLES, PONY])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [GIVE, APPLES, TO, PONY])) || $typed_1(this$static, stampJavaTypeInfo(getClassLiteralForArray(Lfrodo_core_Synonym_2_classLit, 1), $intern_2, 5, 0, [GIVE, PONY, APPLES]))) {
         valueOf(this$static.ponyMeal += 1);
@@ -8058,6 +8102,7 @@ function $warp(this$static, location_0){
 
 function State(eventManager){
   var all;
+  $clinit_State();
   this.progress = ($clinit_Progress() , TITLE);
   this.location_0 = ($clinit_Location() , BAGEND_HILL);
   this.stoolLocation = BAGEND_KITCHEN;
@@ -8066,14 +8111,22 @@ function State(eventManager){
   this.eventManager = eventManager;
 }
 
+function randomOneOf(options){
+  var selected;
+  selected = round_int(options.length * $wnd.Math.random());
+  return options[selected];
+}
+
 defineClass(313, 1, {}, State);
 _.frodoHasWornRing = false;
 _.frodoWearingRing = false;
+_.gameOver = false;
 _.gandalfTalk = 0;
 _.isWardrobeOpen = false;
 _.meal = 0;
 _.ponyMeal = 0;
 _.triedToLeave = false;
+var GOAT_CONVO, GOOSE_CONVO, PIG_CONVO, PONY_CONVO;
 var Lfrodo_core_State_2_classLit = createForClass(313);
 defineClass(332, 25, $intern_25);
 _.move = function move_4(scene){
@@ -8942,8 +8995,8 @@ function StringBuilder_0(s){
   AbstractStringBuilder.call(this, (checkCriticalNotNull(s) , s));
 }
 
-defineClass(39, 115, {141:1}, StringBuilder, StringBuilder_0);
-var Ljava_lang_StringBuilder_2_classLit = createForClass(39);
+defineClass(40, 115, {141:1}, StringBuilder, StringBuilder_0);
+var Ljava_lang_StringBuilder_2_classLit = createForClass(40);
 function StringIndexOutOfBoundsException(message){
   IndexOutOfBoundsException_0.call(this, message);
 }
@@ -9738,7 +9791,7 @@ function AbstractMap$2(this$0){
   this.this$01 = this$0;
 }
 
-defineClass(65, 439, {}, AbstractMap$2);
+defineClass(67, 439, {}, AbstractMap$2);
 _.contains_0 = function contains_5(value_0){
   return $containsValue(this.this$01, value_0);
 }
@@ -9752,7 +9805,7 @@ _.size_1 = function size_8(){
   return $size(this.this$01);
 }
 ;
-var Ljava_util_AbstractMap$2_2_classLit = createForClass(65);
+var Ljava_util_AbstractMap$2_2_classLit = createForClass(67);
 function AbstractMap$2$1(val$outerIter){
   this.val$outerIter2 = val$outerIter;
 }
@@ -10050,7 +10103,7 @@ function ArrayList$1(this$0){
   this.this$01 = this$0;
 }
 
-defineClass(66, 1, {}, ArrayList$1);
+defineClass(68, 1, {}, ArrayList$1);
 _.hasNext_0 = function hasNext_6(){
   return this.i < this.this$01.array.length;
 }
@@ -10065,7 +10118,7 @@ _.remove_2 = function remove_21(){
 ;
 _.i = 0;
 _.last = -1;
-var Ljava_util_ArrayList$1_2_classLit = createForClass(66);
+var Ljava_util_ArrayList$1_2_classLit = createForClass(68);
 function fill(a){
   fill0(a, a.length);
 }
@@ -10590,8 +10643,8 @@ function HashMap(){
   $reset_1(this);
 }
 
-defineClass(38, 308, {3:1, 111:1}, HashMap);
-var Ljava_util_HashMap_2_classLit = createForClass(38);
+defineClass(39, 308, {3:1, 111:1}, HashMap);
+var Ljava_util_HashMap_2_classLit = createForClass(39);
 function $add_5(this$static, o){
   var old;
   old = $put_2(this$static.map_0, o, this$static);
@@ -10610,7 +10663,7 @@ function HashSet(){
   this.map_0 = new HashMap;
 }
 
-defineClass(105, 440, {3:1, 60:1}, HashSet);
+defineClass(105, 440, {3:1, 62:1}, HashSet);
 _.add_0 = function add_8(o){
   return $add_5(this, o);
 }
@@ -10966,8 +11019,8 @@ function NoSuchElementException(){
   RuntimeException.call(this);
 }
 
-defineClass(85, 9, $intern_4, NoSuchElementException);
-var Ljava_util_NoSuchElementException_2_classLit = createForClass(85);
+defineClass(86, 9, $intern_4, NoSuchElementException);
+var Ljava_util_NoSuchElementException_2_classLit = createForClass(86);
 function equals_20(a, b){
   return maskUndefined(a) === maskUndefined(b) || a != null && equals_Ljava_lang_Object__Z__devirtual$(a, b);
 }
@@ -11197,8 +11250,8 @@ function Clock(){
 defineClass(127, 1, {127:1}, Clock);
 _.tick = 0;
 var Lplayn_core_Clock_2_classLit = createForClass(127);
-defineClass(40, 1, {40:1});
-var Lplayn_core_Event_2_classLit = createForClass(40);
+defineClass(41, 1, {41:1});
+var Lplayn_core_Event_2_classLit = createForClass(41);
 function $setFlag(this$static, flag){
   this$static.flags |= flag;
 }
@@ -11218,7 +11271,7 @@ function modifierFlags(altP, ctrlP, metaP, shiftP){
   return flags;
 }
 
-defineClass(36, 40, {40:1, 36:1});
+defineClass(36, 41, {41:1, 36:1});
 _.addFields = function addFields(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
 }
@@ -11243,7 +11296,7 @@ function Event$XY(time, x_0, y_0){
   this.y_0 = y_0;
 }
 
-defineClass(55, 36, {40:1, 36:1, 55:1, 61:1});
+defineClass(55, 36, {41:1, 36:1, 55:1, 63:1});
 _.addFields = function addFields_0(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_3($append_7($append_3((builder.string += ', x=' , builder), this.x_0), ', y='), this.y_0);
@@ -12103,7 +12156,7 @@ function Keyboard$Event(time){
   Event$Input.call(this, time);
 }
 
-defineClass(95, 36, {40:1, 36:1, 95:1});
+defineClass(95, 36, {41:1, 36:1, 95:1});
 var Lplayn_core_Keyboard$Event_2_classLit = createForClass(95);
 function Keyboard$KeyEvent(time, key, down){
   Keyboard$Event.call(this, time);
@@ -12111,7 +12164,7 @@ function Keyboard$KeyEvent(time, key, down){
   this.down = down;
 }
 
-defineClass(108, 95, {40:1, 36:1, 95:1, 108:1}, Keyboard$KeyEvent);
+defineClass(108, 95, {41:1, 36:1, 95:1, 108:1}, Keyboard$KeyEvent);
 _.addFields = function addFields_1(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_8($append_7($append_6((builder.string += ', key=' , builder), this.key_0), ', down='), this.down);
@@ -12128,7 +12181,7 @@ function Keyboard$TypedEvent(time, typedChar){
   this.typedChar = typedChar;
 }
 
-defineClass(132, 95, {40:1, 36:1, 95:1, 132:1}, Keyboard$TypedEvent);
+defineClass(132, 95, {41:1, 36:1, 95:1, 132:1}, Keyboard$TypedEvent);
 _.addFields = function addFields_2(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_1((builder.string += ', typedChar=' , builder), this.typedChar);
@@ -12181,25 +12234,25 @@ function Log$Level(enum$name, enum$ordinal){
 
 function values_18(){
   $clinit_Log$Level();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_core_Log$Level_2_classLit, 1), $intern_1, 74, 0, [DEBUG, INFO_0, WARN, ERROR]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_core_Log$Level_2_classLit, 1), $intern_1, 75, 0, [DEBUG, INFO_0, WARN, ERROR]);
 }
 
-defineClass(74, 6, {3:1, 7:1, 6:1, 74:1}, Log$Level);
+defineClass(75, 6, {3:1, 7:1, 6:1, 75:1}, Log$Level);
 var DEBUG, ERROR, INFO_0, WARN;
-var Lplayn_core_Log$Level_2_classLit = createForEnum(74, values_18);
+var Lplayn_core_Log$Level_2_classLit = createForEnum(75, values_18);
 function Mouse$Event(time, x_0, y_0){
   Event$XY.call(this, time, x_0, y_0);
 }
 
-defineClass(68, 55, $intern_37);
-var Lplayn_core_Mouse$Event_2_classLit = createForClass(68);
+defineClass(70, 55, $intern_37);
+var Lplayn_core_Mouse$Event_2_classLit = createForClass(70);
 function Mouse$ButtonEvent(time, x_0, y_0, button, down){
   Mouse$Event.call(this, time, x_0, y_0);
   this.button_0 = button;
   this.down = down;
 }
 
-defineClass(109, 68, {40:1, 36:1, 55:1, 109:1, 68:1, 61:1}, Mouse$ButtonEvent);
+defineClass(109, 70, {41:1, 36:1, 55:1, 109:1, 70:1, 63:1}, Mouse$ButtonEvent);
 _.addFields = function addFields_3(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_3($append_7($append_3((builder.string += ', x=' , builder), this.x_0), ', y='), this.y_0);
@@ -12227,19 +12280,19 @@ function Mouse$ButtonEvent$Id(enum$name, enum$ordinal){
 
 function values_19(){
   $clinit_Mouse$ButtonEvent$Id();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_core_Mouse$ButtonEvent$Id_2_classLit, 1), $intern_1, 69, 0, [LEFT_1, RIGHT_1, MIDDLE, X1, X2]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_core_Mouse$ButtonEvent$Id_2_classLit, 1), $intern_1, 71, 0, [LEFT_1, RIGHT_1, MIDDLE, X1, X2]);
 }
 
-defineClass(69, 6, {3:1, 7:1, 6:1, 69:1}, Mouse$ButtonEvent$Id);
+defineClass(71, 6, {3:1, 7:1, 6:1, 71:1}, Mouse$ButtonEvent$Id);
 var LEFT_1, MIDDLE, RIGHT_1, X1, X2;
-var Lplayn_core_Mouse$ButtonEvent$Id_2_classLit = createForEnum(69, values_19);
+var Lplayn_core_Mouse$ButtonEvent$Id_2_classLit = createForEnum(71, values_19);
 function Mouse$MotionEvent(time, x_0, y_0, dx, dy){
   Mouse$Event.call(this, time, x_0, y_0);
   this.dx = dx;
   this.dy = dy;
 }
 
-defineClass(380, 68, $intern_37, Mouse$MotionEvent);
+defineClass(380, 70, $intern_37, Mouse$MotionEvent);
 _.addFields = function addFields_4(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_3($append_7($append_3((builder.string += ', x=' , builder), this.x_0), ', y='), this.y_0);
@@ -12258,7 +12311,7 @@ function Mouse$WheelEvent(time, x_0, y_0, velocity){
   this.velocity = velocity;
 }
 
-defineClass(381, 68, $intern_37, Mouse$WheelEvent);
+defineClass(381, 70, $intern_37, Mouse$WheelEvent);
 _.addFields = function addFields_5(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_3($append_7($append_3((builder.string += ', x=' , builder), this.x_0), ', y='), this.y_0);
@@ -12742,7 +12795,7 @@ function Touch$Event(time, x_0, y_0, kind, id_0){
   this.size_0 = -1;
 }
 
-defineClass(100, 55, {40:1, 36:1, 55:1, 100:1, 61:1}, Touch$Event);
+defineClass(100, 55, {41:1, 36:1, 55:1, 100:1, 63:1}, Touch$Event);
 _.addFields = function addFields_6(builder){
   $append_4($append_7($append_2((builder.string += 'time=' , builder), this.time), ', flags='), this.flags);
   $append_3($append_7($append_3((builder.string += ', x=' , builder), this.x_0), ', y='), this.y_0);
@@ -12771,12 +12824,12 @@ function Touch$Event$Kind(enum$name, enum$ordinal){
 
 function values_21(){
   $clinit_Touch$Event$Kind();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_core_Touch$Event$Kind_2_classLit, 1), $intern_1, 84, 0, [START, MOVE, END_0, CANCEL]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_core_Touch$Event$Kind_2_classLit, 1), $intern_1, 85, 0, [START, MOVE, END_0, CANCEL]);
 }
 
-defineClass(84, 6, {3:1, 7:1, 6:1, 84:1}, Touch$Event$Kind);
+defineClass(85, 6, {3:1, 7:1, 6:1, 85:1}, Touch$Event$Kind);
 var CANCEL, END_0, MOVE, START;
-var Lplayn_core_Touch$Event$Kind_2_classLit = createForEnum(84, values_21);
+var Lplayn_core_Touch$Event$Kind_2_classLit = createForEnum(85, values_21);
 function $clinit_TriangleBatch(){
   $clinit_TriangleBatch = emptyMethod;
   QUAD_INDICES = stampJavaTypeInfo(getClassLiteralForArray(I_classLit, 1), $intern_2, 16, 15, [0, 1, 2, 1, 3, 2]);
@@ -14545,7 +14598,7 @@ function $transform(this$static){
   return this$static.transform;
 }
 
-defineClass(78, 1, $intern_40);
+defineClass(79, 1, $intern_40);
 _.toString_0 = function toString_39(){
   var buf;
   buf = new StringBuilder_0($name_0(this));
@@ -14562,8 +14615,8 @@ _.flags = 0;
 _.rotation = 0;
 _.scaleX = 1;
 _.scaleY = 1;
-var Lplayn_scene_Layer_2_classLit = createForClass(78);
-defineClass(317, 78, $intern_40);
+var Lplayn_scene_Layer_2_classLit = createForClass(79);
+defineClass(317, 79, $intern_40);
 var Lplayn_scene_ClippedLayer_2_classLit = createForClass(317);
 defineClass(318, 317, $intern_40);
 _.iterator = function iterator_16(){
@@ -14591,13 +14644,13 @@ function Layer$Flag(enum$name, enum$ordinal, bitmask){
 
 function values_22(){
   $clinit_Layer$Flag();
-  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_scene_Layer$Flag_2_classLit, 1), $intern_1, 79, 0, [VISIBLE_1, INTERACTIVE, XFDIRTY, ODIRTY]);
+  return stampJavaTypeInfo(getClassLiteralForArray(Lplayn_scene_Layer$Flag_2_classLit, 1), $intern_1, 80, 0, [VISIBLE_1, INTERACTIVE, XFDIRTY, ODIRTY]);
 }
 
-defineClass(79, 6, {3:1, 7:1, 6:1, 79:1}, Layer$Flag);
+defineClass(80, 6, {3:1, 7:1, 6:1, 80:1}, Layer$Flag);
 _.bitmask = 0;
 var INTERACTIVE, ODIRTY, VISIBLE_1, XFDIRTY;
-var Lplayn_scene_Layer$Flag_2_classLit = createForEnum(79, values_22);
+var Lplayn_scene_Layer$Flag_2_classLit = createForEnum(80, values_22);
 function $clinit_Layer$Origin(){
   $clinit_Layer$Origin = emptyMethod;
   FIXED_0 = new Layer$Origin$1;
@@ -14732,7 +14785,7 @@ _.equals_0 = function equals_21(obj){
   if (obj === this) {
     return true;
   }
-  if (instanceOf(obj, 77)) {
+  if (instanceOf(obj, 78)) {
     d = obj;
     return d.width_0 == this.width_0 && d.height_0 == this.height_0;
   }
@@ -14748,13 +14801,13 @@ _.toString_0 = function toString_42(){
 }
 ;
 var Lpythagoras_f_AbstractDimension_2_classLit = createForClass(148);
-defineClass(152, 1, {152:1, 61:1});
+defineClass(152, 1, {152:1, 63:1});
 _.equals_0 = function equals_22(obj){
   var p;
   if (obj === this) {
     return true;
   }
-  if (instanceOf(obj, 81)) {
+  if (instanceOf(obj, 82)) {
     p = obj;
     return this.x_0 == p.x_0 && this.y_0 == p.y_0;
   }
@@ -14772,7 +14825,7 @@ _.toString_0 = function toString_43(){
 var Lpythagoras_f_AbstractPoint_2_classLit = createForClass(152);
 defineClass(444, 1, {});
 var Lpythagoras_f_AbstractTransform_2_classLit = createForClass(444);
-defineClass(165, 1, {165:1, 61:1});
+defineClass(165, 1, {165:1, 63:1});
 _.equals_0 = function equals_23(obj){
   var p;
   if (obj === this) {
@@ -14849,7 +14902,7 @@ function AffineTransform_0(m00, m01, m10, m11, tx, ty){
   this.ty = ty;
 }
 
-defineClass(82, 444, {82:1}, AffineTransform, AffineTransform_0);
+defineClass(83, 444, {83:1}, AffineTransform, AffineTransform_0);
 _.toString_0 = function toString_45(){
   return this.m00 != 1 || this.m01 != 0 || this.m10 != 0 || this.m11 != 1?'affine [' + toString_46(this.m00, TO_STRING_DECIMAL_PLACES) + ' ' + toString_46(this.m01, TO_STRING_DECIMAL_PLACES) + ' ' + toString_46(this.m10, TO_STRING_DECIMAL_PLACES) + ' ' + toString_46(this.m11, TO_STRING_DECIMAL_PLACES) + ' ' + new Vector_0(this.tx, this.ty) + ']':this.tx != 0 || this.ty != 0?'trans ' + new Vector_0(this.tx, this.ty):'ident';
 }
@@ -14860,7 +14913,7 @@ _.m10 = 0;
 _.m11 = 0;
 _.tx = 0;
 _.ty = 0;
-var Lpythagoras_f_AffineTransform_2_classLit = createForClass(82);
+var Lpythagoras_f_AffineTransform_2_classLit = createForClass(83);
 function Dimension(){
   Dimension_0.call(this);
 }
@@ -14870,10 +14923,10 @@ function Dimension_0(){
   this.height_0 = 0;
 }
 
-defineClass(77, 148, {3:1, 148:1, 77:1}, Dimension, Dimension_0);
+defineClass(78, 148, {3:1, 148:1, 78:1}, Dimension, Dimension_0);
 _.height_0 = 0;
 _.width_0 = 0;
-var Lpythagoras_f_Dimension_2_classLit = createForClass(77);
+var Lpythagoras_f_Dimension_2_classLit = createForClass(78);
 function $clinit_Dimensions(){
   $clinit_Dimensions = emptyMethod;
   new Dimension_0;
@@ -14933,10 +14986,10 @@ function Point_0(){
   this.y_0 = 0;
 }
 
-defineClass(81, 152, {3:1, 152:1, 81:1, 61:1}, Point, Point_0);
+defineClass(82, 152, {3:1, 152:1, 82:1, 63:1}, Point, Point_0);
 _.x_0 = 0;
 _.y_0 = 0;
-var Lpythagoras_f_Point_2_classLit = createForClass(81);
+var Lpythagoras_f_Point_2_classLit = createForClass(82);
 function $clinit_Points(){
   $clinit_Points = emptyMethod;
   new Point_0;
@@ -14961,7 +15014,7 @@ function Vector_0(x_0, y_0){
   this.y_0 = y_0;
 }
 
-defineClass(46, 165, {165:1, 46:1, 61:1}, Vector, Vector_0);
+defineClass(46, 165, {165:1, 46:1, 63:1}, Vector, Vector_0);
 _.x_0 = 0;
 _.y_0 = 0;
 var Lpythagoras_f_Vector_2_classLit = createForClass(46);
@@ -15245,8 +15298,8 @@ function Signal(){
   $clinit_AbstractSignal();
 }
 
-defineClass(64, 434, {}, Signal);
-var Lreact_Signal_2_classLit = createForClass(64);
+defineClass(66, 434, {}, Signal);
+var Lreact_Signal_2_classLit = createForClass(66);
 function $clinit_Slots(){
   $clinit_Slots = emptyMethod;
   NOOP = new Slots$1;
